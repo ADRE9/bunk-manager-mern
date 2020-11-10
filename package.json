@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/index.js",
-    "dev": "nodemon server/index.js",
-    "mongo": "C:/Users/mak13/MongoDb/db/bin/mongod.exe -dbpath=E:/ARSHIE/DB/BUNK-MANAGER-DATA"
+    "server": "nodemon server/index.js",
+    "mongo": "C:/Users/mak13/MongoDb/db/bin/mongod.exe -dbpath=E:/ARSHIE/DB/BUNK-MANAGER-DATA",
+    "client": "npm rum start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run mongo\""
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +17,7 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "concurrently": "^5.3.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.2",

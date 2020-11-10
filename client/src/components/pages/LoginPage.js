@@ -1,5 +1,5 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
+//import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import svgImg from '../../assets/svg/undraw_book_lover_mkck.svg';
 import { makeStyles } from '@material-ui/core/styles';
@@ -16,6 +16,14 @@ const useStyles = makeStyles(theme => ({
   },
   containerGrid: {
     flexGrow:1,
+  },
+  gridItem: {
+    [theme.breakpoints.down("sm")]: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      margin:"3rem 0rem 5rem 0rem",
+    }
   }
 }));
 
@@ -30,7 +38,7 @@ const classes=useStyles(props)
         <Grid item xs={12} sm={12} md={8}>
           <img src={svgImg} alt="svgimage" className={classes.svgImg }/>
         </Grid>
-        <Grid item xs={12} sm={12} md={4}>
+        <Grid className={classes.gridItem} item xs={12} sm={12} md={4}>
           <LoginCard/>
         </Grid>
       </Grid>

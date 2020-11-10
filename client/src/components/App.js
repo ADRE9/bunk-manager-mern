@@ -33,9 +33,8 @@ const App = () => {
           <BrowserRouter>
             <Header />
             <Switch>
-              <Route exact path="/user" component={()=><div>Home</div> }/>
               <Suspense fallback={<div>LOading..</div>}>
-                <Route exact path="/">
+                <Route exact path="/user">
                   <LoginPage/>
                 </Route>
               </Suspense>

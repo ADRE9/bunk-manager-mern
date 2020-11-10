@@ -11,12 +11,18 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
   toolBar: {
     ...theme.mixins.toolbar,
-    marginTop:"1rem"
+    marginTop: "1rem",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "0rem",
+    }
   },
   AppBar: {
     padding: 0,
     margin:0,
-    minHeight:"5rem"
+    height: "5rem",
+    [theme.breakpoints.down("sm")]: {
+      height: "3rem",
+    }
   },
   Button: {
     display: "flex",
@@ -25,13 +31,19 @@ const useStyles = makeStyles(theme => ({
     height: "5rem",
     "&:hover": {
       backgroundColor:"transparent"
+    },
+    [theme.breakpoints.down("sm")]: {
+      height: "3rem",
     }
   },
   logo: {
     fontWeight: 400,
     fontSize:"2.5rem",
     fontFamily: "Lobster, cursive",
-    color:"white"
+    color: "white",
+    [theme.breakpoints.down("sm")]: {
+      fontSize:"1.5rem",
+    }
   }
 }));
 
