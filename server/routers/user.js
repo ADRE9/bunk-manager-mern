@@ -4,12 +4,12 @@ const { createUser, createCrUser, deleteUser, updateUser, loginUser, logout,logo
 const auth = require('../middlewares/auth');
 
 
-router.post('/user/new/signup',createUser);
-router.post('/user/new/cr/signup',createCrUser);
-router.delete('/user/:id', deleteUser);
-router.patch('/user/:id', updateUser);
-router.post('/user/login',loginUser);
-router.post('/user/logout',  auth ,logout);
-router.post('/user/logoutAll',auth, logoutAll);
+router.post('/auth/new/signup',createUser);
+router.post('/auth/new/cr/signup',createCrUser);
+router.delete('/auth/:id', deleteUser);
+router.patch('/auth/:id', updateUser);
+router.post('/auth/login',loginUser);
+router.post('/auth/logout',  auth ,logout);
+router.post('/auth/logoutAll',auth, logoutAll);
 
 module.exports = router;

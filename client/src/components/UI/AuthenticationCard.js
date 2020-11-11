@@ -4,22 +4,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { motion } from 'framer-motion';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-import {connect} from 'react-redux';
-import {createUser,createCrUser} from '../../actions'
+//import { createUser, createCrUser } from '../../actions';
 
-//validation Schema
-const validationSchema = yup.object({
-  email: yup
-    .string('Enter your email')
-    .email('Enter a valid email')
-    .required('Email is required'),
-  password: yup
-    .string('Enter your password')
-    .min(8, 'Password should be of minimum 7 characters length')
-    .required('Password is required'),
-});
+import LoginCard from './LoginComponents/LoginCard';
+import SignUpCard from './LoginComponents/SignUpCard';
+
 
 //styles
 const useStyles = makeStyles(theme => ({
@@ -69,7 +58,7 @@ const useStyles = makeStyles(theme => ({
     alignItems:"center",
     height: "100%",
     backgroundColor: "#FD0054",
-    backgroundImage: "linear-gradient(147deg, #A80038 0%,  #FD0054 74%)",
+    backgroundImage: "linear-gradient(147deg, #FD0054 0%, #A80038 74%)",
     zIndex:4,
   },
   overlayTop: {
@@ -93,61 +82,6 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     width: "100%",
     height: "50%",
-  },
-  loginHeader: {
-    fontFamily: "Montserrat, sans-serif",
-    fontWeight: 600,
-    marginTop: "2rem",
-    marginBottom: "0",
-    textTransform:"uppercase"
-  },
-  signUpHeader: {
-    fontFamily: "Montserrat, sans-serif",
-    fontWeight: 600,
-    marginTop: "2rem",
-    marginBottom: "0",
-    textTransform:"uppercase"
-  },
-  input: {
-    margin: "10px 0px",
-    width: "80%",
-    height:"30px",
-    borderRadius: "15px", 
-    border: "1px solid black",
-    paddingLeft:"1rem",
-    "&:focus": {
-      outline:"none"
-    },
-    "&::placeholder": {
-      fontFamily: "Montserrat, sans-serif",
-      color: "black",
-      fontWeight:400,
-    }
-  },
-  form: {
-    display:"flex",
-    width: "100%",
-    margin: 0,
-    padding:0,
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    flexGrow: 1,
-  },
-  button: {
-    borderRadius: "30px",
-    width: "130px",
-    fontFamily: "Montserrat, sans-serif",
-    backgroundColor: "#FD0054",
-    backgroundImage: "linear-gradient(147deg, #FD0054 0%, #FD0054 74%)",
-  },
-  signUpButton: {
-    borderRadius: "30px",
-    width: "150px",
-    marginLeft:"10px",
-    fontFamily: "Montserrat, sans-serif",
-    backgroundColor: "#2B2024",
-    backgroundImage: "linear-gradient(147deg,#A80038 0%, #A80038 74%)",
   },
   overlayHeader: {
     color: "white",
@@ -173,7 +107,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const LoginCard = (props) => {
+const AuthenticationCard = (props) => {
 
 
   //material ui classes
@@ -322,17 +256,6 @@ const LoginCard = (props) => {
     });
   };
 
-  //useFormik Hooks
-  const formik = useFormik({
-    initialValues: {
-      email: "abc@xyz.com",
-      password: ""
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      props.createUser(JSON.stringify(values, null, 2));
-    },
-  });
 
   return (
     <Card className={classes.card}>
@@ -342,43 +265,7 @@ const LoginCard = (props) => {
         animate={signInAnimation.final}
         transition={signInAnimation.transition}
         className={classes.signIn}>
-        <Typography color="primary" className={classes.loginHeader} variant="h5">
-          Sign In
-        </Typography>
-        
-        <form
-          autoComplete="off"
-          className={classes.form}
-          onSubmit={formik.handleSubmit}
-        >
-          <input
-            id="email-login"
-            label="Email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            error={formik.touched.email && Boolean(formik.errors.email)}
-            variant="outlined"
-            name="email-login"
-            placeholder="Username or Email"
-            type="text"
-            className={classes.input}
-          />
-          {formik.errors.email ? <div>{formik.errors.email}</div> : null}
-          <input
-            name="password-login"
-            placeholder="Password"
-            type="password"
-            className={classes.input}
-            id="password-login"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            error={formik.touched.password && Boolean(formik.errors.password)}
-          />
-          {formik.errors.password ? <div>{formik.errors.password}</div> : null}
-          <Button type="submit" className={classes.button} color="secondary" variant="contained">
-            Sign In
-                </Button>
-        </form>
+        <LoginCard/>
       </motion.div>
       <motion.div
         variants={signUpAnimation}
@@ -386,47 +273,7 @@ const LoginCard = (props) => {
         animate={signUpAnimation.final}
         transition={signUpAnimation.transition}
         className={classes.signUp}>
-        <Typography color="primary" className={classes.signUpHeader} variant="h5">
-          Sign Up
-          </Typography>
-        <form
-          onSubmit={formik.handleSubmit}
-          className={classes.form}
-        >
-          <input
-            id="email-signup"
-            name="email-signup"
-            onChange={formik.handleChange}
-            error={formik.touched.email && Boolean(formik.errors.email)}
-            required
-            placeholder="Username or Email"
-            type="text"
-            className={classes.input}
-            value={formik.values.email}
-          />
-          {formik.errors.email ? <div>{formik.errors.email}</div> : null}
-          <input
-            id="password-signup"
-            name="password-signup"
-            onChange={formik.handleChange}
-            error={formik.touched.password && Boolean(formik.errors.password)}
-            required
-            value={formik.values.password}
-            placeholder="Password"
-            type="password"
-            className={classes.input}
-          />
-          {formik.errors.password ? <div>{formik.errors.password}</div> : null}
-          <div>
-            <Button
-              type="submit"
-              className={classes.button} color="secondary"
-              variant="contained"
-            >
-              Sign Up
-            </Button>
-          </div>
-        </form>
+        <SignUpCard/>
       </motion.div>
       <div className={classes.overlay}>
         <motion.div
@@ -470,6 +317,4 @@ const LoginCard = (props) => {
 };
 
  
-export default connect(null, {
-  createUser,createCrUser
-})(LoginCard);
+export default AuthenticationCard;

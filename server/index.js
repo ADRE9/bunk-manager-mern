@@ -1,5 +1,7 @@
 const express = require('express');
+const cors = require('cors');
 require('./db/mongoose');
+
 
 //routes constants
 const userRoutes = require('./routers/user');
@@ -7,6 +9,7 @@ const userRoutes = require('./routers/user');
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 //Routers
 app.use(userRoutes);

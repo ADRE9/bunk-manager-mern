@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { CREATE_USER,CREATE_CR_USER } from '../actions/actionTypes';
+import { CREATE_USER,CREATE_CR_USER,LOGIN_USER } from '../actions/actionTypes';
 
 export default (state={},action) => {
   switch (action.type) {
@@ -7,7 +7,10 @@ export default (state={},action) => {
       return {...action.payload};
     }
     case CREATE_CR_USER: {
-      return {...action.payload}
+      return { ...action.payload };
+    }
+    case LOGIN_USER: {
+      return { ...action.payload };
     }
     default: {
       return state;

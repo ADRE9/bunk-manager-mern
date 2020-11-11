@@ -5,7 +5,7 @@ import svgImg from '../../assets/svg/undraw_book_lover_mkck.svg';
 import { makeStyles } from '@material-ui/core/styles';
 
 
-import LoginCard from '../UI/LoginCard';
+import AuthenticationCard from '../UI/AuthenticationCard';
 
 
 const useStyles = makeStyles(theme => ({
@@ -39,7 +39,7 @@ const classes=useStyles(props)
           <img src={svgImg} alt="svgimage" className={classes.svgImg }/>
         </Grid>
         <Grid className={classes.gridItem} item xs={12} sm={12} md={4}>
-          <LoginCard/>
+          <AuthenticationCard/>
         </Grid>
       </Grid>
     </React.Fragment>
