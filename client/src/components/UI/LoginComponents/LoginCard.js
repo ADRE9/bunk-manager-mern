@@ -8,45 +8,10 @@ import { loginUser } from '../../../actions';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
-  loginHeader: {
-    fontFamily: "Montserrat, sans-serif",
-    fontWeight: 600,
-    marginTop: "2rem",
-    marginBottom: "0",
-    textTransform:"uppercase"
-  },
-  input: {
-    margin: "10px 0px",
-    width: "80%",
-    height:"30px",
-    borderRadius: "15px", 
-    border: "1px solid black",
-    paddingLeft:"1rem",
-    "&:focus": {
-      outline:"none"
-    },
-    "&::placeholder": {
-      fontFamily: "Montserrat, sans-serif",
-      color: "black",
-      fontWeight:400,
-    }
-  },
-  form: {
-    display:"flex",
-    width: "100%",
-    margin: 0,
-    padding:0,
-    flexDirection: "column",
-    justifyContent: "start",
-    alignItems: "center",
-    flexGrow: 1,
-  },
+  ...theme.authForm,
   button: {
-    borderRadius: "30px",
+    ...theme.authForm.button,
     width: "130px",
-    fontFamily: "Montserrat, sans-serif",
-    backgroundColor: "#FD0054",
-    backgroundImage: "linear-gradient(147deg, #FD0054 0%, #FD0054 74%)",
   },
 }));
 
@@ -108,7 +73,7 @@ const LoginCard = (props) => {
           {formik.errors.password ? <div>{formik.errors.password}</div> : null}
           <Button type="submit" className={classes.button} color="secondary" variant="contained">
             Sign In
-                </Button>
+          </Button>
         </form>
     </React.Fragment>
    );
