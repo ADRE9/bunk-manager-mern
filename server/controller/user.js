@@ -1,5 +1,4 @@
 const express = require('express');
-const { findByIdAndDelete } = require('../models/user');
 
 const User = require('../models/user');
 
@@ -91,6 +90,10 @@ const logoutAll = async(req,res) => {
   };
 };
 
+const userDetails = async (req, res) => {
+  res.send({user:req.user,token:req.token})
+};
+
 
 module.exports = {
   createUser,
@@ -99,6 +102,7 @@ module.exports = {
   updateUser,
   loginUser,
   logout,
-  logoutAll
+  logoutAll,
+  userDetails
 };
 

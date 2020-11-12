@@ -115,7 +115,7 @@ const SignUpCard = (props) => {
           className={classes.form}
         >
           <input
-            id="name"
+            id="signup-name"
             name="name"
             onChange={formik.handleChange}
             error={formik.touched.name && Boolean(formik.errors.name).toString()}
@@ -127,7 +127,7 @@ const SignUpCard = (props) => {
           />
           {formik.errors.name ? <div>{formik.errors.name}</div> : null}
           <input
-            id="email"
+            id="signup-email"
             name="email"
             onChange={formik.handleChange}
             error={formik.touched.email && Boolean(formik.errors.email).toString()}
@@ -139,7 +139,7 @@ const SignUpCard = (props) => {
           />
           {formik.errors.email ? <div>{formik.errors.email}</div> : null}
           <input
-            id="password"
+            id="signup-password"
             name="password"
             onChange={formik.handleChange}
             error={formik.touched.password && Boolean(formik.errors.password).toString()}

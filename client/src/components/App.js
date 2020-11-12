@@ -1,15 +1,18 @@
 import React,{lazy,Suspense} from 'react';
-import { BrowserRouter, Route,Switch } from 'react-router-dom';
+import { BrowserRouter, Route,Switch,Redirect } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { makeStyles } from '@material-ui/core/styles';
-
+import { withStyles } from "@material-ui/core/styles";
+import { createStyles } from '@material-ui/core/styles';
 import Theme from '../Themes/Theme';
 import Header from '../components/pagesComponents/Header';
+import { connect } from 'react-redux';
+import  {checkAuthentication}  from '../actions';
 
 //Lazy Loading
-const LoginPage = lazy(()=>import('./pages/LoginPage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const HomePage = lazy(()=>import('./pages/HomePage'));
 
-const useStyles = makeStyles(theme => ({
+const styles = (theme) => createStyles({
   App: {
     display: "flex",
     flexDirection: "column",
@@ -18,32 +21,52 @@ const useStyles = makeStyles(theme => ({
     top: 0,
     left: 0,
     width: "100%",
-    minHeight:"100vh",
+    minHeight: "100vh",
   }
-}))
+});
 
-const App = () => {
+class App extends React.Component {
 
-  const classes = useStyles();
+  componentDidMount() {
+    this.props.checkAuthentication()
+  };
+  
 
-  return ( 
-    <React.Fragment>
-      <div className={classes.App}>
-        <ThemeProvider theme={Theme}>
-          <BrowserRouter>
-            <Header />
-            <Switch>
-              <Suspense fallback={<div>LOading..</div>}>
-                <Route exact path="/user">
-                  <LoginPage/>
+  render() {
+    const { classes } = this.props;
+    console.log(this.props.isAuth)
+    return ( 
+      <React.Fragment>
+        <div className={classes.App}>
+          <ThemeProvider theme={Theme}>
+            <BrowserRouter>
+              <Header />
+              <Switch>
+                <Route exact path="/auth">
+                  <Suspense fallback={<div>loading..</div>}>
+                    <LoginPage />
+                  </Suspense>
                 </Route>
-              </Suspense>
-            </Switch>
-          </BrowserRouter>
-        </ThemeProvider>
-      </div>
-    </React.Fragment>
-   );
-}
+                <Route exact path="/home">
+                  <Suspense fallback={<div>Loading</div>}>
+                    <HomePage/>
+                  </Suspense>
+                </Route>
+              </Switch>
+            </BrowserRouter>
+          </ThemeProvider>
+        </div>
+      </React.Fragment>
+     );
+  }
+};
+
+const mapStateToProps = (state) => {
+  return {isAuth:state.isAuthenticated}
+};
+
+const styledApp = withStyles(styles)(App);
  
-export default App;
+export default connect(mapStateToProps, {
+  checkAuthentication
+})(styledApp);

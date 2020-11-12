@@ -43,7 +43,13 @@ const userSchema = new mongoose.Schema({
         required:true
       }
     },
-  ]
+  ],
+  uid: {
+    type: Number,
+    minlength: 10,
+    default: 0000000000,
+    trim: true,
+  }
 });
 
 //generating auth token
@@ -53,6 +59,18 @@ userSchema.methods.generateAuthToken = async function() {
   user.tokens = user.tokens.concat({ token: token });
   await user.save();
   return token;
+};
+
+//remove password and tokens array from the response JSON
+userSchema.methods.toJSON = function () {
+  const user = this;
+
+  const userObject = user.toObject();
+
+  delete userObject.password;
+  delete userObject.tokens;
+
+  return userObject;
 };
 
 //checking authentication

@@ -83,7 +83,7 @@ const LoginCard = (props) => {
           onSubmit={formik.handleSubmit}
         >
           <input
-            id="email"
+            id="login-email"
             label="Email"
             value={formik.values.email}
             onChange={formik.handleChange}
@@ -100,7 +100,7 @@ const LoginCard = (props) => {
             placeholder="Password"
             type="password"
             className={classes.input}
-            id="password"
+            id="login-password"
             value={formik.values.password}
             onChange={formik.handleChange}
             error={formik.touched.password && Boolean(formik.errors.password).toString()}

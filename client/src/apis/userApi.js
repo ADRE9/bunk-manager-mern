@@ -15,3 +15,5 @@ export const updateUser = (id, updatedData) => axios.patch(`${url}/${id}`, updat
 export const logoutUser = () => axios.post(`${url}/logout`);
 
 export const logoutFromAllDevices = () => axios.post(`${url}/logoutAll`);
+
+export const userDetails = () => axios.get(`${url}/userDetails`);
