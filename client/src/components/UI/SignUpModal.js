@@ -49,7 +49,7 @@ const signUpSchema = yup.object({
   regdId: yup.string('Enter Registration ID').min(6, "Too Short").required('Registration ID is required'),
   name: yup.string('Enter Your Name').required('Name is Required'),
   email: yup.string('Enter Email').email('Invalid Email').required('Email is required'),
-  password: yup.string('').min(7, "Too Short").max(12, "Too long").required("Password is required"),
+  password: yup.string('').min(7, "Too Short").max(20, "Too long").required("Password is required"),
   confirmPassword: yup.string().required().test('password match', "password doesnt match", function (value) { return this.parent.password === value; }),
   semester:yup.number().required().min(1,"Cannot be less than 1")
 })
@@ -65,12 +65,15 @@ const SignUpModal = (props) => {
       name: "",
       email: "",
       password: "",
-      confirmPassword: "",
       semester:""
     },
     validationSchema: signUpSchema,
     onSubmit:(values) => {
-      
+      if (toggleCrSignUp) {
+        
+      } else {
+        
+      }
     }
   });
 

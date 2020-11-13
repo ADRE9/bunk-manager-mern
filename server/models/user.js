@@ -4,6 +4,12 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
+  regdId: {
+    type: Number,
+    minlength: 10,
+    default: 0000000000,
+    trim: true,
+  },
   name: {
     type: String,
     required: true,
@@ -44,11 +50,9 @@ const userSchema = new mongoose.Schema({
       }
     },
   ],
-  uid: {
+  semester: {
     type: Number,
-    minlength: 10,
-    default: 0000000000,
-    trim: true,
+    required: true,
   }
 });
 
