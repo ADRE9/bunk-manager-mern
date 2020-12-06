@@ -21,7 +21,7 @@ export const createCrUser = (userData) => async (dispatch) => {
 
 export const checkAuthentication = () => async (dispatch) => {
   try {
-    const {data} = await userApi.userDetails();
+    const {data} = await userApi.userData();
     dispatch({
     type: CHECK_AUTHENTICATION,
     payload:data,
@@ -49,11 +49,4 @@ export const loginUser = (values) => async (dispatch) => {
   }
 };
 
-const loginAndAuthenticate = () => {
-  try {
-    
-  } catch {
-    
-  }
-}
 

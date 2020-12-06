@@ -4,26 +4,16 @@ const User = require('../models/user');
 
 
 const createUser = async (req, res) => {
-  const user = new User(req.body);
+  const user = new User({...req.body});
   try {
     await user.save();
-    await user.generateAuthToken();
-    res.status(201).send(user);
+    const token=await user.generateAuthToken();
+    res.status(201).send({user,token});
   } catch (e) {
-    res.status(500).send(e);
+    res.status(500).send({ msg: "User Already Exist" });
   }
 };
 
-const createCrUser = async (req, res) => {
-  const user = new User({ ...req.body, cr: true });
-  try {
-    await user.save();
-    await user.generateAuthToken();
-    res.status(200).send(user);
-  } catch (e) {
-    res.status(500).send(e);
-  };
-};
 
 const deleteUser = async (req, res) => {
   const user = await User.findByIdAndDelete(req.params.id);
@@ -34,7 +24,7 @@ const deleteUser = async (req, res) => {
   try {
     res.status(200).send(user);
   } catch {
-    res.status(500).send("Unable to delete");
+    res.status(500).send({msg:"Unable to delete"});
   }
 };
 
@@ -51,7 +41,7 @@ const updateUser = async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true });
     await user.save();
-    res.status(200).send(user);
+    res.status(200).send({user,msg:"User Updated"});
   } catch (e) {
     res.status(400).send(e);
   }
@@ -64,7 +54,7 @@ const loginUser = async (req, res) => {
     const token = await user.generateAuthToken();
     res.status(200).send({user,token});
   } catch (e) {
-    res.status(400).send(e);
+    res.status(400).send({msg:"User login failed"});
   };
 };
 
@@ -74,7 +64,7 @@ const logout = async(req,res) => {
       return token.token !== req.token;
     });
     await req.user.save();
-    res.send();
+    res.send({msg:"logged out successfully"});
   } catch {
     res.status(500).send();
   };
@@ -84,25 +74,24 @@ const logoutAll = async(req,res) => {
   try {
     req.user.tokens = [];
     await req.user.save();
-    res.send();
+    res.send({msg:"logged out sucessfully from all devices"});
   } catch (e){
     res.status(500).send(e);
   };
 };
 
-const userDetails = async (req, res) => {
+const userData = async (req, res) => {
   res.send({user:req.user,token:req.token})
 };
 
 
 module.exports = {
   createUser,
-  createCrUser,
   deleteUser,
   updateUser,
   loginUser,
   logout,
   logoutAll,
-  userDetails
+  userData
 };
 

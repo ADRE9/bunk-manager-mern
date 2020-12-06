@@ -4,8 +4,8 @@ import * as yup from 'yup';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import {connect} from 'react-redux';
-import { loginUser } from '../../../actions';
 import Button from '@material-ui/core/Button';
+import { loggingUser } from '../../../actions/authActions';
 
 const useStyles = makeStyles(theme => ({
   ...theme.authForm,
@@ -33,7 +33,7 @@ const LoginCard = (props) => {
     },
     validationSchema: loginSchema,
     onSubmit: (values) => {
-      props.loginUser(values);
+      props.loggingUser(values);
     },
   });
 
@@ -79,4 +79,4 @@ const LoginCard = (props) => {
    );
 }
  
-export default connect(null,{loginUser})(LoginCard);
+export default connect(null,{loggingUser})(LoginCard);

@@ -58,6 +58,7 @@ export default createMuiTheme({
       fontFamily: "Montserrat, sans-serif",
       backgroundColor: "#FD0054",
       backgroundImage: "linear-gradient(147deg, #FD0054 0%, #FD0054 74%)",
+      width:"130px"
     },
   }
 });

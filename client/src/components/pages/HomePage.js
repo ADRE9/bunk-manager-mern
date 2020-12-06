@@ -6,7 +6,7 @@ const HomePage = (props) => {
   
   const redirecting = () => {
     
-    if (props.auth.isAuthenticated) {
+    if (props.auth) {
       return (
         <div>
           Homeeee
@@ -19,7 +19,6 @@ const HomePage = (props) => {
   
   return (
     <div>
-      {console.log(props.auth)}
         {redirecting()}
     </div>
     
@@ -27,7 +26,7 @@ const HomePage = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return {auth:state}
+  return {auth:state.auth.isAuthenticated}
 };
  
 export default connect(mapStateToProps, { checkAuthentication })(HomePage);

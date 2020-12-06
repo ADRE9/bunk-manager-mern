@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
   signUp: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
+    justifyContent: "start",
     alignItems:"center",
     top: 0,
     left: 0,

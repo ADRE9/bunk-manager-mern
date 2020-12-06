@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url="http://localhost:5000/auth"
+const url="http://localhost:5000/api/auth"
 
 export const createUser = (userData) => axios.post(`${url}/new/signup`, userData);
 
@@ -16,4 +16,4 @@ export const logoutUser = () => axios.post(`${url}/logout`);
 
 export const logoutFromAllDevices = () => axios.post(`${url}/logoutAll`);
 
-export const userDetails = () => axios.get(`${url}/userDetails`);
+export const userData = (header) => axios.get(`${url}/userData`,{headers:header});

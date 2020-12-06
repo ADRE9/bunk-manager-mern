@@ -1,12 +1,12 @@
 import React,{lazy,Suspense} from 'react';
-import { BrowserRouter, Route,Switch,Redirect } from 'react-router-dom';
+import { BrowserRouter, Route,Switch } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { withStyles } from "@material-ui/core/styles";
 import { createStyles } from '@material-ui/core/styles';
 import Theme from '../Themes/Theme';
 import Header from '../components/pagesComponents/Header';
 import { connect } from 'react-redux';
-import  {checkAuthentication}  from '../actions';
+import { loadUser } from '../actions/authActions';
 
 //Lazy Loading
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -27,14 +27,13 @@ const styles = (theme) => createStyles({
 
 class App extends React.Component {
 
+
   componentDidMount() {
-    this.props.checkAuthentication()
+    this.props.loadUser();
   };
-  
 
   render() {
     const { classes } = this.props;
-    console.log(this.props.isAuth)
     return ( 
       <React.Fragment>
         <div className={classes.App}>
@@ -47,7 +46,7 @@ class App extends React.Component {
                     <LoginPage />
                   </Suspense>
                 </Route>
-                <Route exact path="/home">
+                <Route exact path="/">
                   <Suspense fallback={<div>Loading</div>}>
                     <HomePage/>
                   </Suspense>
@@ -68,5 +67,5 @@ const mapStateToProps = (state) => {
 const styledApp = withStyles(styles)(App);
  
 export default connect(mapStateToProps, {
-  checkAuthentication
+  loadUser
 })(styledApp);

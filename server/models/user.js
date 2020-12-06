@@ -9,15 +9,16 @@ const userSchema = new mongoose.Schema({
     minlength: 10,
     default: 0000000000,
     trim: true,
+    unique:true,
   },
   name: {
     type: String,
     required: true,
     trim:true,
   },
-  cr: {
-    type: Boolean,
-    default:false,
+  role: {
+    type: String,
+    required:true,
   },
   email:{
     type: String,
@@ -42,6 +43,14 @@ const userSchema = new mongoose.Schema({
       }
     }
   },
+  department: {
+    type: String,
+    required:true,
+  },
+  semester: {
+    type: Number,
+    required:true,
+  },
   tokens: [
     {
       token: {
@@ -50,10 +59,6 @@ const userSchema = new mongoose.Schema({
       }
     },
   ],
-  semester: {
-    type: Number,
-    required: true,
-  }
 });
 
 //generating auth token
