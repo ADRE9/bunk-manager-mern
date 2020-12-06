@@ -5,7 +5,7 @@ require('./db/mongoose');
 
 //routes constants
 const userRoutes = require('./routers/user');
-
+const subjectRoutes = require('./routers/subject');
 
 const app = express();
 app.use(express.json());
@@ -13,6 +13,7 @@ app.use(cors());
 
 //Routers
 app.use(userRoutes);
+app.use(subjectRoutes);
 
 const PORT = process.env.PORT || 5000;
 

@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim:true,
   },
-  role: {
+  roles: {
     type: String,
     required:true,
   },
@@ -60,6 +60,12 @@ const userSchema = new mongoose.Schema({
     },
   ],
 });
+
+userSchema.virtual('subjects', {
+  ref: 'Subject',
+  localField: '_id',
+  foreignField:'owner'
+})
 
 //generating auth token
 userSchema.methods.generateAuthToken = async function() {

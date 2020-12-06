@@ -3,28 +3,34 @@ const mongoose = require('mongoose');
 const subjectSchema = new mongoose.Schema({
   name: {
     type: String,
-    required:true,
+    required: true,
   },
   days: [
     {
       day: {
         type: String,
+        lowercase: true,
       }
     }
   ],
   totalClasses: {
     type: Number,
-    default:0,
+    default: 0,
   },
-  classesAttended: {
+  classesBunked: {
     type: Number,
-    default:0,
+    default: 0,
   },
   semester: {
     type: Number,
-    required:true,
+    required: true,
   },
   owner: {
-    
+    type: mongoose.Schema.Types.ObjectId,
+    required: true
   }
-})
+});
+
+const Subject = mongoose.model('Subject', subjectSchema);
+
+module.exports = Subject;
