@@ -1,20 +1,23 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { Typography } from '@material-ui/core';
+import { withStyles } from "@material-ui/core/styles";
 import Card from '@material-ui/core/Card';
-import { useFormik } from "formik";
-import * as yup from 'yup';
+import { Formik } from 'formik';
+ import * as Yup from 'yup';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { createNewUser } from '../../actions/authActions';
+import { clearErrors } from '../../actions/errorActions';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import HighlightOffRoundedIcon from '@material-ui/icons/HighlightOffRounded';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { departments } from '../../configs/departments';
+import history from '../../utils/history';
 
 
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
   modal: {
     opacity:1
   },
@@ -64,7 +67,7 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     ...theme.authForm.button,
-    width:"150px"
+    width:"150px",
   },
   close: {
     position: "absolute",
@@ -75,61 +78,28 @@ const useStyles = makeStyles(theme => ({
       cursor:"pointer"
     }
   },
-  buttonDivModal: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    width:"100%"
+  errorMsg: {
+    display:"flex",
+    width: "100%",
+    color: "red",
+    justifyContent:"center"
   },
   ...theme.authForm
-}));
+});
+
+// const selections = departments.map(department => (
+//   <option
+//     key={department.name}
+//     value={department.name}
+//   >
+//     {department.name}
+//   </option>));
 
 
-const SignUpModal = (props) => {
+class SignUpModal extends React.Component {
 
-  const classes = useStyles(props);
-  const [open, setOpen] = React.useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-//sign up schema
-const validationSchema = yup.object().shape({
-  department:yup.string().required('Department is required') ,
-  roles:yup.string().required('Roles are required'),
-  regdId:yup.string().required('Registration Id is required') ,
-  name: yup.string().required('Name is required'),
-  email:yup.string().email().required('Email is required') ,
-  password:yup.string().required('Password is required').min(8,"Not too short! DOnt be lazy") ,
-  confirmPassword:yup.string().required('Confirm password is required').oneOf([yup.ref('password'), null], 'Passwords must match'),
-  semester:yup.number().required('Semester is required').positive().integer()
-})  
-
-
-  const formik = useFormik({
-    initialValues: {
-      department: "",
-      roles:"",
-      regdId: "",
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword:"",
-      semester:""
-    },
-    validationSchema:validationSchema,
-    onSubmit: (values) => {
-      props.createNewUser(values);
-    }
-  });
-
-  const handleClose = () => {
-    formik.handleReset()
-    setOpen(false);
-  };
-
-  const select = departments.map(department => (
+  state = { open: false }
+  selections = departments.map(department => (
     <option
       key={department.name}
       value={department.name}
@@ -137,114 +107,179 @@ const validationSchema = yup.object().shape({
       {department.name}
     </option>));
   
+  toggle = () => {
+    this.setState({ open: !this.state.open });
+  }
 
-  
-  return (
-    <div className={classes.buttonDiv}>
-      
-      <Button onClick={handleOpen}  type="submit" className={classes.button} color="secondary" variant="contained">
+  render() {
+    const { classes } = this.props;
+    return (
+      <div className={classes.buttonDiv}>
+        <Button onClick={this.toggle}  type="submit" className={classes.button} color="secondary" variant="contained">
         Sign up
-      </Button>
-      <Modal
+        </Button>
+        <Modal
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
         }}
-        onClose={handleClose}
-        open={open}
+        onClose={this.toggle}
+        open={this.state.open}
         className={classes.modal}
-      >
-        <Fade in={open}>
-        <Card className={classes.Card}>
-            <div className={classes.head}>
-              <HighlightOffRoundedIcon onClick={handleClose} className={classes.close}/>
-              <Typography  variant="h4">
-                {props.title}
-              </Typography>
-            </div>
-            <form
-              autoComplete="off"
-              className={classes.form}
-              onSubmit={formik.handleSubmit}
-            >
-              <select
-                name="department"
-                value={formik.values.department}
-                onChange={formik.handleChange}
-                placeholder="Department"
-                className={classes.input}>
-                <optgroup label="Select Your Department">
-                  <option value="" disabled hidden>Choose a Department</option>
-                  {select}
-                </optgroup>
-              </select>
-              <select
-                name="roles"
-                value={formik.values.roles}
-                onChange={formik.handleChange}
-                className={classes.input}>
-                <optgroup label="Select Your Role">
-                  <option value="" disabled hidden>Choose a Role</option>
-                  <option value="admin">
-                    ADMIN
-                  </option>
-                  <option value="cr">
-                    CR
-                  </option>
-                  <option value="student">
-                    STUDENT
-                  </option>
-                </optgroup>
-              </select>
-              <input 
-                type="text"
-              value={formik.values.regdId}
-              placeholder="Registration ID"
-              onChange={formik.handleChange}
-              error={formik.touched.regdId && (Boolean(formik.errors.regdId)).toString()}
-              name="regdId"
-              className={classes.input} />
-              {formik.errors.regdId && formik.touched.regdId ? (<div>{formik.errors.regdId}</div>) : null}
-              <input
-                type="text"
-                value={formik.values.name}
-                placeholder="Name"
-              onChange={formik.handleChange}
-              error={formik.touched.name && (Boolean(formik.errors.name)).toString()}
-              name="name"
-              className={classes.input} />
-              {formik.errors.name && formik.touched.name ? (<div>{formik.errors.name}</div>) : null}
-              <input 
-                type="email"
-                value={formik.values.email} placeholder="Email"
-                onChange={formik.handleChange}
-                error={formik.touched.email && (Boolean(formik.errors.email)).toString()} name="email" className={classes.input} />
-              {formik.errors.email && formik.touched.email ? (<div>{formik.errors.email}</div>) : null}
-              <input type="password" value={formik.values.password} placeholder="Password"
-                onChange={formik.handleChange}
-                error={formik.touched.password && (Boolean(formik.errors.password)).toString()} name="password" className={classes.input} />
-              {formik.errors.password && formik.touched.password ? (<div>{formik.errors.password}</div>) : null}
-              <input type="password" value={formik.values.confirmPassword} placeholder="Confirm Password"
-                onChange={formik.handleChange}
-                error={formik.touched.confirmPassword && (Boolean(formik.errors.confirmPassword)).toString()} name="confirmPassword" className={classes.input} />
-              {formik.errors.confirmPassword && formik.touched.confirmPassword ? (<div>{formik.errors.confirmPassword}</div>) : null}
-              <input type="text" value={formik.values.semester} placeholder="Semester"
-                onChange={formik.handleChange}
-                error={formik.touched.semester && (Boolean(formik.errors.semester)).toString()} name="semester" className={classes.input} />
-              {formik.errors.semester ? (<div>{formik.errors.semester}</div>) : null}
-              <button type="Submit">
-                Submit
-              </button>
-            </form>
-          </Card>
-        </Fade>
+        >
+          <Fade in={this.state.open}>
+            <Card className={classes.Card}>
+              <div className={classes.head}>
+                <HighlightOffRoundedIcon
+                  onClick={this.toggle}
+                  className={classes.close}
+                />
+                <Typography  variant="h4">
+                  {this.props.title}
+                </Typography>
+              </div>
+              <Formik
+                initialValues={{
+                  department: "",
+                  roles:"",
+                  regdId: "",
+                  name: "",
+                  email: "",
+                  password: "",
+                  confirmPassword:"",
+                  currentSemester:""
+                }}
+                  validationSchema={Yup.object(
+                  {
+                    department: Yup.string('Enter Your Department').required('Department is required'),
+                    roles: Yup.string('').required('Select a role'),
+                    regdId: Yup.string('Enter Registration ID').min(6, "Too Short").required('Registration ID is required'),
+                    name: Yup.string('Enter Your Name').required('Name is Required'),
+                    email: Yup.string('Enter Email').email('Invalid Email').required('Email is required'),
+                    password: Yup.string('').min(7, "Too Short").max(20, "Too long").required("Password is required"),
+                    confirmPassword: Yup.string('').required("Confirm Password is required").oneOf([Yup.ref('password'), null], 'Passwords must match'),
+                    currentSemester:Yup.number().required("Semester is required")
+                  })}
+                onSubmit={(values, { setSubmitting }) => {
+                      alert(JSON.stringify(values, null, 2));
+                      this.props.createNewUser(values);
+                      setSubmitting(false);
+                  this.toggle();
+                  history.push('/')
+                  }}
+              >
+                {formik => (
+                  <form
+                  autoComplete="off"
+                  className={classes.form}
+                  onSubmit={formik.handleSubmit}
+                  >
+                    {console.log(formik)}
+                    <select required
+                      {...formik.getFieldProps('department')}
+                      className={classes.input}
+                      id="department"
+                    >
+                      <optgroup label="Select Your Department">
+                      <option value="" disabled hidden>Select Your Department</option>
+                        {this.selections}
+                      </optgroup>
+                    </select>
+                    {formik.touched.department && formik.errors.department ? (
+                      <div>{formik.errors.department}</div>
+                    ) : null}
+                    
+                    <select required
+                      {...formik.getFieldProps('roles')}
+                      className={classes.input}
+                      id="roles"
+                    >
+                      <optgroup label="Select Your Role">
+                        <option value="" disabled hidden>Select Your Role</option>
+                        <option value="admin">Admin</option>
+                        <option value="cr">CR</option>
+                        <option value="student">Student</option>
+                      </optgroup>
+                    </select>
+                    {formik.touched.roles && formik.errors.roles ? (
+                      <div>{formik.errors.roles}</div>
+                    ) : null}
+                      <input
+                      {...formik.getFieldProps('name')}
+                      placeholder="Name"
+                      type="text" id="name"
+                      className={classes.input}
+                    />
+                      {formik.touched.name && formik.errors.name ? (
+                      <div>{formik.errors.name}</div>
+                    ) : null}
+                    <input
+                      {...formik.getFieldProps('regdId')}
+                      placeholder="Registration ID"
+                      type="text" id="regdId"
+                      className={classes.input}
+                    />
+                      {formik.touched.regdId && formik.errors.regdId ? (
+                      <div>{formik.errors.regdId}</div>
+                    ) : null}
+                    <input
+                      {...formik.getFieldProps('email')}
+                      placeholder="Email"
+                      type="email" id="email"
+                      className={classes.input}
+                    />
+                      {formik.touched.email && formik.errors.email ? (
+                      <div>{formik.errors.email}</div>
+                    ) : null}
+                    <input
+                      {...formik.getFieldProps('password')}
+                      placeholder="Password"
+                      type="password" id="password"
+                      className={classes.input}
+                    />
+                      {formik.touched.password && formik.errors.password ? (
+                      <div>{formik.errors.password}</div>
+                    ) : null}
+                    <input
+                      {...formik.getFieldProps('confirmPassword')}
+                      placeholder="Confirm Password"
+                      type="password" id="confirmPassword"
+                      className={classes.input}
+                    />
+                      {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+                      <div>{formik.errors.confirmPassword}</div>
+                    ) : null}
+                    <input
+                      {...formik.getFieldProps('currentSemester')}
+                      placeholder="Current Semester"
+                      type="text" id="currentSemester"
+                      className={classes.input}
+                    />
+                      {formik.touched.currentSemester && formik.errors.currentSemester ? (
+                      <div>{formik.errors.currentSemester}</div>
+                    ) : null}
+                      <Button variant="contained" className={classes.button}  type="submit">Submit</Button>
+                  </form>
+                )}
+              </Formik>
+            </Card>
+          </Fade>
         </Modal>
-    </div>
-    
-  )
-}
+      </div>
+   )
+ } 
+};
 
-export default connect(null, {
-  createNewUser,
-})(SignUpModal);
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
+    error: state.error
+  }
+};
+
+
+
+export default withStyles(styles)(connect(mapStateToProps, {
+  createNewUser,clearErrors
+})(SignUpModal));

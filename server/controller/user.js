@@ -4,6 +4,9 @@ const User = require('../models/user');
 
 
 const createUser = async (req, res) => {
+  //waits creation of index before entering new user to prevent duplication of users
+  await User.init();
+  //---
   const user = new User({...req.body});
   try {
     await user.save();

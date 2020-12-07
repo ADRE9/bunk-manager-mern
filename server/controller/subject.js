@@ -2,6 +2,10 @@ const express = require('express');
 const Subject = require('../models/subject');
 const user = require('./user');
 
+//utils
+const subjectTemplate = require('../utils/subjectTemplate');
+
+//creating new subject
 const createSubject =async (req, res) => {
   const subject = new Subject({...req.body,owner:req.user._id});
 
@@ -13,6 +17,8 @@ const createSubject =async (req, res) => {
   }
 };
 
+
+//editing subject
 const editSubject = async (req, res) => {
   const updates = Object.keys(req.body);
   const allowedUpdates = ["name", "days", "semester"];
@@ -23,7 +29,8 @@ const editSubject = async (req, res) => {
     return new Error('Invalid Update');
   }
   try {
-    const subject = await Subject.findOne({ _id: req.params.id, owner: req.user._id, semester: req.subject.semester });
+    const subject = await Subject.findOne({ _id: req.params.id, owner: req.user._id });
+    console.log(subject);
     if (!subject) {
       return res.status(404).send({msg:"subject not found"})
     }
@@ -37,8 +44,10 @@ const editSubject = async (req, res) => {
   }
 };
 
+
+//deleting subject
 const deleteSubject =async (req,res) => {
-  const subject =await Subject.findByIdAndDelete({ owner: req.user._id, _id: req.subject._id, semester: req.subject.semester });
+  const subject =await Subject.findByIdAndDelete({ owner: req.user._id, _id: req.subject._id });
   if (!subject) {
     return res.status(404).send({msg:"Subject not found"})
   }
@@ -46,13 +55,42 @@ const deleteSubject =async (req,res) => {
     res.status(200).send(subject);
   } catch (e) {
     res.status(400).send({msg:"SUBJECT NOT DELETED"})
-  }
-  
+  } 
 }
+
+//creating templates
+const createTemplates = async (req, res) => {
+    try {
+      for (let i = 0; i < 5; i++){
+        const subject=await new Subject(subjectTemplate(req));
+        await subject.save();
+      }
+      res.status(201).send({ msg: "SUBJECT TEMPLATES CREATED" });
+    } catch (e) {
+      res.status(500).send({ msg: e });
+    }
+};
+
+//get subjects by semester
+const getSubjectBySemester = async (req, res) => {
+  try {
+    await req.user.populate({
+      path: "subjects",
+      match: {
+        semester:req.params.semester
+      }
+    }).execPopulate();
+    res.status(200).send(req.user.subjects)
+  } catch {
+    res.status(400).send();
+  }
+};
 
 
 module.exports = {
   createSubject,
   editSubject,
-  deleteSubject
+  deleteSubject,
+  createTemplates,
+  getSubjectBySemester
 }

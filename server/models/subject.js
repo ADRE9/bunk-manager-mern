@@ -5,14 +5,7 @@ const subjectSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  days: [
-    {
-      day: {
-        type: String,
-        lowercase: true,
-      }
-    }
-  ],
+  days: [{type:String, trim: true,lowercase:true}],
   totalClasses: {
     type: Number,
     default: 0,
@@ -24,6 +17,10 @@ const subjectSchema = new mongoose.Schema({
   semester: {
     type: Number,
     required: true,
+  },
+  subjectType: {
+    type: String,
+    default:"regular"
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,

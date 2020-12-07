@@ -1,4 +1,5 @@
 import { USER_LOADED, USER_LOADING, LOGIN_SUCCESS, AUTH_ERROR, LOGIN_FAIL, REGISTER_SUCCESS, REGISTER_FAIL, LOGOUT_SUCCESS } from '../actions/actionTypes';
+import history from '../utils/history';
 
 import * as userApi from '../apis/userApi';
 
@@ -78,6 +79,7 @@ export const createNewUser = (userData) => async (dispatch, getState) => {
       type: REGISTER_SUCCESS,
       payload: response.data
     })
+    history.push('/');
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: REGISTER_FAIL });

@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
   regdId: {
     type: Number,
     minlength: 10,
-    default: 0000000000,
+    required:true,
     trim: true,
     unique:true,
   },
@@ -47,7 +47,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required:true,
   },
-  semester: {
+  currentSemester: {
     type: Number,
     required:true,
   },
