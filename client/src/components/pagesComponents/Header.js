@@ -4,6 +4,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import { connect } from 'react-redux';
+import { logoutUser } from '../../actions/authActions';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -44,6 +46,9 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down("sm")]: {
       fontSize:"1.5rem",
     }
+  },
+  logout: {
+    marginLeft:"auto"
   }
 }));
 
@@ -63,6 +68,21 @@ const Header = (props) => {
 
   const classes = useStyles(props);
 
+  const renderAdmin = () => {
+    
+    if (props.auth.isAuthenticated) {
+      return (
+        <React.Fragment>
+          <Button
+            onClick={()=>{props.logoutUser()}}
+            className={classes.logout} variant="contained" color="primary">
+            LOGOUT
+          </Button>
+        </React.Fragment>
+      )
+    }
+  };
+
   return ( 
     <React.Fragment>
       <CssBaseline />
@@ -74,6 +94,7 @@ const Header = (props) => {
                 BUNK MANAGER
               </Typography>
             </Button>
+            {renderAdmin()}
           </Toolbar>
         </AppBar>
       </ElevationScroll>
@@ -81,5 +102,11 @@ const Header = (props) => {
     </React.Fragment>
    );
 }
+
+const mapStateToProps = (state) => {
+  return {auth:state.auth}
+};
  
-export default Header;
+export default connect(mapStateToProps, {
+  logoutUser
+})(Header);

@@ -1,5 +1,6 @@
 import React,{lazy,Suspense} from 'react';
-import { BrowserRouter, Route,Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import history from '../utils/history';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { withStyles } from "@material-ui/core/styles";
 import { createStyles } from '@material-ui/core/styles';
@@ -38,7 +39,7 @@ class App extends React.Component {
       <React.Fragment>
         <div className={classes.App}>
           <ThemeProvider theme={Theme}>
-            <BrowserRouter>
+            <BrowserRouter history={history}>
               <Header />
               <Switch>
                 <Route exact path="/auth">

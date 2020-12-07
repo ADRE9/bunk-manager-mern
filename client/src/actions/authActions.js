@@ -59,7 +59,6 @@ export const loggingUser = (userData) => async (dispatch, getState) => {
       type: LOGIN_SUCCESS,
       payload: response.data
     });
-    console.log(getState().auth.token);
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: LOGIN_FAIL });
@@ -83,5 +82,14 @@ export const createNewUser = (userData) => async (dispatch, getState) => {
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: REGISTER_FAIL });
+  }
+};
+
+export const logoutUser = () => async (dispatch, getState) => {
+  try {
+    await userApi.logoutUser();
+    dispatch({ type: LOGOUT_SUCCESS });
+  } catch(error) {
+    await dispatch(returnErrors(error.response.data, error.response.status));
   }
 };
