@@ -6,6 +6,7 @@ import { Typography } from '@material-ui/core';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { loggingUser } from '../../../actions/authActions';
+import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   ...theme.authForm,
@@ -32,13 +33,17 @@ const LoginCard = (props) => {
       password: ""
     },
     validationSchema: loginSchema,
-    onSubmit: (values) => {
-      props.loggingUser(values);
+    onSubmit: async(values) => {
+      await props.loggingUser(values);
+      
+      if (props.auth) {
+        props.history.push('/home')
+      } 
     },
   });
 
   return ( 
-    <React.Fragment>
+    <React.Fragment>{console.log(props.auth)}
       <Typography color="primary" className={classes.loginHeader} variant="h5">
           Sign In
       </Typography>
@@ -46,7 +51,8 @@ const LoginCard = (props) => {
           autoComplete="off"
           className={classes.form}
           onSubmit={formik.handleSubmit}
-        >
+      >
+        {props.error ? <div>{props.error.msg}</div>:null}
           <input
             id="login-email"
             label="Email"
@@ -78,5 +84,14 @@ const LoginCard = (props) => {
     </React.Fragment>
    );
 }
+
+const mapStateToProps = (state) => {
+  return { auth: state.auth,error:state.error.msg };
+};
  
-export default connect(null,{loggingUser})(LoginCard);
+export default withRouter(
+  connect(mapStateToProps,
+  {
+    loggingUser
+  }
+)(LoginCard));

@@ -12,8 +12,8 @@ export const deleteUser = (id) => axios.delete(`${url}/${id}`);
 
 export const updateUser = (id, updatedData) => axios.patch(`${url}/${id}`, updatedData);
 
-export const logoutUser = () => axios.post(`${url}/logout`);
+export const logoutUser = (header) => axios.post(`${url}/logout`,{},{headers:header});
 
-export const logoutFromAllDevices = () => axios.post(`${url}/logoutAll`);
+export const logoutFromAllDevices = (header) => axios.post(`${url}/logoutAll`,{},{headers:header});
 
 export const userData = (header) => axios.get(`${url}/userData`,{headers:header});

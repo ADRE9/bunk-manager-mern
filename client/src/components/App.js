@@ -1,6 +1,5 @@
 import React,{lazy,Suspense} from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import history from '../utils/history';
+import { BrowserRouter, Route, Switch,Redirect } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { withStyles } from "@material-ui/core/styles";
 import { createStyles } from '@material-ui/core/styles';
@@ -35,21 +34,22 @@ class App extends React.Component {
 
   render() {
     const { classes } = this.props;
+    console.log(this.props)
     return ( 
       <React.Fragment>
         <div className={classes.App}>
           <ThemeProvider theme={Theme}>
-            <BrowserRouter history={history}>
+            <BrowserRouter>
               <Header />
               <Switch>
-                <Route exact path="/auth">
+                <Route exact path="/">
                   <Suspense fallback={<div>loading..</div>}>
-                    <LoginPage />
+                    {this.props.auth.isAuthenticated?<Redirect to='/home'/>:<LoginPage />}
                   </Suspense>
                 </Route>
-                <Route exact path="/">
+                <Route exact path="/home">
                   <Suspense fallback={<div>Loading</div>}>
-                    <HomePage/>
+                  {!this.props.auth.isAuthenticated?<Redirect to='/'/>:<HomePage />}
                   </Suspense>
                 </Route>
               </Switch>
@@ -62,7 +62,7 @@ class App extends React.Component {
 };
 
 const mapStateToProps = (state) => {
-  return {isAuth:state.isAuthenticated}
+  return {auth:state.auth}
 };
 
 const styledApp = withStyles(styles)(App);

@@ -15,7 +15,7 @@ const HomePage = (props) => {
         </div>
       )
     } else {
-      return <Redirect to="/auth"/>
+      return <Redirect to="/"/>
     }
   }
   

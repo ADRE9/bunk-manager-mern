@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { motion } from 'framer-motion';
-//import { createUser, createCrUser } from '../../actions';
 
 import LoginCard from './LoginComponents/LoginCard';
 import SignUpCard from './LoginComponents/SignUpCard';

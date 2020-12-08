@@ -3,7 +3,27 @@ import history from '../utils/history';
 
 import * as userApi from '../apis/userApi';
 
-import { returnErrors,clearErrors } from './errorActions';
+import { returnErrors, clearErrors } from './errorActions';
+
+//(reusable)helper function to get config/token
+export const tokenConfig = getState => {
+  //GET Token from localStorage
+  const token = getState().auth.token;
+  //Headers
+  const config = {
+    headers: {
+      "Content-type": "application/json"
+    }
+  };
+  
+  //if token is present
+  if (token) {
+    config.headers["Authorization"] =`Bearer ${token}`;
+  };
+
+  return config.headers;
+};
+
 
 
 export const loadUser = () => async (dispatch, getState) => {
@@ -25,26 +45,6 @@ export const loadUser = () => async (dispatch, getState) => {
   }
 
 }
-
-//(reusable)helper function to get config/token
-export const tokenConfig = getState => {
-  //GET Token from localStorage
-  const token = getState().auth.token;
-
-  //Headers
-  const config = {
-    headers: {
-      "Content-type": "application/json"
-    }
-  };
-  
-  //if token is present
-  if (token) {
-    config.headers["Authorization"] =`Bearer ${token}`;
-  };
-
-  return config.headers;
-};
 
 //login user
 export const loggingUser = (userData) => async (dispatch, getState) => {
@@ -87,7 +87,17 @@ export const createNewUser = (userData) => async (dispatch, getState) => {
 
 export const logoutUser = () => async (dispatch, getState) => {
   try {
-    await userApi.logoutUser();
+    console.log(tokenConfig(getState));
+    await userApi.logoutUser(tokenConfig(getState));
+    dispatch({ type: LOGOUT_SUCCESS });
+  } catch(error) {
+    await dispatch(returnErrors(error.response.data, error.response.status));
+  }
+};
+
+export const logoutAllUser = () => async (dispatch, getState) => {
+  try {
+    await userApi.logoutFromAllDevices(tokenConfig(getState));
     dispatch({ type: LOGOUT_SUCCESS });
   } catch(error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
