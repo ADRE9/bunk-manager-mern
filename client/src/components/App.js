@@ -10,7 +10,10 @@ import { loadUser } from '../actions/authActions';
 
 //Lazy Loading
 const LoginPage = lazy(() => import('./pages/LoginPage'));
-const HomePage = lazy(()=>import('./pages/HomePage'));
+const HomePage = lazy(() => import('./pages/HomePage'));
+const SubjectPage = lazy(() => import('./pages/SubjectPage'));
+const SemesterPage = lazy(() => import('./pages/SemesterPage'));
+const AboutPage = lazy(()=>import('./pages/AboutPage'));
 
 const styles = (theme) => createStyles({
   App: {
@@ -50,6 +53,21 @@ class App extends React.Component {
                 <Route exact path="/home">
                   <Suspense fallback={<div>Loading</div>}>
                   {!this.props.auth.isAuthenticated?<Redirect to='/'/>:<HomePage />}
+                  </Suspense>
+                </Route>
+                <Route path="/subject" exact>
+                  <Suspense fallback={<div>Loading</div>}>
+                    {!this.props.auth.isAuthenticated?<Redirect to='/'/>:<SubjectPage />}
+                  </Suspense>
+                </Route>
+                <Route path="/semester" exact>
+                  <Suspense fallback={<div>Loading</div>}>
+                      {!this.props.auth.isAuthenticated?<Redirect to='/'/>:<SemesterPage />}
+                  </Suspense>
+                </Route>
+                <Route path="/about" exact>
+                  <Suspense fallback={<div>Loading</div>}>
+                      {!this.props.auth.isAuthenticated?<Redirect to="/"/>:<AboutPage/>}
                   </Suspense>
                 </Route>
               </Switch>
