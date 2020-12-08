@@ -12,3 +12,6 @@ export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 export const GET_ERROR = "GET_ERROR";
 export const CLEAR_ERRORS = "CLEAR_ERRORS"
+
+//subject actions
+export const CREATE_SUBJECT_TEMPLATE = "CREATE_SUBJECT_TEMPLATE";

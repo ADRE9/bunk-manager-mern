@@ -3,6 +3,7 @@ import history from '../utils/history';
 
 import * as userApi from '../apis/userApi';
 
+import { createSubjectTemplate } from './subjectActions';
 import { returnErrors, clearErrors } from './errorActions';
 
 //(reusable)helper function to get config/token
@@ -38,7 +39,8 @@ export const loadUser = () => async (dispatch, getState) => {
     dispatch({
       type: USER_LOADED,
       payload: response.data
-    })
+    });
+    dispatch(createSubjectTemplate());
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: AUTH_ERROR });
