@@ -25,7 +25,7 @@ const styles = (theme) => createStyles({
     left: 0,
     width: "100%",
     minHeight: "100vh",
-  }
+  },
 });
 
 class App extends React.Component {
@@ -51,7 +51,7 @@ class App extends React.Component {
                 </Route>
                 <Route exact path="/home">
                   <Suspense fallback={<div>Loading</div>}>
-                  {!this.props.auth.isAuthenticated?<Redirect to='/'/>:<HomePage />}
+                  {!this.props.auth.isAuthenticated?<Redirect to='/'/>:<HomePage/>}
                   </Suspense>
                 </Route>
                 <Route path="/subject" exact>

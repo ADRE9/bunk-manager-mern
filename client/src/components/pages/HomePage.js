@@ -4,10 +4,23 @@ import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import CardGrid from '../UI/Cards/CardGrid';
 import SubjectCard from '../UI/Cards/SubjectCard';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles(theme => ({
   page: {
+    //backgroundColor:"black",
     flexGrow: 1,
+    minHeight:"90vh",
+    marginTop: "0rem",
+    display: "flex",
+    flexDirection:"column"
+  },
+  container: {
+    flexGrow:1,
+    paddingTop: "2rem",
+    [theme.breakpoints.down('sm')]: {
+      paddingBottom: "5rem",
+    }
   },
 }))
 
@@ -20,10 +33,9 @@ const HomePage = (props) => {
     if (props.auth) {
       return (
         <div className={classes.page}>
-          <CardGrid className={classes.pageGrid}>
-            <SubjectCard />
-            <SubjectCard/>
-          </CardGrid>
+          <Container className={classes.container}>
+            <CardGrid className={classes.pageGrid} />
+          </Container>
         </div>
       )
     } else {

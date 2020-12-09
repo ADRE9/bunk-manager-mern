@@ -4,6 +4,7 @@ const user = require('./user');
 
 //utils
 const subjectTemplate = require('../utils/subjectTemplate');
+const labTemplate = require('../utils/labTemplate');
 
 //creating new subject
 const createSubject =async (req, res) => {
@@ -64,6 +65,10 @@ const createTemplates = async (req, res) => {
       for (let i = 0; i < 5; i++){
         const subject=await new Subject(subjectTemplate(req,i));
         await subject.save();
+        if (i < 4) {
+          const subject=await new Subject(labTemplate(req,i));
+          await subject.save();
+        }
       }
       res.status(201).send();
     } catch (e) {

@@ -8,8 +8,8 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
   card: {
-    minWidth: "300px",
-    minHeight:"200px"
+    minWidth: "200px",
+    minHeight:"150px"
   }
 }));
 
