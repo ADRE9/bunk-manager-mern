@@ -43,7 +43,7 @@ const LoginCard = (props) => {
   });
 
   return ( 
-    <React.Fragment>{console.log(props.auth)}
+    <React.Fragment>
       <Typography color="primary" className={classes.loginHeader} variant="h5">
           Sign In
       </Typography>

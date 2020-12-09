@@ -26,11 +26,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   toolBar: {
-    marginTop: "5rem",
+    ...theme.mixins.toolbar, 
+    marginTop: "1rem",
     [theme.breakpoints.down("sm")]: {
-      margin: "0",
-      padding: "0",
-      height:"3rem"
+      marginTop: "0rem",
     }
   },
   AppBar: {

@@ -3,7 +3,7 @@ import history from '../utils/history';
 
 import * as userApi from '../apis/userApi';
 
-import { createSubjectTemplate } from './subjectActions';
+import { createSubjectTemplate,getTemplateSubjects } from './subjectActions';
 import { returnErrors, clearErrors } from './errorActions';
 
 //(reusable)helper function to get config/token
@@ -40,7 +40,6 @@ export const loadUser = () => async (dispatch, getState) => {
       type: USER_LOADED,
       payload: response.data
     });
-    dispatch(createSubjectTemplate());
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: AUTH_ERROR });
@@ -81,6 +80,8 @@ export const createNewUser = (userData) => async (dispatch, getState) => {
       payload: response.data
     })
     history.push('/');
+    await dispatch(createSubjectTemplate());
+    await dispatch(getTemplateSubjects());
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: REGISTER_FAIL });

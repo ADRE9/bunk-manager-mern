@@ -169,7 +169,6 @@ class SignUpModal extends React.Component {
                   className={classes.form}
                   onSubmit={formik.handleSubmit}
                   >
-                    {console.log(formik)}
                     <select required
                       {...formik.getFieldProps('department')}
                       className={classes.input}

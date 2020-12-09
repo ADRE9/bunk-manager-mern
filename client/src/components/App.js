@@ -37,7 +37,6 @@ class App extends React.Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.props)
     return ( 
       <React.Fragment>
         <div className={classes.App}>

@@ -65,7 +65,7 @@ const createTemplates = async (req, res) => {
         const subject=await new Subject(subjectTemplate(req));
         await subject.save();
       }
-      res.status(201).send({ msg: "SUBJECT TEMPLATES CREATED" });
+      res.status(201).send();
     } catch (e) {
       res.status(500).send({ msg: e });
     }
