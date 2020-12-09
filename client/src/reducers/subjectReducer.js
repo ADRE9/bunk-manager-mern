@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { CREATE_SUBJECT_TEMPLATE,CREATING_SUBJECT,SUBJECT_CREATED,SUBJECT_LOADING,SUBJECT_LOADED,SUBJECT_FETCH_SUCCESS,SUBJECT_FETCH_ERROR } from '../actions/actionTypes';
+import { CREATE_SUBJECT_TEMPLATE,CREATING_SUBJECT,SUBJECT_CREATED,SUBJECT_LOADING,SUBJECT_LOADED,SUBJECT_FETCH_SUCCESS, CLEAR_SUBJECTS } from '../actions/actionTypes';
 
 const initialState = {
   isCreating: null,
@@ -22,6 +22,8 @@ export default (state=initialState,action) => {
       return { ...state, isLoading: true };
     case SUBJECT_LOADED:
       return { ...state, isLoading: false };
+    case CLEAR_SUBJECTS:
+      return {...state,subjects:[]};
     default: {
       return state;
     }

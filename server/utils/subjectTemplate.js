@@ -1,6 +1,6 @@
-const subjectTemplate = (req) => {
+const subjectTemplate = (req,i) => {
   return {
-    name: "SUBJECT",
+    name: `SUBJECT ${i}`,
     days: [],
     totalClasses: 0,
     classesBunked: 0,

@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SubjectCard = () => {
+const SubjectCard = (props) => {
 
   const classes = useStyles();
 
@@ -22,7 +22,7 @@ const SubjectCard = () => {
       <Card className={classes.card}>
         <CardContent>
           <Typography>
-            HELLO MOTO
+            {props.name}
           </Typography>
         </CardContent>
       </Card>

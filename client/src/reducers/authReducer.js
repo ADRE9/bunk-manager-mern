@@ -25,7 +25,7 @@ export default (state = initialState, action)=> {
         ...state,
         isAuthenticated: true,
         isLoading: false,
-        user:action.payload,
+        ...action.payload,
       };
     
     //when user gets authenticated through login or signup

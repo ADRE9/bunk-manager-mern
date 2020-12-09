@@ -62,7 +62,7 @@ const deleteSubject =async (req,res) => {
 const createTemplates = async (req, res) => {
     try {
       for (let i = 0; i < 5; i++){
-        const subject=await new Subject(subjectTemplate(req));
+        const subject=await new Subject(subjectTemplate(req,i));
         await subject.save();
       }
       res.status(201).send();

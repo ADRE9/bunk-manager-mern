@@ -1,4 +1,4 @@
-import { USER_LOADED, USER_LOADING, LOGIN_SUCCESS, AUTH_ERROR, LOGIN_FAIL, REGISTER_SUCCESS, REGISTER_FAIL, LOGOUT_SUCCESS } from '../actions/actionTypes';
+import { USER_LOADED, USER_LOADING, LOGIN_SUCCESS, AUTH_ERROR, LOGIN_FAIL, REGISTER_SUCCESS, REGISTER_FAIL, LOGOUT_SUCCESS,CLEAR_SUBJECTS } from '../actions/actionTypes';
 import history from '../utils/history';
 
 import * as userApi from '../apis/userApi';
@@ -36,10 +36,11 @@ export const loadUser = () => async (dispatch, getState) => {
     //tokenConfig helper function used
     const response = await userApi.userData(tokenConfig(getState));
     dispatch(clearErrors());
-    dispatch({
+    await dispatch({
       type: USER_LOADED,
       payload: response.data
     });
+    dispatch(getTemplateSubjects());
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: AUTH_ERROR });
@@ -60,6 +61,7 @@ export const loggingUser = (userData) => async (dispatch, getState) => {
       type: LOGIN_SUCCESS,
       payload: response.data
     });
+    await dispatch(getTemplateSubjects());
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: LOGIN_FAIL });
@@ -92,6 +94,7 @@ export const logoutUser = () => async (dispatch, getState) => {
   try {
     console.log(tokenConfig(getState));
     await userApi.logoutUser(tokenConfig(getState));
+    dispatch({ type: CLEAR_SUBJECTS });
     dispatch({ type: LOGOUT_SUCCESS });
   } catch(error) {
     await dispatch(returnErrors(error.response.data, error.response.status));

@@ -1,4 +1,4 @@
-import { CREATE_SUBJECT_TEMPLATE,CREATING_SUBJECT,SUBJECT_CREATED,SUBJECT_LOADING,SUBJECT_LOADED,SUBJECT_FETCH_SUCCESS,SUBJECT_FETCH_ERROR } from './actionTypes';
+import { CREATE_SUBJECT_TEMPLATE,CREATING_SUBJECT,SUBJECT_CREATED,SUBJECT_LOADING,SUBJECT_LOADED,SUBJECT_FETCH_SUCCESS } from './actionTypes';
 import * as subjectApi from '../apis/subjectApi';
 import { returnErrors, clearErrors } from './errorActions';
 import { tokenConfig } from './authActions';
