@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const Subject = require('./subject');
 
 const userSchema = new mongoose.Schema({
   regdId: {
@@ -115,6 +116,12 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
+//delete all data of user before removing
+userSchema.pre('remove', async function (next) {
+  const user = this;
+  await Subject.deleteMany({ owner: user._id });
+  next();
+})
 
 const User =mongoose.model('User', userSchema);
 

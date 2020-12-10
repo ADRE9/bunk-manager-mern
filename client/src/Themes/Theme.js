@@ -19,6 +19,16 @@ export default createMuiTheme({
       dark:`${BunkSecondaryDark}`
     },
   },
+  typography: {
+    CardSubject: {
+      color: "white",
+      fontWeight:"500"
+    },
+    CardSemester: {
+      color: "white",
+      fontWeight:"200"
+    }
+  },
   authForm: {
     loginHeader: {
       fontFamily: "Montserrat, sans-serif",

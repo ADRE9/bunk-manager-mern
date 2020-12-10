@@ -19,13 +19,9 @@ const createUser = async (req, res) => {
 
 
 const deleteUser = async (req, res) => {
-  const user = await User.findByIdAndDelete(req.params.id);
-  console.log(user);
-  if (!user) {
-    return res.status(400).send({error:"No such user Found"});
-  }
   try {
-    res.status(200).send(user);
+    await req.user.remove();
+    res.status(200).send(req.user);
   } catch {
     res.status(500).send({msg:"Unable to delete"});
   }

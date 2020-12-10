@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import AttendanceBar from './AttendanceBar';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -9,6 +10,8 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
   card: {
+    display: "flex",
+    flexDirection:"column",
     position:"relative",
     minWidth: "200px",
     height:"180px"
@@ -25,17 +28,36 @@ const useStyles = makeStyles(theme => ({
   CardContent: {
     position: "relative",
     zIndex: 2,
+    height:"80%"
+  },
+  upperCard: {
+    position:"relative",
+    height:"70%"
+  },
+  lowerCard: {
+    flexGrow: 1,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent:"center",
+    padding:"0 15px",
   },
   bgImage: {
     width: "100%",
     height:"100%",
     objectFit:"cover"
+  },
+  CardSubject: {
+    ...theme.typography.CardSubject
+  },
+  CardSemester: {
+    ...theme.typography.CardSemester
   }
 }));
 
 const SubjectCard = (props) => {
 
   const classes = useStyles();
+  const { name, bg, bunked, totalClass,semester } = props.data;
 
   const renderSvg = () => {
     function toBase64(arr) {
@@ -44,8 +66,8 @@ const SubjectCard = (props) => {
          arr.reduce((data, byte) => data + String.fromCharCode(byte), '')
       );
    }
-    if (props.bg) {
-      const image = toBase64(props.bg.data);
+    if (props.data) {
+      const image = toBase64(bg.data);
       return (
         <React.Fragment>
           <img className={classes.bgImage} src={`data:image/svg+xml;base64,${image}`}
@@ -58,13 +80,21 @@ const SubjectCard = (props) => {
   return (
     <React.Fragment>
       <Card className={classes.card}>
-        <CardContent className={classes.CardContent}>
-          <Typography>
-            {props.name}
-          </Typography>
-        </CardContent>
-        <div className={classes.imageDiv}>
-          {renderSvg()}
+        <div className={classes.upperCard}>
+          <CardContent className={classes.CardContent}>
+            <Typography className={classes.CardSubject} variant="h5">
+              {name}
+            </Typography>
+            <Typography className={classes.CardSemester} variant="h7">
+              Semester {semester}
+            </Typography>
+          </CardContent>
+          <div className={classes.imageDiv}>
+            {renderSvg()}
+          </div>
+        </div>
+        <div className={classes.lowerCard}>
+          <AttendanceBar data={{bunked:bunked,totalClass:totalClass}}/>
         </div>
       </Card>
     </React.Fragment>

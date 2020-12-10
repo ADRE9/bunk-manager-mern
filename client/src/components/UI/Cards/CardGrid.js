@@ -16,7 +16,7 @@ const CardGrid = (props) => {
     if (subject.subjectType === 'regular') {
       return (
         <Grid item xs={12} sm={3} key={subject.name}>
-          <SubjectCard name={subject.name} bg={ subject.backgroundImage}/>
+          <SubjectCard data={{name:subject.name,bg:subject.backgroundImage,bunked:subject.classesBunked,totalClass:subject.totalClasses,semester:subject.semester}}/>
         </Grid>
       )
     } else return null;
@@ -26,14 +26,14 @@ const CardGrid = (props) => {
     if (subject.subjectType === 'lab') {
       return (
         <Grid item xs={12} sm={3} key={subject.name}>
-          <SubjectCard name={subject.name} bg={ subject.backgroundImage}/>
+          <SubjectCard data={{name:subject.name,bg:subject.backgroundImage,bunked:subject.classesBunked,totalClass:subject.totalClasses,semester:subject.semester}}/>
         </Grid>
       )
     } else return null;
   });
 
   return (
-    <React.Fragment>{console.log(props.subjects)}
+    <React.Fragment>
         <Typography variant="h2">CLASSES</Typography>
         <Grid container spacing={3}>
           {classCard()}

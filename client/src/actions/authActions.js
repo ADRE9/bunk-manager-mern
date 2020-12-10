@@ -92,7 +92,6 @@ export const createNewUser = (userData) => async (dispatch, getState) => {
 
 export const logoutUser = () => async (dispatch, getState) => {
   try {
-    console.log(tokenConfig(getState));
     await userApi.logoutUser(tokenConfig(getState));
     dispatch({ type: CLEAR_SUBJECTS });
     dispatch({ type: LOGOUT_SUCCESS });

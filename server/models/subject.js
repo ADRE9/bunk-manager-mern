@@ -31,6 +31,13 @@ const subjectSchema = new mongoose.Schema({
   }
 });
 
+//virtual connection with respective attendances
+subjectSchema.virtual('attendances', {
+  ref: 'Attendance',
+  localField: "_id",
+  foreignField:"attendanceOfSubject"
+})
+
 const Subject = mongoose.model('Subject', subjectSchema);
 
 module.exports = Subject;
