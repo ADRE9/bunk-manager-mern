@@ -42,7 +42,7 @@ export const loadUser = () => async (dispatch, getState) => {
     });
     dispatch(getTemplateSubjects());
   } catch (error) {
-    await dispatch(returnErrors(error.response.data, error.response.status));
+    dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: AUTH_ERROR });
   }
 

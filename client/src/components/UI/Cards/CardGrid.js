@@ -16,7 +16,7 @@ const CardGrid = (props) => {
     if (subject.subjectType === 'regular') {
       return (
         <Grid item xs={12} sm={3} key={subject.name}>
-          <SubjectCard name={subject.name} />
+          <SubjectCard name={subject.name} bg={ subject.backgroundImage}/>
         </Grid>
       )
     } else return null;
@@ -26,7 +26,7 @@ const CardGrid = (props) => {
     if (subject.subjectType === 'lab') {
       return (
         <Grid item xs={12} sm={3} key={subject.name}>
-          <SubjectCard name={subject.name} />
+          <SubjectCard name={subject.name} bg={ subject.backgroundImage}/>
         </Grid>
       )
     } else return null;

@@ -22,6 +22,9 @@ const subjectSchema = new mongoose.Schema({
     type: String,
     default:"regular"
   },
+  backgroundImage: {
+    type: Buffer,
+  },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     required: true

@@ -1,7 +1,7 @@
-const express = require('express');
 const Subject = require('../models/subject');
 const user = require('./user');
-
+const svgFile = require('../utils/svgFile');
+//const sharp = require('sharp');
 //utils
 const subjectTemplate = require('../utils/subjectTemplate');
 const labTemplate = require('../utils/labTemplate');
@@ -63,10 +63,14 @@ const deleteSubject =async (req,res) => {
 const createTemplates = async (req, res) => {
     try {
       for (let i = 0; i < 5; i++){
-        const subject=await new Subject(subjectTemplate(req,i));
+        const subject = await new Subject(subjectTemplate(req, i));
+        const buffer = svgFile();
+        subject.backgroundImage = buffer;
         await subject.save();
         if (i < 4) {
-          const subject=await new Subject(labTemplate(req,i));
+          const subject = await new Subject(labTemplate(req, i));
+          const buffer = svgFile();
+          subject.backgroundImage = buffer;
           await subject.save();
         }
       }
