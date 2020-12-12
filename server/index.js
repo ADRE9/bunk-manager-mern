@@ -2,7 +2,7 @@ const express = require('express');
 const EventEmitter = require('events');
 const cors = require('cors');
 require('./db/mongoose');
-
+//require('./controller/scheduledTask');
 
 //routes constants
 const userRoutes = require('./routers/user');

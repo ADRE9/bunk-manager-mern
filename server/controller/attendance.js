@@ -1,63 +1,47 @@
 const Attendance = require('../models/attendance');
 
+//create attendance
 const createAttendance = async (req, res) => {
-  const attendance = new Attendance({ classOccurence: true, classBunked: false, attendanceOfSubject: req.subject._id });
-  try {
-    await attendance.save();
-    res.status(201).send(attendance);
-  } catch (e) {
-    res.status(400).send({ msg: "Attendance Cannot Be Created" });
-  }
-}
+  const attendance = new Attendance({ ...req.body, attendanceOf: req.params.id });
+  const now = new Date();
+  const start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const end = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
 
-const createBunk = async (req, res) => {
-  const attendance = new Attendance({ classOccurence: true, classBunked: true, attendanceOfSubject: req.subject._id });
-  try {
-    await attendance.save();
-    res.status(201).send(attendance);
-  } catch (e) {
-    res.status(500).send({msg:"Class Bunk Cannot Be Created"})
-  }
-};
 
-const createGap = async (req, res) => {
-  const attendance = new Attendance({ classOccurence: false, classBunked: false, attendanceOfSubject: req.subject._id });
   try {
+    const attendanceCheck = await Attendance.find({
+    attendanceOf: req.params.id, createdAt: { $gte:`${start}`, $lt:`${ end }`}
+    });
+    if (attendanceCheck.length!==0) {
+     return res.status(400).send({msg:"Attendance already exist"});
+    }
     await attendance.save();
     res.status(201).send(attendance);
   } catch (e) {
-    res.status(500).send({msg:"Class Gap Cannot Br Created"})
+    res.status(400).send({ msg: "Attendance Creation Failed" });
   }
 };
 
 const editAttendance = async (req, res) => {
   const updates = Object.keys(req.body);
-  const allowedUpdates = ["classOccurence", "classBunked"];
-  const isValid = updates.every(update => {
-    return allowedUpdates.includes(update);
-  })
-
+  const isValid = updates[0]==="classStatus"
   if (!isValid) {
-    return new Error("Invalid Update");
+    return res.status(400).send();
   }
   try {
-    const attendance = await Attendance.findOne({ _id: req.params.id, attendanceOfSubject: req.subject._id });
+    const attendance = await Attendance.findOne({ attendanceOf: req.params.id });
     if (!attendance) {
-      return res.status(400).send(attendance);
+      return res.status(404).send({ msg: "No such attendance Found to update" });
     }
-    updates.forEach(update => {
-      attendance[update] = req.body[update];
-    });
+    attendance.classStatus = req.body.classStatus;
     await attendance.save();
-    res.status(200).send({ msg: "Update Successful" })
+    res.status(200).send(attendance);
   } catch (e) {
-    res.status(500).send({ msg: "Update Not Successful" });
+    res.status(400).send({ msg: "Unable to update attendance" })
   }
 };
 
 module.exports = {
   createAttendance,
-  createBunk,
-  editAttendance,
-  createGap
+  editAttendance
 }
