@@ -48,11 +48,12 @@ const editSubject = async (req, res) => {
 
 //deleting subject
 const deleteSubject =async (req,res) => {
-  const subject =await Subject.findByIdAndDelete({ owner: req.user._id, _id: req.subject._id });
+  const subject =await Subject.findOne({ owner: req.user._id, _id: req.subject._id });
   if (!subject) {
     return res.status(404).send({msg:"Subject not found"})
   }
   try {
+    await subject.remove();
     res.status(200).send(subject);
   } catch (e) {
     res.status(400).send({msg:"SUBJECT NOT DELETED"})

@@ -3,7 +3,7 @@ import history from '../utils/history';
 
 import * as userApi from '../apis/userApi';
 
-import { createSubjectTemplate,getTemplateSubjects } from './subjectActions';
+import { createSubjectTemplate,getCurrentSemesterSubjects } from './subjectActions';
 import { returnErrors, clearErrors } from './errorActions';
 
 //(reusable)helper function to get config/token
@@ -40,7 +40,7 @@ export const loadUser = () => async (dispatch, getState) => {
       type: USER_LOADED,
       payload: response.data
     });
-    dispatch(getTemplateSubjects());
+    dispatch(getCurrentSemesterSubjects());
   } catch (error) {
     dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: AUTH_ERROR });
@@ -61,7 +61,7 @@ export const loggingUser = (userData) => async (dispatch, getState) => {
       type: LOGIN_SUCCESS,
       payload: response.data
     });
-    await dispatch(getTemplateSubjects());
+    await dispatch(getCurrentSemesterSubjects());
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: LOGIN_FAIL });
@@ -83,7 +83,7 @@ export const createNewUser = (userData) => async (dispatch, getState) => {
     })
     history.push('/');
     await dispatch(createSubjectTemplate());
-    await dispatch(getTemplateSubjects());
+    await dispatch(getCurrentSemesterSubjects());
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: REGISTER_FAIL });

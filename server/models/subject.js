@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const Attendance = require('../models/attendance');
 
 const subjectSchema = new mongoose.Schema({
   name: {
@@ -38,11 +38,21 @@ const subjectSchema = new mongoose.Schema({
 });
 
 //creating connections between subject and attendance
-subjectSchema.virtual('attendance', {
-  ref:"Attendance",
+subjectSchema.virtual('attendances', {
+  ref: "Attendance",
   localField: "_id",
   foreignField: 'attendanceOf'
-})
+});
+
+//deleting attendances before deleting subjects
+subjectSchema.pre('remove', async function (next) {
+  const subject = this;
+  const attendances = await Attendance.find({ attendanceOf: subject._id });
+  attendances.forEach(async (attendance) => {
+    await Attendance.findByIdAndDelete({ _id: attendance._id });
+  });
+  next()
+});
 
 const Subject = mongoose.model('Subject', subjectSchema);
 

@@ -17,15 +17,19 @@ export const createSubjectTemplate = () =>async(dispatch,getState)=> {
   }
 };
 
-export const getTemplateSubjects = () => async (dispatch, getState) => {
+export const getCurrentSemesterSubjects = () => async (dispatch, getState) => {
   const semester = getState().auth.user.currentSemester;
   try {
     dispatch({ type: SUBJECT_LOADING });
     const response = await subjectApi.getSubjectBySemester(semester, tokenConfig(getState));
     dispatch(clearErrors());
-    await dispatch({type:SUBJECT_FETCH_SUCCESS,payload:response.data})
+    await dispatch({ type: SUBJECT_FETCH_SUCCESS, payload: response.data })
     dispatch({ type: SUBJECT_LOADED });
   } catch (error) {
     dispatch(returnErrors(error.response.data, error.response.status));
   }
+};
+
+export const deleteSubject = () => async(dispatch,getState)=>{
+  
 }

@@ -22,3 +22,5 @@ export const SUBJECT_LOADED = "SUBJECT_LOADED";
 export const SUBJECT_FETCH_SUCCESS = "SUBJECT_FETCH_SUCCESS";
 export const SUBJECT_FETCH_ERROR = "SUBJECT_FETCH_ERROR";
 export const CLEAR_SUBJECTS = "CLEAR_SUBJECTS";
+
+//attendance actions

@@ -3,6 +3,7 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Subject = require('./subject');
+const Attendance = require('./attendance');
 
 const userSchema = new mongoose.Schema({
   regdId: {
@@ -119,6 +120,10 @@ userSchema.pre('save', async function (next) {
 //delete all data of user before removing
 userSchema.pre('remove', async function (next) {
   const user = this;
+  const subjects = await Subject.find({ owner: user._id });
+  subjects.forEach(async(subject) => {
+    await Attendance.deleteMany({ attendanceOf: subject._id });
+  });
   await Subject.deleteMany({ owner: user._id });
   next();
 })
