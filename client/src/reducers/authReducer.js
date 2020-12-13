@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL } from '../actions/actionTypes';
+import { USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL,DELETING_USER,USER_DELETED } from '../actions/actionTypes';
 
 
 const initialState = {
@@ -13,6 +13,7 @@ export default (state = initialState, action)=> {
   switch (action.type) {
 
     //when user starts loading
+    case DELETING_USER:
     case USER_LOADING:
       return {
         ...state,
@@ -42,6 +43,7 @@ export default (state = initialState, action)=> {
     
     //when any error occcurs
     case AUTH_ERROR:
+    case USER_DELETED:
     case LOGIN_FAIL:
     case LOGOUT_SUCCESS:
     case REGISTER_FAIL: 

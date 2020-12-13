@@ -8,9 +8,9 @@ export const loginUser = (userData) => axios.post(`${url}/login`, userData);
 
 export const createCrUser = (userData) => axios.post(`${url}/new/cr/signup`, userData);
 
-export const deleteUser = (id) => axios.delete(`${url}/${id}`);
+export const deleteUser = (header) => axios.delete(`${url}`,{headers:header});
 
-export const updateUser = (id, updatedData) => axios.patch(`${url}/${id}`, updatedData);
+export const updateUser = (header,updateData) => axios.patch(`${url}`, updateData,{headers:header});
 
 export const logoutUser = (header) => axios.post(`${url}/logout`,{},{headers:header});
 

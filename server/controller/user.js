@@ -38,7 +38,13 @@ const updateUser = async (req, res) => {
     return res.status(500).send();
   }
   try {
-    const user = await User.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true });
+    const user = await User.findOne({ _id: req.user._id });
+    if (!user) {
+      return res.status(400).send({ msg: "No such User Found" });
+    }
+    updates.forEach(update => {
+      user[update] = req.body[update];
+    });
     await user.save();
     res.status(200).send({user,msg:"User Updated"});
   } catch (e) {

@@ -1,4 +1,4 @@
-import { USER_LOADED, USER_LOADING, LOGIN_SUCCESS, AUTH_ERROR, LOGIN_FAIL, REGISTER_SUCCESS, REGISTER_FAIL, LOGOUT_SUCCESS,CLEAR_SUBJECTS } from '../actions/actionTypes';
+import { USER_LOADED, USER_LOADING, LOGIN_SUCCESS, AUTH_ERROR, LOGIN_FAIL, REGISTER_SUCCESS, REGISTER_FAIL, LOGOUT_SUCCESS,CLEAR_SUBJECTS,DELETING_USER,USER_DELETED } from '../actions/actionTypes';
 import history from '../utils/history';
 
 import * as userApi from '../apis/userApi';
@@ -42,7 +42,7 @@ export const loadUser = () => async (dispatch, getState) => {
     });
     dispatch(getCurrentSemesterSubjects());
   } catch (error) {
-    dispatch(returnErrors(error.response.data, error.response.status));
+    await dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: AUTH_ERROR });
   }
 
@@ -90,6 +90,7 @@ export const createNewUser = (userData) => async (dispatch, getState) => {
   }
 };
 
+//logging out user
 export const logoutUser = () => async (dispatch, getState) => {
   try {
     await userApi.logoutUser(tokenConfig(getState));
@@ -100,6 +101,7 @@ export const logoutUser = () => async (dispatch, getState) => {
   }
 };
 
+//logging out user from all devices
 export const logoutAllUser = () => async (dispatch, getState) => {
   try {
     await userApi.logoutFromAllDevices(tokenConfig(getState));
@@ -108,3 +110,27 @@ export const logoutAllUser = () => async (dispatch, getState) => {
     await dispatch(returnErrors(error.response.data, error.response.status));
   }
 };
+
+
+//deleting user
+export const deleteUser = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: DELETING_USER });
+    const response = await userApi.deleteUser(tokenConfig(getState));
+    dispatch({ type: CLEAR_SUBJECTS });
+    dispatch({ type: USER_DELETED, payload: response.data });
+  } catch (e) {
+    await dispatch(returnErrors(e.response.data, e.response.status));
+  }
+};
+
+//updating userdata
+export const upadateUserData = (updateData) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: USER_LOADING });
+    const response = await userApi.updateUser(tokenConfig(getState), updateData);
+    dispatch({ type: USER_LOADED, payload: response.data.user });
+  } catch (e) {
+    await dispatch(returnErrors(e.response.data, e.response.status));
+  }
+}

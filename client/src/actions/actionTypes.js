@@ -11,7 +11,10 @@ export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 export const GET_ERROR = "GET_ERROR";
-export const CLEAR_ERRORS = "CLEAR_ERRORS"
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
+export const DELETING_USER = "DELETING_USER";
+export const USER_DELETED = "USER_DELETED";
+
 
 //subject actions
 export const CREATE_SUBJECT_TEMPLATE = "CREATE_SUBJECT_TEMPLATE";
