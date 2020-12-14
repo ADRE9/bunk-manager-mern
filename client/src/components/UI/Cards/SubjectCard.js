@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection:"column",
     position:"relative",
-    minWidth: "200px",
+    width: "100%",
     height:"180px"
   },
   imageDiv: {
@@ -85,7 +85,7 @@ const SubjectCard = (props) => {
             <Typography className={classes.CardSubject} variant="h5">
               {name}
             </Typography>
-            <Typography className={classes.CardSemester} variant="h7">
+            <Typography className={classes.CardSemester} variant="subtitle1">
               Semester {semester}
             </Typography>
           </CardContent>

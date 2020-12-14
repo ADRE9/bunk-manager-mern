@@ -71,5 +71,20 @@ export default createMuiTheme({
       width: "130px",
       color:"white"
     },
+  },
+  pages: {
+    page: {
+      //backgroundColor:"black",
+      flexGrow: 1,
+      minHeight:"90vh",
+      marginTop: "0rem",
+      display: "flex",
+      flexDirection:"column"
+    },
+    container: {
+      flexGrow:1,
+      paddingTop: "2rem",
+      
+    }
   }
 });

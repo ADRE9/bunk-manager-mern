@@ -158,11 +158,9 @@ const Header = (props) => {
       )
     }else if (value === 2) {
       return (
-        <React.Fragment>
             <Fab color="secondary" className={classes.fabButton}>
                 <AddIcon/>
             </Fab>
-        </React.Fragment>
       )
     }
   };
