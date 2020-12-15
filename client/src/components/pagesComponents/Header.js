@@ -150,11 +150,9 @@ const Header = (props) => {
   const renderFab = () => {
     if (value === 1) {
       return (
-        <React.Fragment>
             <Fab color="secondary" className={classes.fabButton}>
                 <AddIcon/>
             </Fab>
-        </React.Fragment>
       )
     }else if (value === 2) {
       return (
@@ -173,9 +171,9 @@ const Header = (props) => {
             <BottomNavigation position="fixed" value={value} onChange={handleChange} >
               <BottomNavigationAction component={Link} to="/home" value={0} icon={<HomeRoundedIcon />} />
               <BottomNavigationAction component={Link} to="/subject" value={1} icon={<SubjectRoundedIcon />} />
-              {renderFab()}
               <BottomNavigationAction component={Link} to="/semester"  value={2} icon={<SchoolRoundedIcon />} />
-              <BottomNavigationAction component={Link} to="/about"  value={3} icon={<InfoRoundedIcon />} />
+              <BottomNavigationAction component={Link} to="/about" value={3} icon={<InfoRoundedIcon />} />
+              {renderFab()}
             </BottomNavigation>
           </AppBar>
         </React.Fragment>

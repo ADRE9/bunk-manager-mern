@@ -34,13 +34,13 @@ export const loadUser = () => async (dispatch, getState) => {
 
   try {
     //tokenConfig helper function used
-    const response = await userApi.userData(tokenConfig(getState));
+    const res = await userApi.userData(tokenConfig(getState));
     dispatch(clearErrors());
     await dispatch({
       type: USER_LOADED,
-      payload: response.data
+      payload: res.data
     });
-    dispatch(getCurrentSemesterSubjects());
+    await dispatch(getCurrentSemesterSubjects());
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: AUTH_ERROR });

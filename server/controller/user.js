@@ -86,7 +86,7 @@ const logoutAll = async(req,res) => {
 };
 
 const userData = async (req, res) => {
-  res.send({user:req.user,token:req.token})
+    res.send({user:req.user,token:req.token})
 };
 
 
