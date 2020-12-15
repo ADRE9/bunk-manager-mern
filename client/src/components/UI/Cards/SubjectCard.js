@@ -1,8 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AttendanceBar from './AttendanceBar';
+import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
+import IconButton from '@material-ui/core/IconButton';
 import CardActions from '@material-ui/core/CardActions';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
+import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
@@ -14,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection:"column",
     position:"relative",
     width: "100%",
-    height:"180px"
+    height:"250px"
   },
   imageDiv: {
     position: "absolute",
@@ -31,15 +36,17 @@ const useStyles = makeStyles(theme => ({
     height:"80%"
   },
   upperCard: {
-    position:"relative",
-    height:"70%"
+    position: "relative",
+    //minHeight:"70%",
+    flexGrow: 1,
   },
   lowerCard: {
-    flexGrow: 1,
+    
     display: "flex",
     flexDirection: "column",
     justifyContent:"center",
-    padding:"0 15px",
+    padding: "0 15px",
+    //flexGrow: 1,
   },
   bgImage: {
     width: "100%",
@@ -57,7 +64,9 @@ const useStyles = makeStyles(theme => ({
 const SubjectCard = (props) => {
 
   const classes = useStyles();
-  const { name, bg, bunked, totalClass,semester } = props.data;
+
+
+  const { name,backgroundImage,owner,semester,totalClasses,classesBunked,days,_id} = props.data;
 
   const renderSvg = () => {
     function toBase64(arr) {
@@ -67,7 +76,7 @@ const SubjectCard = (props) => {
       );
    }
     if (props.data) {
-      const image = toBase64(bg.data);
+      const image = toBase64(backgroundImage.data);
       return (
         <React.Fragment>
           <img className={classes.bgImage} src={`data:image/svg+xml;base64,${image}`}
@@ -78,7 +87,7 @@ const SubjectCard = (props) => {
   };
 
   return (
-    <React.Fragment>
+    <React.Fragment>{console.log(props.data)}
       <Card className={classes.card}>
         <div className={classes.upperCard}>
           <CardContent className={classes.CardContent}>
@@ -94,7 +103,7 @@ const SubjectCard = (props) => {
           </div>
         </div>
         <div className={classes.lowerCard}>
-          <AttendanceBar data={{bunked:bunked,totalClass:totalClass}}/>
+          <AttendanceBar data={{ bunked: classesBunked, totalClass: totalClasses,id:_id }} />
         </div>
       </Card>
     </React.Fragment>

@@ -24,6 +24,11 @@ const subjectSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  active: {
+    type: Boolean,
+    required: true,
+    default:true
+  },
   subjectType: {
     type: String,
     default:"regular"

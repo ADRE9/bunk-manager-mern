@@ -29,7 +29,7 @@ const deleteUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const updates = Object.keys(req.body);
-  const allowedUpdates = ['name', 'password'];
+  const allowedUpdates = ['name', 'password','currentSemester'];
   const isValidOperation = updates.every(update => {
     return allowedUpdates.includes(update);
   });

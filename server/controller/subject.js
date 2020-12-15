@@ -62,7 +62,8 @@ const deleteSubject =async (req,res) => {
 
 //creating templates
 const createTemplates = async (req, res) => {
-    try {
+  try {
+      console.log(req.body.semester)
       for (let i = 0; i < 5; i++){
         const subject = await new Subject(subjectTemplate(req, i));
         const buffer = svgFile();

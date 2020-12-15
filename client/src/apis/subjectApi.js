@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const subjectUrl = "http://localhost:5000/api/subject";
 
-export const createTemplate = (header) => axios.post(`${subjectUrl}/createTemplate`, {}, { headers: header });
+export const createTemplate = (header,semester) => axios.post(`${subjectUrl}/createTemplate`, {semester:semester}, { headers: header });
 
 export const getSubjectBySemester = (semester, header) => axios.get(`${subjectUrl}/${semester}`, { headers: header });
 

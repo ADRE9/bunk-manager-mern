@@ -4,7 +4,7 @@ const labTemplate = (req,i) => {
     days: [],
     totalClasses: 0,
     classesBunked: 0,
-    semester: req.user.currentSemester,
+    semester: req.body.semester,
     owner: req.user._id,
     subjectType:'lab'
   }

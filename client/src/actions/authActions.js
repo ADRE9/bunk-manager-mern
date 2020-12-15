@@ -1,5 +1,5 @@
 import { USER_LOADED, USER_LOADING, LOGIN_SUCCESS, AUTH_ERROR, LOGIN_FAIL, REGISTER_SUCCESS, REGISTER_FAIL, LOGOUT_SUCCESS,CLEAR_SUBJECTS,DELETING_USER,USER_DELETED } from '../actions/actionTypes';
-import history from '../utils/history';
+//import history from '../utils/history';
 
 import * as userApi from '../apis/userApi';
 
@@ -81,7 +81,7 @@ export const createNewUser = (userData) => async (dispatch, getState) => {
       type: REGISTER_SUCCESS,
       payload: response.data
     })
-    history.push('/');
+    //history.push('/');
     await dispatch(createSubjectTemplate());
     await dispatch(getCurrentSemesterSubjects());
   } catch (error) {
