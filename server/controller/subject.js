@@ -30,7 +30,7 @@ const editSubject = async (req, res) => {
     return new Error('Invalid Update');
   }
   try {
-    const subject = await Subject.findOne({ _id: req.params.id, owner: req.user._id });
+    const subject = await Subject.findOne({ _id: req.subject._id, owner: req.user._id });
     console.log(subject);
     if (!subject) {
       return res.status(404).send({msg:"subject not found"})
@@ -96,11 +96,21 @@ const getSubjectBySemester = async (req, res) => {
   }
 };
 
+const getAllSemester = async(req, res) => {
+  const semesters = await Subject.aggregate([{$match:{owner:req.user._id}},{$project:{"semester":1,_id:0}},{$group:{"_id":"$semester"}}]);
+  try {
+    res.status(200).send(semesters);
+  } catch (e) {
+    res.status(400).send({msg:"No semester found"})
+  }
+};
+
 
 module.exports = {
   createSubject,
   editSubject,
   deleteSubject,
   createTemplates,
-  getSubjectBySemester
+  getSubjectBySemester,
+  getAllSemester
 }
