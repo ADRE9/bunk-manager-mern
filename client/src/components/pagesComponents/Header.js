@@ -23,6 +23,7 @@ import { logoutUser } from '../../actions/authActions';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import { createActiveSubject } from '../../actions/subjectActions';
 
 const useStyles = makeStyles(theme => ({
   toolBar: {
@@ -147,6 +148,8 @@ const Header = (props) => {
     }
   };
 
+
+
   const renderFab = () => {
     if (value === 1) {
       return (
@@ -208,5 +211,5 @@ const mapStateToProps = (state) => {
 };
  
 export default connect(mapStateToProps, {
-  logoutUser
+  logoutUser,createActiveSubject
 })(Header);

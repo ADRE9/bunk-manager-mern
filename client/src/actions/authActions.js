@@ -30,7 +30,7 @@ export const tokenConfig = getState => {
 export const loadUser = () => async (dispatch, getState) => {
   
   //user Loading
-  await dispatch({ type: USER_LOADING });
+  dispatch({ type: USER_LOADING });
 
   try {
     //tokenConfig helper function used
@@ -81,7 +81,6 @@ export const createNewUser = (userData) => async (dispatch, getState) => {
       type: REGISTER_SUCCESS,
       payload: response.data
     })
-    //history.push('/');
     await dispatch(createSubjectTemplate());
     await dispatch(getCurrentSemesterSubjects());
   } catch (error) {
