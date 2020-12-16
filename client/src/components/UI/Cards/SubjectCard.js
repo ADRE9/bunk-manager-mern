@@ -1,16 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AttendanceBar from './AttendanceBar';
-import clsx from 'clsx';
+import CardMenu from './CardMenu';
 import Card from '@material-ui/core/Card';
 import IconButton from '@material-ui/core/IconButton';
-import CardActions from '@material-ui/core/CardActions';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
-import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
@@ -86,8 +80,22 @@ const SubjectCard = (props) => {
     } else return null;
   };
 
+  const renderEdit = () => {
+    if (window.location.pathname === "/subject") {
+      return (
+        <React.Fragment>
+          <CardMenu data={{ id:_id }}/>
+        </React.Fragment>
+      )
+    } else {
+      return (<React.Fragment>
+        <AttendanceBar data={{ bunked: classesBunked, totalClass: totalClasses,id:_id }} />
+      </React.Fragment>)
+    }
+  }
+
   return (
-    <React.Fragment>{console.log(props.data)}
+    <React.Fragment>{console.log(window.location.pathname)}
       <Card className={classes.card}>
         <div className={classes.upperCard}>
           <CardContent className={classes.CardContent}>
@@ -103,7 +111,7 @@ const SubjectCard = (props) => {
           </div>
         </div>
         <div className={classes.lowerCard}>
-          <AttendanceBar data={{ bunked: classesBunked, totalClass: totalClasses,id:_id }} />
+          {renderEdit()}
         </div>
       </Card>
     </React.Fragment>

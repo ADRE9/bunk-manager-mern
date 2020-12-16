@@ -17,16 +17,27 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const SubjectPage = () => {
+const SubjectPage = (props) => {
   const classes = useStyles();
 
   return (
     <div className={classes.page}>
       <Container className={classes.container}>
-        Subject Page
+        {classCard(props) ? <Typography variant="h2">CLASSES</Typography> : null}
+        <CardGrid className={classes.pageGrid} >
+          {classCard(props)}
+        </CardGrid>
+        {labCard(props) ? <Typography variant="h2">LABS</Typography> : null}
+        <CardGrid className={classes.pageGrid} >
+          {labCard(props)}
+        </CardGrid>
       </Container>
     </div>
   )
 }
 
-export default connect()(SubjectPage);
+const mapStateToProps = (state) => {
+  return {subjects:Object.values(state.subject.subjects)}
+}
+
+export default connect(mapStateToProps)(SubjectPage);

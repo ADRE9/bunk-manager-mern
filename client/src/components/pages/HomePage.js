@@ -37,7 +37,7 @@ const HomePage = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return {auth:state.auth.isAuthenticated,subjects:state.subject.subjects}
+  return {auth:state.auth.isAuthenticated,subjects:Object.values(state.subject.subjects)}
 };
  
 export default connect(mapStateToProps,null)(HomePage);
