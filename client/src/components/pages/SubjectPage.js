@@ -1,6 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from "react-router-dom";
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
 import CardGrid from '../UI/Cards/CardGrid';
 import { labCard, classCard } from '../../utils/cardUtil';
 import Container from '@material-ui/core/Container';
@@ -13,6 +16,13 @@ const useStyles = makeStyles(theme => ({
       paddingTop: "2rem",
       paddingBottom: "2rem",
     }
+  },
+  fab: {
+    position: "fixed",
+    zIndex: 4,
+    top:"auto",
+    bottom: "10%",
+    left:"80%"
   }
 }));
 
@@ -23,6 +33,9 @@ const SubjectPage = (props) => {
   return (
     <div className={classes.page}>
       <Container className={classes.container}>
+        <Fab component={Link} to="/subject/new" color="secondary" className={classes.fab}>
+          <AddIcon/>
+        </Fab>
         {classCard(props) ? <Typography variant="h2">CLASSES</Typography> : null}
         <CardGrid className={classes.pageGrid} >
           {classCard(props)}

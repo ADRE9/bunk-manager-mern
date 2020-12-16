@@ -78,11 +78,15 @@ const AttendanceBar = (props) => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <Box className={classes.hiddenBox}
           display="flex"  width="100%"
-         justifyContent="space-between">
+         justifyContent="space-around">
           <Button
             className={classes.hiddenButtonBunk}
             >
-          BUNK
+            BUNK
+          </Button>
+          <Button
+            color="primary">
+            HOLIDAY
           </Button>
           <Button
             className={classes.hiddenButtonClass}>

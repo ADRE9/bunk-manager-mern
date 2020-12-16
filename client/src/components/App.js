@@ -13,7 +13,8 @@ const LoginPage = lazy(() => import('./pages/LoginPage'));
 const HomePage = lazy(() => import('./pages/HomePage'));
 const SubjectPage = lazy(() => import('./pages/SubjectPage'));
 const SemesterPage = lazy(() => import('./pages/SemesterPage'));
-const AboutPage = lazy(()=>import('./pages/AboutPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const FormPage = lazy(()=>import('./pages/FormPage'));
 
 const styles = (theme) => createStyles({
   App: {
@@ -44,6 +45,11 @@ class App extends React.Component {
             <BrowserRouter>
               <Header />
               <Switch>
+              <Route path="/subject/new" exact>
+                  <Suspense fallback={<div>Loading</div>}>
+                    {!this.props.auth.isAuthenticated?<Redirect to='/'/>:<FormPage />}
+                  </Suspense>
+                </Route>
                 <Route exact path="/">
                   <Suspense fallback={<div>loading..</div>}>
                     {this.props.auth.isAuthenticated?<Redirect to='/home'/>:<LoginPage />}

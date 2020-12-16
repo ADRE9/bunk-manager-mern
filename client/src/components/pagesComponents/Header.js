@@ -13,7 +13,11 @@ import SubjectRoundedIcon from '@material-ui/icons/SubjectRounded';
 import SchoolRoundedIcon from '@material-ui/icons/SchoolRounded';
 import InfoRoundedIcon from '@material-ui/icons/InfoRounded';
 import AddIcon from '@material-ui/icons/Add';
+import Zoom from '@material-ui/core/Zoom';
 import Fab from '@material-ui/core/Fab';
+import EditIcon from '@material-ui/icons/Edit';
+import UpIcon from '@material-ui/icons/KeyboardArrowUp';
+import { green } from '@material-ui/core/colors';
 import { useTheme } from '@material-ui/styles';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Tabs from '@material-ui/core/Tabs';
@@ -77,11 +81,6 @@ const useStyles = makeStyles(theme => ({
     top: "auto",
     bottom:0
   },
-  fabButton: {
-    position: "absolute",
-    zIndex: 1,
-    top:-30
-  }
 }));
 
 function ElevationScroll(props) {
@@ -149,23 +148,6 @@ const Header = (props) => {
   };
 
 
-
-  const renderFab = () => {
-    if (value === 1) {
-      return (
-            <Fab color="secondary" className={classes.fabButton}>
-                <AddIcon/>
-            </Fab>
-      )
-    }else if (value === 2) {
-      return (
-            <Fab color="secondary" className={classes.fabButton}>
-                <AddIcon/>
-            </Fab>
-      )
-    }
-  };
-
   const renderAdminBottomTab = () => {
     if (props.auth.isAuthenticated) {
       return (
@@ -176,7 +158,6 @@ const Header = (props) => {
               <BottomNavigationAction component={Link} to="/subject" value={1} icon={<SubjectRoundedIcon />} />
               <BottomNavigationAction component={Link} to="/semester"  value={2} icon={<SchoolRoundedIcon />} />
               <BottomNavigationAction component={Link} to="/about" value={3} icon={<InfoRoundedIcon />} />
-              {renderFab()}
             </BottomNavigation>
           </AppBar>
         </React.Fragment>
@@ -201,7 +182,7 @@ const Header = (props) => {
         </AppBar>
       </ElevationScroll>
       <div className={classes.toolBar} />
-      {matches?renderAdminBottomTab():null}
+      {matches ? renderAdminBottomTab() : null}
     </React.Fragment>
    );
 }
