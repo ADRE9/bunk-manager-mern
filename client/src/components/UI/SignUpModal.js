@@ -2,7 +2,6 @@ import React from 'react'
 import Modal from '@material-ui/core/Modal';
 import { Typography } from '@material-ui/core';
 import { withStyles } from "@material-ui/core/styles";
-import { withRouter } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import { Formik } from 'formik';
  import * as Yup from 'yup';
@@ -155,11 +154,10 @@ class SignUpModal extends React.Component {
                     currentSemester:Yup.number().required("Semester is required")
                   })}
                 onSubmit={async(values, { setSubmitting }) => {
-                      await this.props.createNewUser(values);
+                      this.props.createNewUser(values);
                       setSubmitting(false);
                   if (!this.props.auth.isLoading && this.props.auth.isAuthenticated) {
                     this.toggle();
-                    this.props.history.push('/home');
                   }
                   }}
               >
@@ -273,8 +271,6 @@ const mapStateToProps = (state) => {
   }
 };
 
-const component = withStyles(styles)(connect(mapStateToProps, {
+export default  withStyles(styles)(connect(mapStateToProps, {
   createNewUser, clearErrors
 })(SignUpModal));
-
-export default withRouter(component);

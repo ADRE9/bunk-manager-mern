@@ -7,6 +7,7 @@ import Theme from '../Themes/Theme';
 import Header from '../components/pagesComponents/Header';
 import { connect } from 'react-redux';
 import { loadUser } from '../actions/authActions';
+import PrivateRoute from './PrivateRoute';
 
 //Lazy Loading
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -45,36 +46,31 @@ class App extends React.Component {
             <BrowserRouter>
               <Header />
               <Switch>
-              <Route path="/subject/new" exact>
-                  <Suspense fallback={<div>Loading</div>}>
-                    {!this.props.auth.isAuthenticated?<Redirect to='/'/>:<FormPage />}
-                  </Suspense>
-                </Route>
                 <Route exact path="/">
-                  <Suspense fallback={<div>loading..</div>}>
-                    {this.props.auth.isAuthenticated?<Redirect to='/home'/>:<LoginPage />}
-                  </Suspense>
-                </Route>
-                <Route exact path="/home">
                   <Suspense fallback={<div>Loading</div>}>
-                  {!this.props.auth.isAuthenticated?<Redirect to='/'/>:<HomePage/>}
+                    <LoginPage/>
                   </Suspense>
                 </Route>
-                <Route path="/subject" exact>
+                <PrivateRoute exact path="/subject">
                   <Suspense fallback={<div>Loading</div>}>
-                    {!this.props.auth.isAuthenticated?<Redirect to='/'/>:<SubjectPage />}
+                    <SubjectPage/>
                   </Suspense>
-                </Route>
-                <Route path="/semester" exact>
+                </PrivateRoute>
+                <PrivateRoute exact path="/semester">
                   <Suspense fallback={<div>Loading</div>}>
-                      {!this.props.auth.isAuthenticated?<Redirect to='/'/>:<SemesterPage />}
+                    <SemesterPage/>
                   </Suspense>
-                </Route>
-                <Route path="/about" exact>
+                </PrivateRoute>
+                <PrivateRoute exact path="/about">
                   <Suspense fallback={<div>Loading</div>}>
-                      {!this.props.auth.isAuthenticated?<Redirect to="/"/>:<AboutPage/>}
+                    <AboutPage/>
                   </Suspense>
-                </Route>
+                </PrivateRoute>
+                <PrivateRoute exact path="/home">
+                  <Suspense fallback={<div>Loading</div>}>
+                    <HomePage/>
+                  </Suspense>
+                </PrivateRoute>
               </Switch>
             </BrowserRouter>
           </ThemeProvider>

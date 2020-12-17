@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import CardGrid from '../UI/Cards/CardGrid';
 import { labCard, classCard } from '../../utils/cardUtil';
+import { useLocation, Redirect } from "react-router-dom";
 import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
 
@@ -16,8 +17,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SemesterPage = () => {
+const SemesterPage = (props) => {
   const classes = useStyles();
+  const state = useLocation();
+  
+      if (props.isAuthenticated) { 
+        return <Redirect to={state?state.from:"/home" }/>
+      }
   return (
     <div className={classes.page}>
       <Container className={classes.container}>

@@ -1,8 +1,9 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { useFormik } from "formik";
 import * as yup from 'yup';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import { Redirect,useLocation } from 'react-router-dom';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { loggingUser } from '../../../actions/authActions';
@@ -23,9 +24,9 @@ const loginSchema = yup.object({
 
 const LoginCard = (props) => {
 
+  const abc = useLocation();
   //styles
   const classes = useStyles(props);
-
   //formik hook
   const formik = useFormik({
     initialValues: {
@@ -33,17 +34,23 @@ const LoginCard = (props) => {
       password: ""
     },
     validationSchema: loginSchema,
-    onSubmit: async(values) => {
-      await props.loggingUser(values);
-      
-      if (props.auth) {
-        props.history.push('/home')
-      } 
+    onSubmit: (values) => {
+      props.loggingUser(values);
+      //logUser();
     },
   });
 
+  // const logUser = () => {
+  //   if (props.isAuthenticated) { 
+  //     return <Redirect to={abc?.from||"/home" }/>
+  //   }
+  // }
+
+  
+
   return ( 
     <React.Fragment>
+      
       <Typography color="primary" className={classes.loginHeader} variant="h5">
           Sign In
       </Typography>
@@ -86,12 +93,11 @@ const LoginCard = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  return { auth: state.auth,error:state.error.msg };
+  return {isAuthenticated:state.auth.isAuthenticated,error:state.error.msg };
 };
  
-export default withRouter(
-  connect(mapStateToProps,
+export default connect(mapStateToProps,
   {
     loggingUser
   }
-)(LoginCard));
+)(LoginCard);

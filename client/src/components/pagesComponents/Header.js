@@ -24,7 +24,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
-import { Link } from 'react-router-dom';
+import { Link,useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { createActiveSubject } from '../../actions/subjectActions';
@@ -97,6 +97,7 @@ function ElevationScroll(props) {
 
 const Header = (props) => {
 
+  const history = useHistory();
   const classes = useStyles(props);
   const [value, setValue] = useState(0);
   const theme = useTheme();
@@ -107,13 +108,20 @@ const Header = (props) => {
     setValue(newValues);
   };
 
+  const logout = () => {
+    props.logoutUser();
+    history.push("/");
+  }
+
   useEffect(() => {
     if (value !== 0 && window.location.pathname === "/home") {
       setValue(0)
-    } else if (value !== 1 && window.location.pathname === "/subjects") {
+    } else if (value !== 1 && window.location.pathname === "/subject") {
       setValue(1)
     }else if (value !== 2 && window.location.pathname === "/semester") {
       setValue(2)
+    }else if (value !== 3 && window.location.pathname === "/about") {
+      setValue(3)
     }
   }, [value]);
   
@@ -122,7 +130,7 @@ const Header = (props) => {
       return (
         <React.Fragment>
             <Button
-            onClick={()=>{props.logoutUser()}}
+            onClick={()=>logout()}
             className={classes.logout} variant="contained" color="primary">
             LOGOUT
           </Button>

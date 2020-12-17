@@ -44,20 +44,6 @@ const UpdateForm = (props) => {
 
   const classes = useStyles();
 
-  const [field, meta, helper] = useField(props);
-  const { setValue } = helper;
-
-  function _onChange(e) {
-    setValue(e.target.checked);
-  }
-
-  function _renderHelperText() {
-    const [touched, error] = at(meta, 'touched', 'error');
-    if (touched && error) {
-      return <FormHelperText>{error}</FormHelperText>;
-    }
-  }
-
   return (
     <div>
       <Formik
@@ -91,7 +77,7 @@ const UpdateForm = (props) => {
             />{console.log(formik)}
             <Typography variant="h6">Days</Typography>
             <div className={classes.checkBoxDiv}>
-              {/* <label>
+              <label>
                 <Field type="checkbox" name="days" value="Monday" />
                 Monday
               </label>
@@ -112,18 +98,9 @@ const UpdateForm = (props) => {
                 Friday
               </label>
               <label>
-                <CheckboxField  color="secondary" type="checkbox" name="days" value="Saturday" />
+                <Field  color="secondary" type="checkbox" name="days" value="Saturday" />
                 Saturday
-              </label> */}
-              <FormControl name="days">
-                <FormControlLabel
-                  value="Monday" name="days"
-                  checked={field.checked}
-                  control={<Checkbox {...field} onChange={_onChange} />}
-                  label="Monday"
-                />
-                {_renderHelperText()}
-              </FormControl>
+              </label>
             </div>
             <TextField 
               id="semester"

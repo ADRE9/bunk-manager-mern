@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
 import Fab from '@material-ui/core/Fab';
+import { useLocation, Redirect } from "react-router-dom";
 import AddIcon from '@material-ui/icons/Add';
 import CardGrid from '../UI/Cards/CardGrid';
 import { labCard, classCard } from '../../utils/cardUtil';
@@ -29,6 +30,11 @@ const useStyles = makeStyles(theme => ({
 
 const SubjectPage = (props) => {
   const classes = useStyles();
+  const state = useLocation();
+  
+      if (props.isAuthenticated) { 
+        return <Redirect to={state?state.from:"/home" }/>
+      }
 
   return (
     <div className={classes.page}>
