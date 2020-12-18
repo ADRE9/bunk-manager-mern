@@ -24,7 +24,7 @@ const createSubject = async (req, res) => {
 //editing subject
 const editSubject = async (req, res) => {
   const updates = Object.keys(req.body);
-  const allowedUpdates = ["name", "days", "semester"];
+  const allowedUpdates = ["name", "days", "semester","subjectType"];
   const isValidUpdate = updates.every(update => allowedUpdates.includes(update)
   );
 
@@ -41,7 +41,7 @@ const editSubject = async (req, res) => {
       subject[update] = req.body[update];
     })
     await subject.save();
-    res.status(200).send({ msg: "UPDATED SUCCESSFULLY" });
+    res.status(200).send(subject);
   } catch (e) {
     res.status(400).send({ msg: "UPDATE FAILED" });
   }
