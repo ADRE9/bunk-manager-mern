@@ -95,34 +95,90 @@ function ElevationScroll(props) {
   });
 }
 
-const Header = (props) => {
 
+const AuthHeader = (props) => {
   const classes = useStyles(props);
-  
+  const [tab, setTab] = useState(0);
+  const theme = useTheme();
 
-  return ( 
+  const matches=useMediaQuery(theme.breakpoints.down('sm'))
+
+  const handleChange = (newValues) => {
+    setTab(newValues);
+  };
+
+  useEffect(() => {
+    if (tab !== 0 && window.location.pathname === "/") {
+      setTab(0)
+    } else if (tab !== 1 && window.location.pathname === "/subject") {
+      setTab(1)
+    }else if (tab !== 2 && window.location.pathname === "/semester") {
+      setTab(2)
+    }else if (tab !== 3 && window.location.pathname === "/about") {
+      setTab(3)
+    }console.log(tab)
+  }, [tab]);
+
+  const renderAdminTab = () => {
+    
+    if (!matches) {
+      return (
+        <React.Fragment>
+          <Tabs value={tab} onChange={handleChange} aria-label="simple tabs example">
+            <Tab component={Link} to="/" label="Attendance"/>
+            <Tab component={Link} to="/subject" label="Subjects"/>
+            <Tab component={Link} to="/semester" label="Semester" />
+            <Tab component={Link} to="/about" label="About" />
+          </Tabs>
+        </React.Fragment>
+      )
+    }
+  };
+
+
+  const renderAdminBottomTab = () => {
+    if (matches) {
+      return (
+        <React.Fragment>
+          <AppBar position="fixed" className={classes.bottomAppBar}>
+            <BottomNavigation position="fixed" value={tab} onChange={handleChange} >
+              <BottomNavigationAction component={Link} to="/" icon={<HomeRoundedIcon />} />
+              <BottomNavigationAction component={Link} to="/subject" icon={<SubjectRoundedIcon />} />
+              <BottomNavigationAction component={Link} to="/semester"  icon={<SchoolRoundedIcon />} />
+              <BottomNavigationAction component={Link} to="/about" icon={<InfoRoundedIcon />} />
+            </BottomNavigation>
+          </AppBar>
+        </React.Fragment>
+      )
+    }
+  };
+
+  return (
     <React.Fragment>
       <CssBaseline />
       <ElevationScroll>
         <AppBar color="secondary" className={classes.AppBar}>
           <Toolbar disableGutters>
-            <Button className={classes.Button }component={Link} to="/" disableRipple>
+            <Button onClick={()=>setTab(0)} className={classes.Button }component={Link} to="/" disableRipple>
               <Typography variant="h5" className={classes.logo}>
                 BUNK MANAGER
               </Typography>
+            </Button>
+            {renderAdminTab()}
+            <Button
+              onClick={() =>  props.logoutUser()}
+              className={classes.logout} variant="contained" color="primary">
+              LOGOUT
             </Button>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
       <div className={classes.toolBar} />
+      {renderAdminBottomTab()}
     </React.Fragment>
-   );
+  )
 }
 
-const mapStateToProps = (state) => {
-  return {auth:state.auth}
-};
- 
-export default connect(mapStateToProps, {
+export default connect(null, {
   logoutUser,createActiveSubject
-})(Header);
+})(AuthHeader);

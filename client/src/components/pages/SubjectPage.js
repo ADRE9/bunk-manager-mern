@@ -30,11 +30,6 @@ const useStyles = makeStyles(theme => ({
 
 const SubjectPage = (props) => {
   const classes = useStyles();
-  const state = useLocation();
-  
-      if (props.isAuthenticated) { 
-        return <Redirect to={state?state.from:"/home" }/>
-      }
 
   return (
     <div className={classes.page}>

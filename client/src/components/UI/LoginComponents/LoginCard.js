@@ -36,17 +36,8 @@ const LoginCard = (props) => {
     validationSchema: loginSchema,
     onSubmit: (values) => {
       props.loggingUser(values);
-      //logUser();
     },
   });
-
-  // const logUser = () => {
-  //   if (props.isAuthenticated) { 
-  //     return <Redirect to={abc?.from||"/home" }/>
-  //   }
-  // }
-
-  
 
   return ( 
     <React.Fragment>

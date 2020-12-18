@@ -19,11 +19,7 @@ const useStyles = makeStyles(theme => ({
 
 const SemesterPage = (props) => {
   const classes = useStyles();
-  const state = useLocation();
-  
-      if (props.isAuthenticated) { 
-        return <Redirect to={state?state.from:"/home" }/>
-      }
+
   return (
     <div className={classes.page}>
       <Container className={classes.container}>

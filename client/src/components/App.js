@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { createStyles } from '@material-ui/core/styles';
 import Theme from '../Themes/Theme';
 import Header from '../components/pagesComponents/Header';
+import AuthHeader from '../components/pagesComponents/AuthHeader';
 import { connect } from 'react-redux';
 import { loadUser } from '../actions/authActions';
 import PrivateRoute from './PrivateRoute';
@@ -44,31 +45,31 @@ class App extends React.Component {
         <div className={classes.App}>
           <ThemeProvider theme={Theme}>
             <BrowserRouter>
-              <Header />
+              {this.props.auth.isAuthenticated?<AuthHeader/>:<Header/>}
               <Switch>
-                <Route exact path="/">
+              <PrivateRoute exact  path="/">
+                  <Suspense fallback={<div>Loading</div>}>
+                    <HomePage/>
+                  </Suspense>
+                </PrivateRoute>
+                <Route exact path="/auth">
                   <Suspense fallback={<div>Loading</div>}>
                     <LoginPage/>
                   </Suspense>
                 </Route>
-                <PrivateRoute exact path="/subject">
+                <PrivateRoute exact  path="/subject">
                   <Suspense fallback={<div>Loading</div>}>
                     <SubjectPage/>
                   </Suspense>
                 </PrivateRoute>
-                <PrivateRoute exact path="/semester">
+                <PrivateRoute exact  path="/semester">
                   <Suspense fallback={<div>Loading</div>}>
                     <SemesterPage/>
                   </Suspense>
                 </PrivateRoute>
-                <PrivateRoute exact path="/about">
+                <PrivateRoute exact  path="/about">
                   <Suspense fallback={<div>Loading</div>}>
                     <AboutPage/>
-                  </Suspense>
-                </PrivateRoute>
-                <PrivateRoute exact path="/home">
-                  <Suspense fallback={<div>Loading</div>}>
-                    <HomePage/>
                   </Suspense>
                 </PrivateRoute>
               </Switch>

@@ -86,5 +86,5 @@ export default createMuiTheme({
       paddingTop: "2rem",
       
     }
-  }
+  },
 });

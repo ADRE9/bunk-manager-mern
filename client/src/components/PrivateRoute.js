@@ -2,13 +2,13 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-const PrivateRoute = ({ children, isAuthenticated,location, ...rest }) => {
+const PrivateRoute = ({ children, isAuthenticated, ...rest }) => {
   
   return (
-    <Route {...rest} render={(location) => {
+    <Route {...rest} exact render={(location) => {
       return isAuthenticated ? children : <Redirect to={{
-        pathname: "/",
-        state:{from:location}
+        pathname: "/auth",
+        
       }}/>
     }}/> 
   )
@@ -18,3 +18,4 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(PrivateRoute)
+//state:{from:location}
