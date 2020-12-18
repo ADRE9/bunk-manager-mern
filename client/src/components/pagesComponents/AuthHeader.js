@@ -116,7 +116,11 @@ const AuthHeader = (props) => {
       setTab(2)
     }else if (tab !== 3 && window.location.pathname === "/about") {
       setTab(3)
-    }console.log(tab)
+    } else if (tab !== 1 && window.location.pathname === "/subject/new") {
+      setTab(1)
+    }else if (tab !== 1 && window.location.pathname === "/subject/:id") {
+      setTab(1)
+    }
   }, [tab]);
 
   const renderAdminTab = () => {

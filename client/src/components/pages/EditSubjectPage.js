@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { useLocation,Redirect } from 'react-router-dom';
+import {  updateSubject } from '../../actions/subjectActions';
+import { withRouter } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
 import UpdateForm from '../pagesComponents/UpdateForm';
 
@@ -18,28 +19,26 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const FormPage = (props) => {
+const EditSubjectPage = (props) => {
 
   const classes = useStyles(props);
 
-  const renderHeading = () => {
-    if (window.location.pathname === "/subject/new") {
-      return(<Typography variant="h3">ADD NEW SUBJECT</Typography>)
-    }
+  const editSubject = (data) => {
+    const id = props.match.params.id;
+    console.log(id)
+    props.updateSubject(data,id); 
   }
   
   return (
-    <div className={classes.page}>
+    <div className={classes.page}>{console.log(props)}
       <Container className={classes.container}>
-        {renderHeading()}
-        <UpdateForm/>
+        <Typography variant="h3">ADD NEW SUBJECT</Typography>
+        <UpdateForm subjectMethod={(data)=>editSubject(data)}/>
       </Container>
     </div>
   )
 };
-
-const mapStateToProps = (state) => {
-  return {auth:state.auth.isAuthenticated,subjects:Object.values(state.subject.subjects)}
-};
  
-export default connect(mapStateToProps,null)(FormPage);
+export default withRouter(connect(null, {
+  updateSubject
+})(EditSubjectPage));

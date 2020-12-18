@@ -16,7 +16,8 @@ const HomePage = lazy(() => import('./pages/HomePage'));
 const SubjectPage = lazy(() => import('./pages/SubjectPage'));
 const SemesterPage = lazy(() => import('./pages/SemesterPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
-const FormPage = lazy(()=>import('./pages/FormPage'));
+const AddSubjectPage = lazy(() => import('./pages/AddSubjectPage'));
+const EditSubjectPage = lazy(()=>import('./pages/EditSubjectPage'));
 
 const styles = (theme) => createStyles({
   App: {
@@ -70,6 +71,16 @@ class App extends React.Component {
                 <PrivateRoute exact  path="/about">
                   <Suspense fallback={<div>Loading</div>}>
                     <AboutPage/>
+                  </Suspense>
+                </PrivateRoute>
+                <PrivateRoute exact  path="/subject/new">
+                  <Suspense fallback={<div>Loading</div>}>
+                    <AddSubjectPage/>
+                  </Suspense>
+                </PrivateRoute>
+                <PrivateRoute exact  path="/subject/:id">
+                  <Suspense fallback={<div>Loading</div>}>
+                    <EditSubjectPage/>
                   </Suspense>
                 </PrivateRoute>
               </Switch>

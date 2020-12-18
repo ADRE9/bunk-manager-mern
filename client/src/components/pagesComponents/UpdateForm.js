@@ -15,11 +15,15 @@ import { useField } from 'formik';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
-import { at } from 'lodash';
 
 const useStyles = makeStyles(theme => ({
   ...theme.authForm,
+  formPage: {
+    display: "flex",
+  },
   formDiv: {
+    display: "flex",
+    flexDirection:"column",
     width: "100%",
     flexGrow: 1,
     padding:"3rem 0"
@@ -30,13 +34,19 @@ const useStyles = makeStyles(theme => ({
   },
   formControl: {
     width: "80%",
-    
+    marginBottom:"2rem",
   },
   checkBoxDiv: {
-    marginBottom:"2rem",
+    marginBottom: "2rem",
+    display: "flex",
+    flexDirection:"column"
   },
   checkBox: {
     
+  },
+  buttonAdd: {
+    width: "30%",
+    marginRight:"3rem"
   }
 }));
 
@@ -45,7 +55,7 @@ const UpdateForm = (props) => {
   const classes = useStyles();
 
   return (
-    <div>
+    <div className={classes.formPage}>
       <Formik
         initialValues={{
           name: "",
@@ -61,7 +71,7 @@ const UpdateForm = (props) => {
         })}
 
         onSubmit={(data) => {
-          alert(JSON.stringify(data, null, 2));
+          props.subjectMethod(data);
         }}
       >
         {formik => (
@@ -74,7 +84,7 @@ const UpdateForm = (props) => {
               helperText={formik.touched.name && formik.errors.name}
               className={classes.field}
               id="name" label="Subject Name" variant="outlined"
-            />{console.log(formik)}
+            />
             <Typography variant="h6">Days</Typography>
             <div className={classes.checkBoxDiv}>
               <label>
@@ -127,9 +137,14 @@ const UpdateForm = (props) => {
                 <MenuItem value="lab">Lab</MenuItem>
               </Select>
             </FormControl>
-            <Button type="submit">
-              Submit
-            </Button>
+            <div >
+              <Button className={classes.buttonAdd} variant="contained" color="primary" type="submit">
+                Add
+              </Button>
+              <Button className={classes.buttonAdd} variant="contained" color="secondary" type="submit">
+                Cancel
+              </Button>
+            </div>
           </Form>
         )}
       </Formik>
@@ -137,4 +152,4 @@ const UpdateForm = (props) => {
   )
 }
 
-export default UpdateForm
+export default (UpdateForm)

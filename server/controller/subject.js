@@ -7,9 +7,11 @@ const subjectTemplate = require('../utils/subjectTemplate');
 const labTemplate = require('../utils/labTemplate');
 
 //creating new subject
-const createSubject =async (req, res) => {
+const createSubject = async (req, res) => {
+  console.log(req.body)
   const subject = new Subject({...req.body,owner:req.user._id});
-
+  const buffer = svgFile();
+  subject.backgroundImage = buffer;
   try {
     await subject.save();
     res.status(201).send(subject);

@@ -3,6 +3,7 @@ import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 import Box from '@material-ui/core/Box';
 import InfoRoundedIcon from '@material-ui/icons/InfoRounded';
+import { Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { deleteSubject } from '../../../actions/subjectActions';
@@ -11,12 +12,12 @@ const CardMenu = (props) => {
 
   const onDeleteClick = () => {
     props.deleteSubject(props.data.id);
-  }
+  };
 
   return (
     <React.Fragment>
         <Box justifyContent="space-evenly" display="flex" alignItems="center" width="100%">
-            <Button>
+            <Button component={Link} to={`/subject/${props.data.id}`}>
               <EditRoundedIcon/>
             </Button>
             <Button onClick={()=>onDeleteClick()}>

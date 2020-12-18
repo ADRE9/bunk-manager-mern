@@ -52,10 +52,11 @@ export const updateSubject = (data, id) => async (dispatch, getState) => {
   }
 };
 
-export const createActiveSubject = (data) => async (dispatch, getState) => {
+export const createActiveSubject = (values) => async (dispatch, getState) => {
   try {
-    dispatch({ type: SUBJECT_LOADING })
-    const response=await subjectApi.createSubject(tokenConfig(getState), data);
+    dispatch({ type: CREATING_SUBJECT });
+    console.log(values)
+    const response=await subjectApi.createSubject(tokenConfig(getState), values);
     dispatch(clearErrors());
     dispatch({ type: SUBJECT_CREATED,payload:response.data });
   } catch (error) {

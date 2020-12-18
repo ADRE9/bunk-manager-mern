@@ -34,7 +34,7 @@ const LoginPage = (props) => {
 
   const checkAuth = () =>{
     if (props.isAuthenticated) {
-      return <Redirect to={ state?state.from:"/"}/>
+      return <Redirect to={ state?.from||"/"}/>
     }
   }
     

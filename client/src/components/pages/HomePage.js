@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import CardGrid from '../UI/Cards/CardGrid';
-import { useLocation, Redirect } from "react-router-dom";
 import { labCard, classCard } from '../../utils/cardUtil';
 import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
