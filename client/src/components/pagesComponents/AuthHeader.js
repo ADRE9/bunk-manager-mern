@@ -98,41 +98,41 @@ function ElevationScroll(props) {
 
 const AuthHeader = (props) => {
   const classes = useStyles(props);
-  const [tab, setTab] = useState(0);
+  const [value, setValue] = useState(0);
   const theme = useTheme();
 
   const matches=useMediaQuery(theme.breakpoints.down('sm'))
 
   const handleChange = (newValues) => {
-    setTab(newValues);
+    setValue(newValues);
   };
 
   useEffect(() => {
-    if (tab !== 0 && window.location.pathname === "/") {
-      setTab(0)
-    } else if (tab !== 1 && window.location.pathname === "/subject") {
-      setTab(1)
-    }else if (tab !== 2 && window.location.pathname === "/semester") {
-      setTab(2)
-    }else if (tab !== 3 && window.location.pathname === "/about") {
-      setTab(3)
-    } else if (tab !== 1 && window.location.pathname === "/subject/new") {
-      setTab(1)
-    }else if (tab !== 1 && window.location.pathname === "/subject/:id") {
-      setTab(1)
+    if (value !== 0 && window.location.pathname === "/") {
+      setValue(0)
+    } else if (value !== 1 && window.location.pathname === "/subject") {
+      setValue(1)
+    }else if (value !== 2 && window.location.pathname === "/semester") {
+      setValue(2)
+    }else if (value !== 3 && window.location.pathname === "/about") {
+      setValue(3)
+    } else if (value !== 1 && window.location.pathname === "/subject/new") {
+      setValue(1)
+    }else if (value !== 1 && window.location.pathname === "/subject/:id") {
+      setValue(1)
     }
-  }, [tab]);
+  }, [value]);
 
   const renderAdminTab = () => {
     
     if (!matches) {
       return (
         <React.Fragment>
-          <Tabs value={tab} onChange={handleChange} aria-label="simple tabs example">
-            <Tab component={Link} to="/" label="Attendance"/>
-            <Tab component={Link} to="/subject" label="Subjects"/>
-            <Tab component={Link} to="/semester" label="Semester" />
-            <Tab component={Link} to="/about" label="About" />
+          <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+            <Tab value={0} component={Link} to="/" label="Attendance"/>
+            <Tab value={1} component={Link} to="/subject" label="Subjects"/>
+            <Tab value={2} component={Link} to="/semester" label="Semester" />
+            <Tab value={3} component={Link} to="/about" label="About" />
           </Tabs>
         </React.Fragment>
       )
@@ -145,11 +145,11 @@ const AuthHeader = (props) => {
       return (
         <React.Fragment>
           <AppBar position="fixed" className={classes.bottomAppBar}>
-            <BottomNavigation position="fixed" value={tab} onChange={handleChange} >
-              <BottomNavigationAction component={Link} to="/" icon={<HomeRoundedIcon />} />
-              <BottomNavigationAction component={Link} to="/subject" icon={<SubjectRoundedIcon />} />
-              <BottomNavigationAction component={Link} to="/semester"  icon={<SchoolRoundedIcon />} />
-              <BottomNavigationAction component={Link} to="/about" icon={<InfoRoundedIcon />} />
+            <BottomNavigation position="fixed" value={value} onChange={handleChange} >
+              <BottomNavigationAction value={0} component={Link} to="/" icon={<HomeRoundedIcon />} />
+              <BottomNavigationAction value={1} component={Link} to="/subject" icon={<SubjectRoundedIcon />} />
+              <BottomNavigationAction value={2} component={Link} to="/semester"  icon={<SchoolRoundedIcon />} />
+              <BottomNavigationAction value={3} component={Link} to="/about" icon={<InfoRoundedIcon />} />
             </BottomNavigation>
           </AppBar>
         </React.Fragment>
@@ -163,7 +163,7 @@ const AuthHeader = (props) => {
       <ElevationScroll>
         <AppBar color="secondary" className={classes.AppBar}>
           <Toolbar disableGutters>
-            <Button onClick={()=>setTab(0)} className={classes.Button }component={Link} to="/" disableRipple>
+            <Button onClick={() => setValue(0)} className={classes.Button} value={0} component={Link} to="/" disableRipple>
               <Typography variant="h5" className={classes.logo}>
                 BUNK MANAGER
               </Typography>

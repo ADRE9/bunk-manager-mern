@@ -32,7 +32,7 @@ const EditSubjectPage = (props) => {
   return (
     <div className={classes.page}>{console.log(props)}
       <Container className={classes.container}>
-        <Typography variant="h3">ADD NEW SUBJECT</Typography>
+        <Typography variant="h3">EDIT SUBJECT</Typography>
         <UpdateForm subjectMethod={(data)=>editSubject(data)}/>
       </Container>
     </div>

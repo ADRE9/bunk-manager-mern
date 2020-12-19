@@ -5,16 +5,12 @@ import {makeStyles} from '@material-ui/core/styles'
 import { Formik,Field,Form } from 'formik';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Checkbox from '@material-ui/core/Checkbox';
-import { useField } from 'formik';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
+import { Redirect,Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   ...theme.authForm,
@@ -54,15 +50,36 @@ const UpdateForm = (props) => {
 
   const classes = useStyles();
 
+  const decideInitialValues = () => {
+    if (props.match.params.id) {
+      const id = props.match.params.id
+      const { subjectState } = props;
+      return {
+        name: subjectState.subjects[id].name,
+        days: subjectState.subjects[id].days,
+        semester: subjectState.subjects[id].semester,
+        subjectType:subjectState.subjects[id].subjectType
+      }
+    } else {
+      return {
+        name: "",
+        days: [],
+        semester: "",
+        subjectType:"regular"
+      }
+    }
+  }
+
+  if (props.subjectState.isLoading) {
+    if (props.subjectState.hasBeenCreated) {
+      return <Redirect to="/subject"/>
+    }
+  }
+
   return (
     <div className={classes.formPage}>
       <Formik
-        initialValues={{
-          name: "",
-          days: [],
-          semester: "",
-          subjectType:"regular"
-        }}
+        initialValues={decideInitialValues()}
         validationSchema={Yup.object({
           name: Yup.string('Enter Subject Name').required('Name of Subject is required'),
           days: Yup.array().required('Atleast One day is required to be selected'),
@@ -139,9 +156,9 @@ const UpdateForm = (props) => {
             </FormControl>
             <div >
               <Button className={classes.buttonAdd} variant="contained" color="primary" type="submit">
-                Add
+                Confirm
               </Button>
-              <Button className={classes.buttonAdd} variant="contained" color="secondary" type="submit">
+              <Button className={classes.buttonAdd} variant="contained" color="secondary" component={Link} to="/subject" >
                 Cancel
               </Button>
             </div>
@@ -152,4 +169,8 @@ const UpdateForm = (props) => {
   )
 }
 
-export default (UpdateForm)
+const mapStateToProps = (state) => {
+  return {subjectState:state.subject}
+}
+
+export default withRouter(connect(mapStateToProps)(UpdateForm))

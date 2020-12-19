@@ -99,7 +99,7 @@ const SubjectCard = (props) => {
   }
 
   return (
-    <React.Fragment>{console.log(window.location.pathname)}
+    <React.Fragment>
       <Card className={classes.card}>
         <div className={classes.upperCard}>
           <CardContent className={classes.CardContent}>

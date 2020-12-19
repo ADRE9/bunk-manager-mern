@@ -19,13 +19,13 @@ export default (state=initialState,action) => {
     }
     
     case SUBJECT_CREATED:
-      return { ...state, isCreating: false, hasBeenCreated: true,subjects:{...state.subjects,[action.payload._id]:action.payload} };
+      return { ...state,isLoading: false, isCreating: false, hasBeenCreated: true,subjects:{...state.subjects,[action.payload._id]:action.payload} };
     
     case SUBJECT_LOADING:
       return { ...state, isLoading: true };
     
       case CREATING_SUBJECT:
-        return { ...state, isCreating: true };
+        return { ...state,isLoading: true, isCreating: true };
     
     case SUBJECT_LOADED: {
       const subjectObj = _.mapKeys(action.payload , (value) => {
