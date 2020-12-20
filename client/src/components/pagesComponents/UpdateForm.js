@@ -9,7 +9,8 @@ import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
-import { Redirect,Link, withRouter } from 'react-router-dom';
+import { Redirect, Link, withRouter } from 'react-router-dom';
+import { clearEvents } from '../../actions/subjectActions';
 import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
@@ -70,10 +71,9 @@ const UpdateForm = (props) => {
     }
   }
 
-  if (props.subjectState.isLoading) {
-    if (props.subjectState.hasBeenCreated) {
-      return <Redirect to="/subject"/>
-    }
+  if (props.subjectState.hasBeenUpdated||props.subjectState.hasBeenCreated) {
+    props.clearEvents();
+    return <Redirect to="/subject"/>
   }
 
   return (
@@ -173,4 +173,4 @@ const mapStateToProps = (state) => {
   return {subjectState:state.subject}
 }
 
-export default withRouter(connect(mapStateToProps)(UpdateForm))
+export default withRouter(connect(mapStateToProps,{clearEvents})(UpdateForm))

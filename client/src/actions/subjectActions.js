@@ -1,4 +1,4 @@
-import { SUBJECT_TEMPLATE_CREATED,CREATING_SUBJECT,SUBJECT_CREATED,SUBJECT_LOADING,SUBJECT_LOADED,SUBJECT_DELETED, SUBJECT_UPDATED } from './actionTypes';
+import { SUBJECT_TEMPLATE_CREATED,CREATING_SUBJECT,SUBJECT_CREATED,SUBJECT_LOADING,SUBJECT_LOADED,SUBJECT_DELETED,UPDATING_SUBJECT, SUBJECT_UPDATED,CLEAR_EVENTS } from './actionTypes';
 import * as subjectApi from '../apis/subjectApi';
 import { returnErrors, clearErrors } from './errorActions';
 import { tokenConfig } from './authActions';
@@ -42,7 +42,7 @@ export const deleteSubject = (id) => async (dispatch, getState) => {
 
 export const updateSubject = (data, id) => async (dispatch, getState) => {
   try {
-    dispatch({ type: SUBJECT_LOADING });
+    dispatch({ type: UPDATING_SUBJECT });
     const response = await subjectApi.updateSubject(tokenConfig(getState), data, id);
     dispatch(clearErrors());
     await dispatch({ type: SUBJECT_UPDATED, payload: response.data })
@@ -76,11 +76,14 @@ export const getSubjectsBySemester = (semester) => async (dispatch, getState) =>
 
 export const createNewSemester = (semester) => async (dispatch, getState) => {
   try {
-    dispatch({type:SUBJECT_LOADING})
-    await subjectApi.createTemplate(tokenConfig(getState),semester);
+    dispatch({ type: SUBJECT_LOADING })
+    await subjectApi.createTemplate(tokenConfig(getState), semester);
     dispatch(clearErrors());
-    dispatch({ type: SUBJECT_TEMPLATE_CREATED});
+    dispatch({ type: SUBJECT_TEMPLATE_CREATED });
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
   }
+};
+export const clearEvents = () => {
+  return {type:CLEAR_EVENTS}
 }
