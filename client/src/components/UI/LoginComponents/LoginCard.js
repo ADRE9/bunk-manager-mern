@@ -24,7 +24,8 @@ const loginSchema = yup.object({
 
 const LoginCard = (props) => {
 
-  const abc = useLocation();
+  const location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
   //styles
   const classes = useStyles(props);
   //formik hook
@@ -35,13 +36,12 @@ const LoginCard = (props) => {
     },
     validationSchema: loginSchema,
     onSubmit: (values) => {
-      props.loggingUser(values);
+      props.loggingUser(values,from);
     },
   });
 
   return ( 
     <React.Fragment>
-      
       <Typography color="primary" className={classes.loginHeader} variant="h5">
           Sign In
       </Typography>
@@ -87,8 +87,8 @@ const mapStateToProps = (state) => {
   return {isAuthenticated:state.auth.isAuthenticated,error:state.error.msg };
 };
  
-export default connect(mapStateToProps,
+export default withRouter(connect(mapStateToProps,
   {
     loggingUser
   }
-)(LoginCard);
+)(LoginCard));

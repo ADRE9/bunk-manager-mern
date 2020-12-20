@@ -5,10 +5,11 @@ import { connect } from 'react-redux';
 const PrivateRoute = ({ children, isAuthenticated, ...rest }) => {
   
   return (
-    <Route {...rest} exact render={(location) => {
+    <Route {...rest} exact render={(props) => {
+      console.log(props)
       return isAuthenticated ? children : <Redirect to={{
         pathname: "/auth",
-        
+        state:{from:props.location}
       }}/>
     }}/> 
   )

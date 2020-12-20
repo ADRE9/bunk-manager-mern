@@ -1,5 +1,6 @@
 import React,{lazy,Suspense} from 'react';
-import { BrowserRouter, Route, Switch,Redirect } from 'react-router-dom';
+import { Router, Route, Switch, withRouter } from 'react-router-dom';
+import {history} from '../helpers/history';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { withStyles } from "@material-ui/core/styles";
 import { createStyles } from '@material-ui/core/styles';
@@ -36,7 +37,9 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    this.props.loadUser();
+    let { from } = history.location.state || { from: { pathname: "/" } };
+    console.log(history)
+    this.props.loadUser(from);
   };
 
   render() {
@@ -45,7 +48,7 @@ class App extends React.Component {
       <React.Fragment>
         <div className={classes.App}>
           <ThemeProvider theme={Theme}>
-            <BrowserRouter>
+            <Router history={history}>
               {this.props.auth.isAuthenticated?<AuthHeader/>:<Header/>}
               <Switch>
               <PrivateRoute exact  path="/">
@@ -84,7 +87,7 @@ class App extends React.Component {
                   </Suspense>
                 </PrivateRoute>
               </Switch>
-            </BrowserRouter>
+            </Router>
           </ThemeProvider>
         </div>
       </React.Fragment>

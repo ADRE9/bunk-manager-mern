@@ -1,4 +1,6 @@
-import { USER_LOADED, USER_LOADING, LOGIN_SUCCESS, AUTH_ERROR, LOGIN_FAIL, REGISTER_SUCCESS, REGISTER_FAIL, LOGOUT_SUCCESS,CLEAR_SUBJECTS,DELETING_USER,USER_DELETED } from '../actions/actionTypes';
+import { USER_LOADED, USER_LOADING, LOGIN_SUCCESS, AUTH_ERROR, LOGIN_FAIL, REGISTER_SUCCESS, REGISTER_FAIL, LOGOUT_SUCCESS, CLEAR_SUBJECTS, DELETING_USER, USER_DELETED } from '../actions/actionTypes';
+
+import {history} from '../helpers/history';
 
 import * as userApi from '../apis/userApi';
 
@@ -26,8 +28,7 @@ export const tokenConfig = getState => {
 
 
 
-export const loadUser = () => async (dispatch, getState) => {
-  
+export const loadUser = (from) => async (dispatch, getState) => {
   //user Loading
   dispatch({ type: USER_LOADING });
 
@@ -40,6 +41,7 @@ export const loadUser = () => async (dispatch, getState) => {
       payload: res.data
     });
     await dispatch(getCurrentSemesterSubjects());
+    history.replace(from);
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: AUTH_ERROR });
@@ -48,7 +50,7 @@ export const loadUser = () => async (dispatch, getState) => {
 }
 
 //login user
-export const loggingUser = (userData) => async (dispatch, getState) => {
+export const loggingUser = (userData,from) => async (dispatch, getState) => {
   //user Loading
   await dispatch({ type: USER_LOADING });
 
@@ -61,6 +63,7 @@ export const loggingUser = (userData) => async (dispatch, getState) => {
       payload: response.data
     });
     await dispatch(getCurrentSemesterSubjects());
+    history.replace(from);
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: LOGIN_FAIL });
