@@ -98,6 +98,7 @@ function ElevationScroll(props) {
 
 const AuthHeader = (props) => {
   const classes = useStyles(props);
+  
   const [value, setValue] = useState(0);
   const theme = useTheme();
 
@@ -108,19 +109,15 @@ const AuthHeader = (props) => {
   };
 
   useEffect(() => {
-    if (value !== 0 && window.location.pathname === "/") {
+    if (window.location.pathname === "/"&& value !== 0) {
       setValue(0)
-    } else if (value !== 1 && window.location.pathname === "/subject") {
+    } else if (window.location.pathname === "/subject"&&value !== 1 ) {
       setValue(1)
-    }else if (value !== 2 && window.location.pathname === "/semester") {
+    }else if (window.location.pathname === "/semester" && value !== 2 ) {
       setValue(2)
-    }else if (value !== 3 && window.location.pathname === "/about") {
+    }else if (window.location.pathname === "/about"&& value !== 3) {
       setValue(3)
-    } else if (value !== 1 && window.location.pathname === "/subject/new") {
-      setValue(1)
-    }else if (value !== 1 && window.location.pathname === "/subject/:id") {
-      setValue(1)
-    }
+    } 
   }, [value]);
 
   const renderAdminTab = () => {
@@ -158,7 +155,7 @@ const AuthHeader = (props) => {
   };
 
   return (
-    <React.Fragment>
+    <React.Fragment>{console.log(value)}
       <CssBaseline />
       <ElevationScroll>
         <AppBar color="secondary" className={classes.AppBar}>

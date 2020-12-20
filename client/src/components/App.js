@@ -38,7 +38,6 @@ class App extends React.Component {
 
   componentDidMount() {
     let { from } = history.location.state || { from: { pathname: "/" } };
-    console.log(history)
     this.props.loadUser(from);
   };
 

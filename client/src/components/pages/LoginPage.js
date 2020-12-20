@@ -1,8 +1,6 @@
 import React,{useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 import svgImg from '../../assets/svg/undraw_book_lover_mkck.svg';
-//import { makeStyles } from "@material-ui/core/styles";
-import { useLocation,Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import AuthenticationCard from '../UI/AuthenticationCard';
 import { connect } from 'react-redux';
@@ -30,19 +28,9 @@ const useStyles = makeStyles(theme => ({
 
 const LoginPage = (props) => {
   const classes = useStyles(props);
-  const state = useLocation(props);
-
-  const checkAuth = () =>{
-    if (props.isAuthenticated) {
-      return <Redirect to={ state?.from||"/"}/>
-    }
-  }
     
-  
     return (
       <React.Fragment>
-        {checkAuth()}
-        {console.log(state)}
         <Grid container className={classes.containerGrid}>
                 <Grid item xs={12} sm={12} md={8}>
                   <img src={svgImg} alt="svgimage" className={classes.svgImg} />
