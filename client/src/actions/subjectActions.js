@@ -1,4 +1,4 @@
-import { CREATE_SUBJECT_TEMPLATE,CREATING_SUBJECT,SUBJECT_CREATED,SUBJECT_LOADING,SUBJECT_LOADED,SUBJECT_DELETED, SUBJECT_UPDATED } from './actionTypes';
+import { SUBJECT_TEMPLATE_CREATED,CREATING_SUBJECT,SUBJECT_CREATED,SUBJECT_LOADING,SUBJECT_LOADED,SUBJECT_DELETED, SUBJECT_UPDATED } from './actionTypes';
 import * as subjectApi from '../apis/subjectApi';
 import { returnErrors, clearErrors } from './errorActions';
 import { tokenConfig } from './authActions';
@@ -9,10 +9,9 @@ export const createSubjectTemplate = () => async (dispatch, getState) => {
   const semester=getState().auth.user.currentSemester;
   try {
     dispatch({type:CREATING_SUBJECT})
-    const response = await subjectApi.createTemplate(tokenConfig(getState),semester);
+    await subjectApi.createTemplate(tokenConfig(getState),semester);
     dispatch(clearErrors());
-    dispatch({ type: CREATE_SUBJECT_TEMPLATE, payload: response.data });
-    dispatch({type:SUBJECT_CREATED})
+    dispatch({ type: SUBJECT_TEMPLATE_CREATED});
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
   }
@@ -78,10 +77,9 @@ export const getSubjectsBySemester = (semester) => async (dispatch, getState) =>
 export const createNewSemester = (semester) => async (dispatch, getState) => {
   try {
     dispatch({type:SUBJECT_LOADING})
-    const response = await subjectApi.createTemplate(tokenConfig(getState),semester);
+    await subjectApi.createTemplate(tokenConfig(getState),semester);
     dispatch(clearErrors());
-    dispatch({ type: CREATE_SUBJECT_TEMPLATE, payload: response.data });
-    dispatch({type:SUBJECT_CREATED})
+    dispatch({ type: SUBJECT_TEMPLATE_CREATED});
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
   }

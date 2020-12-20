@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { CREATE_SUBJECT_TEMPLATE, SUBJECT_CREATED, SUBJECT_LOADING, SUBJECT_LOADED,CREATING_SUBJECT, CLEAR_SUBJECTS, SUBJECT_DELETED, SUBJECT_UPDATED } from '../actions/actionTypes';
+import { SUBJECT_TEMPLATE_CREATED, SUBJECT_CREATED, SUBJECT_LOADING, SUBJECT_LOADED,CREATING_SUBJECT, CLEAR_SUBJECTS, SUBJECT_DELETED, SUBJECT_UPDATED } from '../actions/actionTypes';
 import _ from 'lodash';
 
 const initialState = {
@@ -11,12 +11,8 @@ const initialState = {
 
 export default (state=initialState,action) => {
   switch (action.type) {
-    case CREATE_SUBJECT_TEMPLATE: {
-      const subjectObj = _.mapKeys(action.payload , (value) => {
-        return value._id;
-      });
-      return { ...state, subjectObj };
-    }
+    case SUBJECT_TEMPLATE_CREATED: 
+      return { ...state,isCreating:false,hasBeenCreated:true };
     
     case SUBJECT_CREATED:
       return { ...state,isLoading: false, isCreating: false, hasBeenCreated: true,subjects:{...state.subjects,[action.payload._id]:action.payload} };
@@ -25,7 +21,7 @@ export default (state=initialState,action) => {
       return { ...state, isLoading: true };
     
       case CREATING_SUBJECT:
-        return { ...state,isLoading: true, isCreating: true };
+        return { ...state, isCreating: true };
     
     case SUBJECT_LOADED: {
       const subjectObj = _.mapKeys(action.payload , (value) => {
