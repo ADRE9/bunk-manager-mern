@@ -71,7 +71,7 @@ export const loggingUser = (userData,from) => async (dispatch, getState) => {
 };
 
 //creating new user
-export const createNewUser = (userData) => async (dispatch, getState) => {
+export const createNewUser = (userData,from) => async (dispatch, getState) => {
   //user Loading
   await dispatch({ type: USER_LOADING });
 
@@ -85,6 +85,7 @@ export const createNewUser = (userData) => async (dispatch, getState) => {
     })
     await dispatch(createSubjectTemplate());
     await dispatch(getCurrentSemesterSubjects());
+      history.replace(from);
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: REGISTER_FAIL });

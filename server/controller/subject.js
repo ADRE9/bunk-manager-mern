@@ -8,7 +8,6 @@ const labTemplate = require('../utils/labTemplate');
 
 //creating new subject
 const createSubject = async (req, res) => {
-  console.log(req.body)
   const subject = new Subject({...req.body,owner:req.user._id});
   const buffer = svgFile();
   subject.backgroundImage = buffer;
@@ -108,6 +107,29 @@ const getAllSemester = async(req, res) => {
   }
 };
 
+const deactivateSubject = async(req,res) => {
+  try {
+    const subject = await Subject.updateOne({ owner: req.user._id, _id: req.params.id, active:true }, { active: false });
+    if (!subject) {
+      return res.status(404).send({msg:"Subject Not Found"})
+    }
+    res.status(200).send(subject);
+  } catch {
+    res.status(400).send({msg:"Bad Request"})
+  }
+}
+
+const deactivateAllSubject = async (req, res) => {
+  try {
+    const subjects = await Subject.updateMany({ owner: req.user._id, semester:req.body.semester, active:true }, { active: false });
+    if (subjects.length===0) {
+      return res.status(404).send({msg:"Subject Not Found"})
+    }
+    res.status(200).send(subjects);
+  } catch {
+    res.status(400).send({msg:"Bad Request"})
+  }
+}
 
 module.exports = {
   createSubject,
@@ -115,5 +137,7 @@ module.exports = {
   deleteSubject,
   createTemplates,
   getSubjectBySemester,
-  getAllSemester
+  getAllSemester,
+  deactivateSubject,
+  deactivateAllSubject
 }

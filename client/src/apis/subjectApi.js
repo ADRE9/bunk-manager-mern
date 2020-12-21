@@ -10,4 +10,8 @@ export const createSubject = (header, data) => axios.post(`${subjectUrl}/new`, d
 
 export const deleteSubject = (header,id) => axios.delete(`${subjectUrl}/${id}`, { headers: header });
 
-export const updateSubject = (header, data,id) => axios.patch(`${subjectUrl}/${id}`,data,{headers:header});
+export const updateSubject = (header, data, id) => axios.patch(`${subjectUrl}/${id}`, data, { headers: header });
+
+export const deactivateSubject = (header, id) => axios.patch(`${subjectUrl}/deactivate/${id}`, {}, { headers: header });
+
+export const deactivateAllSubject = (header, semester) => axios.patch("http://localhost:5000/api/semester/deactivate",{semester},{headers:header});

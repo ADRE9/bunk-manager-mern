@@ -14,6 +14,7 @@ import Fade from '@material-ui/core/Fade';
 import HighlightOffRoundedIcon from '@material-ui/icons/HighlightOffRounded';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { departments } from '../../configs/departments';
+import { withRouter } from 'react-router-dom';
 
 
 const styles = theme => ({
@@ -89,6 +90,7 @@ const styles = theme => ({
 class SignUpModal extends React.Component {
 
   state = { open: false }
+
   selections = departments.map(department => (
     <option
       key={department.name}
@@ -104,6 +106,9 @@ class SignUpModal extends React.Component {
 
   render() {
     const { classes } = this.props;
+    let location = this.props.location;
+    const { from }  = location.state || { from: { pathname: "/" } };
+    console.log(this.props)
     return (
       <div className={classes.buttonDiv}>
         <Button onClick={this.toggle}  type="submit" className={classes.button} color="secondary" variant="contained">
@@ -154,7 +159,7 @@ class SignUpModal extends React.Component {
                     currentSemester:Yup.number().required("Semester is required")
                   })}
                 onSubmit={async(values, { setSubmitting }) => {
-                      this.props.createNewUser(values);
+                      this.props.createNewUser(values,from);
                       setSubmitting(false);
                   if (!this.props.auth.isLoading && this.props.auth.isAuthenticated) {
                     this.toggle();
@@ -271,6 +276,9 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default  withStyles(styles)(connect(mapStateToProps, {
+const Component=  withStyles(styles)(connect(mapStateToProps, {
   createNewUser, clearErrors
 })(SignUpModal));
+
+export default withRouter(Component);
+
