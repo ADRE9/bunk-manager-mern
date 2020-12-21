@@ -12,19 +12,13 @@ import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import SubjectRoundedIcon from '@material-ui/icons/SubjectRounded';
 import SchoolRoundedIcon from '@material-ui/icons/SchoolRounded';
 import InfoRoundedIcon from '@material-ui/icons/InfoRounded';
-import AddIcon from '@material-ui/icons/Add';
-import Zoom from '@material-ui/core/Zoom';
-import Fab from '@material-ui/core/Fab';
-import EditIcon from '@material-ui/icons/Edit';
-import UpIcon from '@material-ui/icons/KeyboardArrowUp';
-import { green } from '@material-ui/core/colors';
 import { useTheme } from '@material-ui/styles';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
-import { Link,useHistory } from 'react-router-dom';
+import { Link,useLocation } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { createActiveSubject } from '../../actions/subjectActions';
@@ -108,17 +102,18 @@ const AuthHeader = (props) => {
     setValue(newValues);
   };
 
+  const location= useLocation();
   useEffect(() => {
-    if (window.location.pathname === "/"&& value !== 0) {
+    if (location.pathname === "/"&& value !== 0) {
       setValue(0)
-    } else if (window.location.pathname === "/subject"&&value !== 1 ) {
+    } else if (location.pathname === "/subject"&&value !== 1 ) {
       setValue(1)
-    }else if (window.location.pathname === "/semester" && value !== 2 ) {
+    }else if (location.pathname === "/semester" && value !== 2 ) {
       setValue(2)
-    }else if (window.location.pathname === "/about"&& value !== 3) {
+    }else if (location.pathname === "/about"&& value !== 3) {
       setValue(3)
     } 
-  }, [value]);
+  }, [value,location]);
 
   const renderAdminTab = () => {
     
@@ -155,7 +150,7 @@ const AuthHeader = (props) => {
   };
 
   return (
-    <React.Fragment>{console.log(value)}
+    <React.Fragment>
       <CssBaseline />
       <ElevationScroll>
         <AppBar color="secondary" className={classes.AppBar}>

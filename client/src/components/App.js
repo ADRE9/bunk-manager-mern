@@ -9,6 +9,7 @@ import Header from '../components/pagesComponents/Header';
 import AuthHeader from '../components/pagesComponents/AuthHeader';
 import { connect } from 'react-redux';
 import { loadUser } from '../actions/authActions';
+import { getAllSemesters } from "../actions/subjectActions";
 import PrivateRoute from './PrivateRoute';
 
 //Lazy Loading
@@ -39,6 +40,7 @@ class App extends React.Component {
   componentDidMount() {
     let { from } = history.location.state || { from: { pathname: "/" } };
     this.props.loadUser(from);
+    this.props.getAllSemesters();
   };
 
   render() {
@@ -101,5 +103,5 @@ const mapStateToProps = (state) => {
 const styledApp = withStyles(styles)(App);
  
 export default connect(mapStateToProps, {
-  loadUser
+  loadUser,getAllSemesters
 })(styledApp);

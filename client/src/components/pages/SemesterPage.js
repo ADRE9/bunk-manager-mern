@@ -34,6 +34,8 @@ const SemesterPage = (props) => {
     props.createNewSemester();
   }
 
+  
+
   return (
     <div className={classes.page}>
       <Container className={classes.container}>
@@ -47,7 +49,7 @@ const SemesterPage = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  return {auth:state.auth.user}
+  return {semester:Object.values(state.subject.semester)}
 }
 
 export default connect(mapStateToProps, {

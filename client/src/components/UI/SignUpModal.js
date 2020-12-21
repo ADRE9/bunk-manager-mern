@@ -108,7 +108,6 @@ class SignUpModal extends React.Component {
     const { classes } = this.props;
     let location = this.props.location;
     const { from }  = location.state || { from: { pathname: "/" } };
-    console.log(this.props)
     return (
       <div className={classes.buttonDiv}>
         <Button onClick={this.toggle}  type="submit" className={classes.button} color="secondary" variant="contained">

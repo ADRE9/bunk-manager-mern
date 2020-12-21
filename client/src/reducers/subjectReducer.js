@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { SUBJECT_TEMPLATE_CREATED, SUBJECT_CREATED, SUBJECT_LOADING, SUBJECT_LOADED,CREATING_SUBJECT, CLEAR_SUBJECTS, SUBJECT_DELETED, SUBJECT_UPDATED,UPDATING_SUBJECT,CLEAR_EVENTS } from '../actions/actionTypes';
+import { SUBJECT_TEMPLATE_CREATED, SUBJECT_CREATED, SUBJECT_LOADING, SUBJECT_LOADED,CREATING_SUBJECT, CLEAR_SUBJECTS, SUBJECT_DELETED, SUBJECT_UPDATED,UPDATING_SUBJECT,CLEAR_EVENTS,LOADING_SEMESTER,SEMESTER_LOADED } from '../actions/actionTypes';
 import _ from 'lodash';
 
 const initialState = {
@@ -33,8 +33,20 @@ export default (state=initialState,action) => {
       return { ...state, isLoading: false, subjects: subjectObj };
     }
       
+    case LOADING_SEMESTER:
+      return { ...state, isLoading: true }
+    
+    case SEMESTER_LOADED: {
+      let newObj = _.mapKeys(action.payload, (value) => {
+        return value._id;
+      });
+      return {...state, isLoading: false,semester: { ...newObj } }
+    };
+      
+      
     case UPDATING_SUBJECT:
-      return {...state,isUpdating:true}
+      return { ...state, isUpdating: true }
+    
       
     case SUBJECT_UPDATED:
       return{...state,isUpdating:false,hasBeenUpdated:true,subjects:{...state.subjects,[action.payload._id]:action.payload}}
