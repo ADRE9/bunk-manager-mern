@@ -1,9 +1,9 @@
 import { SUBJECT_TEMPLATE_CREATED,CREATING_SUBJECT,SUBJECT_CREATED,SUBJECT_LOADING,SUBJECT_LOADED,SUBJECT_DELETED,UPDATING_SUBJECT, SUBJECT_UPDATED,CLEAR_EVENTS,LOADING_SEMESTER,SEMESTER_LOADED } from './actionTypes';
 import * as subjectApi from '../apis/subjectApi';
 import { returnErrors, clearErrors } from './errorActions';
+import {history} from '../helpers/history';
 import { updateUserData } from './authActions';
 import { tokenConfig } from './authActions';
-import { CardActions } from '@material-ui/core';
 
 
 
@@ -86,7 +86,8 @@ export const createNewSemester = () => async (dispatch, getState) => {
     dispatch(clearErrors());
     dispatch({ type: SUBJECT_TEMPLATE_CREATED });
     await dispatch(getSubjectsBySemester(semester + 1));
-    await dispatch(getAllSemesters())
+    await dispatch(getAllSemesters());
+    history.push('/');
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
   }
