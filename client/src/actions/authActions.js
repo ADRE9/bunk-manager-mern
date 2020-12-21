@@ -1,4 +1,4 @@
-import { USER_LOADED, USER_LOADING, LOGIN_SUCCESS, AUTH_ERROR, LOGIN_FAIL, REGISTER_SUCCESS, REGISTER_FAIL, LOGOUT_SUCCESS, CLEAR_SUBJECTS, DELETING_USER, USER_DELETED } from '../actions/actionTypes';
+import { USER_LOADED, USER_LOADING, LOGIN_SUCCESS, AUTH_ERROR, LOGIN_FAIL, REGISTER_SUCCESS, REGISTER_FAIL, LOGOUT_SUCCESS, CLEAR_SUBJECTS, DELETING_USER, USER_DELETED,UPDATING_USER,USER_UPDATED } from '../actions/actionTypes';
 
 import {history} from '../helpers/history';
 
@@ -127,11 +127,11 @@ export const deleteUser = () => async (dispatch, getState) => {
 };
 
 //updating userdata
-export const upadateUserData = (updateData) => async (dispatch, getState) => {
+export const updateUserData = (updateData) => async (dispatch, getState) => {
   try {
-    dispatch({ type: USER_LOADING });
+    dispatch({ type: UPDATING_USER });
     const response = await userApi.updateUser(tokenConfig(getState), updateData);
-    dispatch({ type: USER_LOADED, payload: response.data.user });
+    dispatch({ type: USER_UPDATED, payload: response.data.user });
   } catch (e) {
     await dispatch(returnErrors(e.response.data, e.response.status));
   }

@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL,DELETING_USER,USER_DELETED } from '../actions/actionTypes';
+import { USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, REGISTER_SUCCESS, REGISTER_FAIL,DELETING_USER,USER_DELETED,UPDATING_USER,USER_UPDATED } from '../actions/actionTypes';
 
 
 const initialState = {
@@ -29,6 +29,12 @@ export default (state = initialState, action)=> {
         ...action.payload,
       };
     
+    case UPDATING_USER:
+      return {...state,isLoading:true}
+    
+    case USER_UPDATED: {
+      return {...state,user:{...action.payload}}
+    }
     //when user gets authenticated through login or signup
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS: {

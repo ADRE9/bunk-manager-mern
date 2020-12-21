@@ -31,9 +31,7 @@ const SemesterPage = (props) => {
   const classes = useStyles();
 
   const onFabClick = () => {
-    let semester = props.auth.currentSemester;
-    props.createNewSemester(semester);
-    return <Redirect to="/"/>
+    props.createNewSemester();
   }
 
   return (

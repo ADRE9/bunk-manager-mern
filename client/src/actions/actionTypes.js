@@ -14,6 +14,8 @@ export const GET_ERROR = "GET_ERROR";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const DELETING_USER = "DELETING_USER";
 export const USER_DELETED = "USER_DELETED";
+export const UPDATING_USER = "UPDATING_USER";
+export const USER_UPDATED = "USER_UPDATED";
 
 
 //subject actions

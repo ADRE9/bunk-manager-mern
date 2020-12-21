@@ -1,7 +1,7 @@
 import { SUBJECT_TEMPLATE_CREATED,CREATING_SUBJECT,SUBJECT_CREATED,SUBJECT_LOADING,SUBJECT_LOADED,SUBJECT_DELETED,UPDATING_SUBJECT, SUBJECT_UPDATED,CLEAR_EVENTS } from './actionTypes';
 import * as subjectApi from '../apis/subjectApi';
 import { returnErrors, clearErrors } from './errorActions';
-import { upadateUserData } from './authActions';
+import { updateUserData } from './authActions';
 import { tokenConfig } from './authActions';
 
 
@@ -75,12 +75,12 @@ export const getSubjectsBySemester = (semester) => async (dispatch, getState) =>
   }
 };
 
-export const createNewSemester = (semester) => async (dispatch, getState) => {
-  
+export const createNewSemester = () => async (dispatch, getState) => {
+  let semester = getState().auth.user.currentSemester;
   try {
     dispatch({ type: SUBJECT_LOADING });
     await subjectApi.deactivateAllSubject(tokenConfig(getState), semester);
-    await dispatch(upadateUserData({ currentSemester: semester + 1 }));
+    await dispatch(updateUserData({ currentSemester: semester + 1 }));
     await subjectApi.createTemplate(tokenConfig(getState), semester + 1);
     dispatch(clearErrors());
     dispatch({ type: SUBJECT_TEMPLATE_CREATED });
