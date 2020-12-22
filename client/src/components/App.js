@@ -6,6 +6,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { createStyles } from '@material-ui/core/styles';
 import Theme from '../Themes/Theme';
 import Header from '../components/pagesComponents/Header';
+import LoadingPage from './pages/LoadingPage';
 import { connect } from 'react-redux';
 import { loadUser } from '../actions/authActions';
 import { getAllSemesters } from "../actions/subjectActions";
@@ -52,38 +53,38 @@ class App extends React.Component {
               {/* {this.props.auth.isAuthenticated?<AuthHeader/>:<Header/>} */}
               <Switch>
               <PrivateRoute exact  path="/">
-                  <Suspense fallback={<div>Loading</div>}>
+                  <Suspense fallback={LoadingPage}>
                     <HomePage/>
                   </Suspense>
                 </PrivateRoute>
                 <Route exact path="/auth">
-                  <Suspense fallback={<div>Loading</div>}>
+                  <Suspense fallback={LoadingPage}>
                     <Header/>
                     <LoginPage/>
                   </Suspense>
                 </Route>
                 <PrivateRoute exact  path="/subject">
-                  <Suspense fallback={<div>Loading</div>}>
+                  <Suspense fallback={LoadingPage}>
                     <SubjectPage/>
                   </Suspense>
                 </PrivateRoute>
                 <PrivateRoute exact  path="/semester">
-                  <Suspense fallback={<div>Loading</div>}>
+                  <Suspense fallback={LoadingPage}>
                     <SemesterPage/>
                   </Suspense>
                 </PrivateRoute>
                 <PrivateRoute exact  path="/about">
-                  <Suspense fallback={<div>Loading</div>}>
+                  <Suspense fallback={LoadingPage}>
                     <AboutPage/>
                   </Suspense>
                 </PrivateRoute>
                 <PrivateRoute exact  path="/subject/new">
-                  <Suspense fallback={<div>Loading</div>}>
+                  <Suspense fallback={LoadingPage}>
                     <AddSubjectPage/>
                   </Suspense>
                 </PrivateRoute>
                 <PrivateRoute exact  path="/subject/:id">
-                  <Suspense fallback={<div>Loading</div>}>
+                  <Suspense fallback={LoadingPage}>
                     <EditSubjectPage/>
                   </Suspense>
                 </PrivateRoute>
