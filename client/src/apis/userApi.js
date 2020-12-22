@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url="http://localhost:5000/api/auth"
+const url="https://salty-brook-29410.herokuapp.com/api/auth"
 
 export const createUser = (userData) => axios.post(`${url}/new/signup`, userData);
 

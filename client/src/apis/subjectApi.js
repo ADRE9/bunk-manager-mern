@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const subjectUrl = "http://localhost:5000/api/subject";
-const semesterUrl = "http://localhost:5000/api/semester";
+const subjectUrl = "https://salty-brook-29410.herokuapp.com/api/subject";
+const semesterUrl = "https://salty-brook-29410.herokuapp.com/api/semester";
 
 export const createTemplate = (header,semester) => axios.post(`${subjectUrl}/createTemplate`, {semester:semester}, { headers: header });
 
