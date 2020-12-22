@@ -6,7 +6,6 @@ import { withStyles } from "@material-ui/core/styles";
 import { createStyles } from '@material-ui/core/styles';
 import Theme from '../Themes/Theme';
 import Header from '../components/pagesComponents/Header';
-import AuthHeader from '../components/pagesComponents/AuthHeader';
 import { connect } from 'react-redux';
 import { loadUser } from '../actions/authActions';
 import { getAllSemesters } from "../actions/subjectActions";
@@ -50,7 +49,7 @@ class App extends React.Component {
         <div className={classes.App}>
           <ThemeProvider theme={Theme}>
             <Router history={history}>
-              {this.props.auth.isAuthenticated?<AuthHeader/>:<Header/>}
+              {/* {this.props.auth.isAuthenticated?<AuthHeader/>:<Header/>} */}
               <Switch>
               <PrivateRoute exact  path="/">
                   <Suspense fallback={<div>Loading</div>}>
@@ -59,6 +58,7 @@ class App extends React.Component {
                 </PrivateRoute>
                 <Route exact path="/auth">
                   <Suspense fallback={<div>Loading</div>}>
+                    <Header/>
                     <LoginPage/>
                   </Suspense>
                 </Route>

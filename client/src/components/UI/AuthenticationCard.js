@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   card: {
     marginTop:"2rem",
     width: "80%",
-    height: "80vh",
+    height: "600px",
     display: "flex",
     flexDirection: "column",
     borderRadius: "15px",

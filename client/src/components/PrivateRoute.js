@@ -1,12 +1,18 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import AuthHeader from '../components/pagesComponents/AuthHeader';
 
 const PrivateRoute = ({ children, isAuthenticated, ...rest }) => {
   
   return (
     <Route {...rest} exact render={(props) => {
-      return isAuthenticated ? children : <Redirect to={{
+      return isAuthenticated ? (
+        <React.Fragment>
+          <AuthHeader />
+          {children}
+        </React.Fragment>
+      ) : <Redirect to={{
         pathname: "/auth",
         state:{from:props.location}
       }}/>
