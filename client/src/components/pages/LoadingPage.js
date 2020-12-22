@@ -4,7 +4,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles(theme => ({
   fullpage: {
-    flexGrow: 1,
+    width: "100vw",
+    height: "100vh",
+    display:"flex",
     alignItems: "center",
     justifyContent:"center"
   }
