@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server/index.js",
-    "server": "env-cmd -f ./configs/dev.env nodemon server/index.js",
-    "mongo": "C:/Users/mak13/MongoDb/db/bin/mongod.exe -dbpath=E:/ARSHIE/DB/BUNK-MANAGER-DATA",
+    "client-install":"npm install --prefix client",
+    "start": "node index.js",
+    "server": "env-cmd -f ./configs/dev.env nodemon index.js",
     "client": "npm rum start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
