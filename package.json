@@ -5,14 +5,16 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/index.js",
-    "server": "nodemon server/index.js",
+    "server": "env-cmd -f ./configs/dev.env nodemon server/index.js",
     "mongo": "C:/Users/mak13/MongoDb/db/bin/mongod.exe -dbpath=E:/ARSHIE/DB/BUNK-MANAGER-DATA",
     "client": "npm rum start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run mongo\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "env-cmd": "^10.1.0",
     "nodemon": "^2.0.6"
   },
   "dependencies": {

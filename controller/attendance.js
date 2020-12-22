@@ -17,7 +17,7 @@ const createAttendance = async (req, res) => {
     const attendanceCheck = await Attendance.find({
     attendanceOf: req.params.id, createdAt: { $gte:`${start}`, $lt:`${ end }`}
     });
-    if (attendanceCheck.length!==0) {
+    if (attendanceCheck.length!==0 && req.body.classStatus!=="extraClass") {
      return res.status(400).send({msg:"Attendance already exist"});
     }
     await attendance.save();

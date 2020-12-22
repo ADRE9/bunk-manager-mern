@@ -1,14 +1,10 @@
 import React,{useState} from 'react'
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import CardGrid from '../UI/Cards/CardGrid';
-import { labCard, classCard } from '../../utils/cardUtil';
 import Fab from '@material-ui/core/Fab';
 import { createNewSemester } from '../../actions/subjectActions';
-import { Redirect } from 'react-router-dom';
 import AddIcon from '@material-ui/icons/Add';
 import Container from '@material-ui/core/Container';
-import { Typography } from '@material-ui/core';
 import ConfirmDialog from '../UI/ConfirmDialog';
 
 const useStyles = makeStyles(theme => ({

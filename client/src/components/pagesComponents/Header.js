@@ -1,33 +1,15 @@
-import React,{useState,useEffect} from 'react';
+import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-
-//icons
-import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-import SubjectRoundedIcon from '@material-ui/icons/SubjectRounded';
-import SchoolRoundedIcon from '@material-ui/icons/SchoolRounded';
-import InfoRoundedIcon from '@material-ui/icons/InfoRounded';
-import AddIcon from '@material-ui/icons/Add';
-import Zoom from '@material-ui/core/Zoom';
-import Fab from '@material-ui/core/Fab';
-import EditIcon from '@material-ui/icons/Edit';
-import UpIcon from '@material-ui/icons/KeyboardArrowUp';
-import { green } from '@material-ui/core/colors';
-import { useTheme } from '@material-ui/styles';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authActions';
-import { Link,useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { createActiveSubject } from '../../actions/subjectActions';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 
 const useStyles = makeStyles(theme => ({
   toolBar: {

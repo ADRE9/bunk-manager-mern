@@ -1,9 +1,9 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { useFormik } from "formik";
 import * as yup from 'yup';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
-import { Redirect,useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { loggingUser } from '../../../actions/authActions';

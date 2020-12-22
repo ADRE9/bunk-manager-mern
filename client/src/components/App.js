@@ -1,5 +1,5 @@
 import React,{lazy,Suspense} from 'react';
-import { Router, Route, Switch, withRouter } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import {history} from '../helpers/history';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { withStyles } from "@material-ui/core/styles";

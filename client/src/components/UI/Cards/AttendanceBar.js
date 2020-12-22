@@ -1,8 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { useTheme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
-import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
 import Collapse from '@material-ui/core/Collapse';
 import clsx from 'clsx';
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -10,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import CardActions from '@material-ui/core/CardActions';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { Button } from '@material-ui/core';
+import CardMenu from './CardMenu';
 
 const useStyles = makeStyles(theme => ({
   expand: {
@@ -25,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
   hiddenBox: {
     padding: "0",
-    marginBottom:"10px"
+    //marginBottom:"10px"
   },
   hiddenButtonBunk: {
     color:"red",
@@ -79,19 +77,7 @@ const AttendanceBar = (props) => {
         <Box className={classes.hiddenBox}
           display="flex"  width="100%"
          justifyContent="space-around">
-          <Button
-            className={classes.hiddenButtonBunk}
-            >
-            BUNK
-          </Button>
-          <Button
-            color="primary">
-            HOLIDAY
-          </Button>
-          <Button
-            className={classes.hiddenButtonClass}>
-          EXTRA CLASS
-          </Button>
+          <CardMenu data={ {id:props.data.id}}/>
         </Box>
         </Collapse>
         </React.Fragment>

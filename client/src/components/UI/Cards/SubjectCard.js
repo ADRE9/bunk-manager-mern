@@ -1,11 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AttendanceBar from './AttendanceBar';
-import Fab from '@material-ui/core/Fab';
-import { Button } from '@material-ui/core';
 import CardMenu from './CardMenu';
 import Card from '@material-ui/core/Card';
-import IconButton from '@material-ui/core/IconButton';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
@@ -64,7 +61,7 @@ const SubjectCard = (props) => {
   const classes = useStyles();
 
 
-  const { name,backgroundImage,owner,semester,totalClasses,classesBunked,days,_id} = props.data;
+  const { name,backgroundImage,semester,totalClasses,classesBunked,_id} = props.data;
 
   const renderSvg = () => {
     function toBase64(arr) {
