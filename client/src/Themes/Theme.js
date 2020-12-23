@@ -39,7 +39,7 @@ export default createMuiTheme({
     },
     input: {
       margin: "10px 0px",
-      width: "80%",
+      width: "50%",
       height:"30px",
       borderRadius: "15px", 
       border: "1px solid black",

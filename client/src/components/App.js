@@ -20,7 +20,8 @@ const SubjectPage = lazy(() => import('./pages/SubjectPage'));
 const SemesterPage = lazy(() => import('./pages/SemesterPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const AddSubjectPage = lazy(() => import('./pages/AddSubjectPage'));
-const EditSubjectPage = lazy(()=>import('./pages/EditSubjectPage'));
+const EditSubjectPage = lazy(() => import('./pages/EditSubjectPage'));
+const SignUpPage = lazy(() => import('./pages/SignUpPage'));
 
 const styles = (theme) => createStyles({
   App: {
@@ -53,11 +54,6 @@ class App extends React.Component {
         <AuthHeader/>
         <AnimatePresence>
                 <Switch location={location} key={location.key}>
-                  <Route exact path="/auth">
-                    <Suspense fallback={<LoadingPage/>}>
-                      <LoginPage/>
-                    </Suspense>
-                  </Route>
                   <PrivateRoute exact  path="/subject">
                     <Suspense fallback={<LoadingPage/>}>
                       <SubjectPage/>
@@ -88,6 +84,16 @@ class App extends React.Component {
                       <HomePage/>
                     </Suspense>
                   </PrivateRoute>
+                  <Route exact path="/user/signup">
+                    <Suspense fallback={<LoadingPage/>}>
+                      <SignUpPage/>
+                    </Suspense>
+                  </Route>
+                  <Route exact path="/auth">
+                    <Suspense fallback={<LoadingPage/>}>
+                      <LoginPage/>
+                    </Suspense>
+                  </Route>
                 </Switch>
               </AnimatePresence>
         </div>

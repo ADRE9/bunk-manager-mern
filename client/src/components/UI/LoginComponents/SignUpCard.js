@@ -1,13 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import Divider from '@material-ui/core/Divider';
-
-import SignUpModal from '../SignUpModal';
 
 
 const useStyles = makeStyles(theme => ({
@@ -59,7 +58,6 @@ const SignUpCard = (props) => {
 
   return ( 
     <React.Fragment>
-      <SignUpModal title="SIGN UP"/>
       <Typography color="primary" className={classes.signUpHeader} variant="h5">
         Sign Up
       </Typography>
@@ -77,8 +75,13 @@ const SignUpCard = (props) => {
       <Typography color="primary" className={classes.p} variant="h6">
       <Divider/>OR
       </Typography>
+        <Button className={classes.button} component={Link} to="/user/signup">
+          Sign Up
+        </Button>
     </React.Fragment>
    );
 }
  
-export default connect(null,{})(SignUpCard);
+export default connect(null, {})(SignUpCard);
+
+//<SignUpModal title="SIGN UP"/>
