@@ -96,18 +96,19 @@ const AuthHeader = (props) => {
   const handleChange = (newValues) => {
     setValue(newValues);
   };
+  const location = useLocation();
 
     useEffect(() => {
-    if (window.pathname === "/" && value !== 0) {
+    if (location.pathname === "/" && value !== 0) {
       setValue(0)
-    } else if (window.pathname === "/subject" && value !== 1) {
+    } else if (location.pathname === "/subject" && value !== 1) {
       setValue(1)
-    } else if (window.pathname === "/semester" && value !== 2) {
+    } else if (location.pathname === "/semester" && value !== 2) {
       setValue(2)
-    } else if (window.pathname === "/about" && value !== 3) {
+    } else if (location.pathname === "/about" && value !== 3) {
       setValue(3)
     }
-  }, [value]);
+  }, [value,location]);
 
   const renderAdminTab = () => {
     
@@ -115,10 +116,10 @@ const AuthHeader = (props) => {
       return (
         <React.Fragment>
           <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-            <Tab component={Link} to="/" label="Attendance" />
-            <Tab component={Link} to="/subject" label="Subjects" />
-            <Tab component={Link} to="/semester" label="Semester" />
-            <Tab component={Link} to="/about" label="About" />
+            <Tab value={0} component={Link} to="/" label="Attendance" />
+            <Tab value={1} component={Link} to="/subject" label="Subjects" />
+            <Tab value={2} component={Link} to="/semester" label="Semester" />
+            <Tab value={3} component={Link} to="/about" label="About" />
           </Tabs>
         </React.Fragment>
       )
