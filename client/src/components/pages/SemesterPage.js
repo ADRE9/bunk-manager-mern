@@ -6,6 +6,7 @@ import { createNewSemester } from '../../actions/subjectActions';
 import AddIcon from '@material-ui/icons/Add';
 import Container from '@material-ui/core/Container';
 import ConfirmDialog from '../UI/ConfirmDialog';
+import { motion } from 'framer-motion';
 
 const useStyles = makeStyles(theme => ({
   ...theme.pages,
@@ -35,9 +36,31 @@ const SemesterPage = (props) => {
     props.createNewSemester();
   }
 
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+      x:100
+    },
+    visible: {
+      opacity: 1,
+      x:0,
+      transition: {
+        delay:0.5,
+        duration:0.5
+      }
+    },
+    exit: {
+      x: "-100vw",
+      transition:{ease:"easeInOut"}
+    }
+  }
+
   return (
-    <div className={classes.page}>
-      <Container className={classes.container}>
+    <motion.div variants={containerVariants}
+    initial="hidden"
+    animate="visible"
+    exit="exit" className={classes.page}>
+        <Container className={classes.container}>
         Semester Page
         <Fab onClick={()=>setConfirmOpen(true)} color="secondary" className={classes.fab}>
           <AddIcon/>
@@ -52,7 +75,7 @@ const SemesterPage = (props) => {
               Are you sure you want to add a new semester?
           </ConfirmDialog>
       </Container>
-    </div>
+    </motion.div>
   )
 }
 

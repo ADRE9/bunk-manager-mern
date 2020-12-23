@@ -121,10 +121,10 @@ const AuthHeader = (props) => {
       return (
         <React.Fragment>
           <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-            <Tab value={0} component={Link} to="/" label="Attendance"/>
-            <Tab value={1} component={Link} to="/subject" label="Subjects"/>
-            <Tab value={2} component={Link} to="/semester" label="Semester" />
-            <Tab value={3} component={Link} to="/about" label="About" />
+            <Tab component={Link} to="/" label="Attendance"/>
+            <Tab component={Link} to="/subject" label="Subjects"/>
+            <Tab component={Link} to="/semester" label="Semester" />
+            <Tab component={Link} to="/about" label="About" />
           </Tabs>
         </React.Fragment>
       )
@@ -138,10 +138,10 @@ const AuthHeader = (props) => {
         <React.Fragment>
           <AppBar position="fixed" className={classes.bottomAppBar}>
             <BottomNavigation position="fixed" value={value} onChange={handleChange} >
-              <BottomNavigationAction value={0} component={Link} to="/" icon={<HomeRoundedIcon />} />
-              <BottomNavigationAction value={1} component={Link} to="/subject" icon={<SubjectRoundedIcon />} />
-              <BottomNavigationAction value={2} component={Link} to="/semester"  icon={<SchoolRoundedIcon />} />
-              <BottomNavigationAction value={3} component={Link} to="/about" icon={<InfoRoundedIcon />} />
+              <BottomNavigationAction value="0" component={Link} to="/" icon={<HomeRoundedIcon />} />
+              <BottomNavigationAction value="1" component={Link} to="/subject" icon={<SubjectRoundedIcon />} />
+              <BottomNavigationAction value="2" component={Link} to="/semester"  icon={<SchoolRoundedIcon />} />
+              <BottomNavigationAction value="3" component={Link} to="/about" icon={<InfoRoundedIcon />} />
             </BottomNavigation>
           </AppBar>
         </React.Fragment>

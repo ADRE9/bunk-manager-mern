@@ -40,8 +40,8 @@ export const loadUser = (from) => async (dispatch, getState) => {
       type: USER_LOADED,
       payload: res.data
     });
-    await dispatch(getCurrentSemesterSubjects());
     history.replace(from);
+    await dispatch(getCurrentSemesterSubjects());
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: AUTH_ERROR });
@@ -62,8 +62,8 @@ export const loggingUser = (userData,from) => async (dispatch, getState) => {
       type: LOGIN_SUCCESS,
       payload: response.data
     });
-    await dispatch(getCurrentSemesterSubjects());
     history.replace(from);
+    await dispatch(getCurrentSemesterSubjects());
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: LOGIN_FAIL });
@@ -83,9 +83,9 @@ export const createNewUser = (userData,from) => async (dispatch, getState) => {
       type: REGISTER_SUCCESS,
       payload: response.data
     })
+    history.replace(from);
     await dispatch(createSubjectTemplate());
     await dispatch(getCurrentSemesterSubjects());
-      history.replace(from);
   } catch (error) {
     await dispatch(returnErrors(error.response.data, error.response.status));
     dispatch({ type: REGISTER_FAIL });

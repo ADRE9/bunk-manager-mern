@@ -8,6 +8,7 @@ import CardGrid from '../UI/Cards/CardGrid';
 import { labCard, classCard } from '../../utils/cardUtil';
 import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
+import { motion } from 'framer-motion';
 
 const useStyles = makeStyles(theme => ({
   ...theme.pages,
@@ -29,9 +30,30 @@ const useStyles = makeStyles(theme => ({
 
 const SubjectPage = (props) => {
   const classes = useStyles();
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+      x:100
+    },
+    visible: {
+      opacity: 1,
+      x:0,
+      transition: {
+        delay:0.5,
+        duration:0.5
+      }
+    },
+    exit: {
+      x: "-100vw",
+      transition:{ease:"easeInOut"}
+    }
+  }
 
   return (
-    <div className={classes.page}>
+    <motion.div variants={containerVariants}
+    initial="hidden"
+    animate="visible"
+    exit="exit" className={classes.page}>
       <Container className={classes.container}>
         <Fab component={Link} to="/subject/new" color="secondary" className={classes.fab}>
           <AddIcon/>
@@ -45,7 +67,7 @@ const SubjectPage = (props) => {
           {labCard(props)}
         </CardGrid>
       </Container>
-    </div>
+    </motion.div>
   )
 }
 

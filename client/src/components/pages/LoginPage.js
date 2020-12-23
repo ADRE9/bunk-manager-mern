@@ -4,6 +4,7 @@ import svgImg from '../../assets/svg/undraw_book_lover_mkck.svg';
 import { makeStyles } from '@material-ui/core/styles';
 import AuthenticationCard from '../UI/AuthenticationCard';
 import { connect } from 'react-redux';
+import { motion } from 'framer-motion';
 
 
 const useStyles = makeStyles(theme => ({
@@ -28,18 +29,39 @@ const useStyles = makeStyles(theme => ({
 
 const LoginPage = (props) => {
   const classes = useStyles(props);
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+      x:100
+    },
+    visible: {
+      opacity: 1,
+      x:0,
+      transition: {
+        delay:0.5,
+        duration:0.5
+      }
+    },
+    exit: {
+      x: "-100vw",
+      transition:{ease:"easeInOut"}
+    }
+  }
     
     return (
-      <React.Fragment>
-        <Grid container className={classes.containerGrid}>
+        <motion.div variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit">
+              <Grid container className={classes.containerGrid}>
                 <Grid item xs={12} sm={12} md={8}>
                   <img src={svgImg} alt="svgimage" className={classes.svgImg} />
                 </Grid>
                 <Grid className={classes.gridItem} item xs={12} sm={12} md={4}>
-            <AuthenticationCard/>
+                  <AuthenticationCard/>
                 </Grid>
               </Grid>
-      </React.Fragment>
+        </motion.div>
     );
   
 };

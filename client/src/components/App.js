@@ -1,6 +1,5 @@
 import React,{lazy,Suspense} from 'react';
-import { Router, Route, Switch } from 'react-router-dom';
-import {history} from '../helpers/history';
+import { Route, Switch,withRouter } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { withStyles } from "@material-ui/core/styles";
 import { createStyles } from '@material-ui/core/styles';
@@ -11,6 +10,7 @@ import { connect } from 'react-redux';
 import { loadUser } from '../actions/authActions';
 import { getAllSemesters } from "../actions/subjectActions";
 import PrivateRoute from './PrivateRoute';
+import { AnimatePresence } from 'framer-motion';
 
 //Lazy Loading
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -38,58 +38,59 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    let { from } = history.location.state || { from: { pathname: "/" } };
+    let { from } = this.props.history.location.state || { from: { pathname: "/" } };
     this.props.loadUser(from);
     this.props.getAllSemesters();
   };
 
   render() {
+    
     const { classes } = this.props;
     return ( 
       <React.Fragment>
         <div className={classes.App}>
           <ThemeProvider theme={Theme}>
-            <Router history={history}>
-              {/* {this.props.auth.isAuthenticated?<AuthHeader/>:<Header/>} */}
-              <Switch>
-              <PrivateRoute exact  path="/">
-                  <Suspense fallback={LoadingPage}>
-                    <HomePage/>
-                  </Suspense>
-                </PrivateRoute>
-                <Route exact path="/auth">
-                  <Suspense fallback={LoadingPage}>
-                    <Header/>
-                    <LoginPage/>
-                  </Suspense>
-                </Route>
-                <PrivateRoute exact  path="/subject">
-                  <Suspense fallback={LoadingPage}>
-                    <SubjectPage/>
-                  </Suspense>
-                </PrivateRoute>
-                <PrivateRoute exact  path="/semester">
-                  <Suspense fallback={LoadingPage}>
-                    <SemesterPage/>
-                  </Suspense>
-                </PrivateRoute>
-                <PrivateRoute exact  path="/about">
-                  <Suspense fallback={LoadingPage}>
-                    <AboutPage/>
-                  </Suspense>
-                </PrivateRoute>
-                <PrivateRoute exact  path="/subject/new">
-                  <Suspense fallback={LoadingPage}>
-                    <AddSubjectPage/>
-                  </Suspense>
-                </PrivateRoute>
-                <PrivateRoute exact  path="/subject/:id">
-                  <Suspense fallback={LoadingPage}>
-                    <EditSubjectPage/>
-                  </Suspense>
-                </PrivateRoute>
-              </Switch>
-            </Router>
+              <AnimatePresence>
+                <Switch location={this.props.history.location} key={this.props.history.location.key}>
+                  
+                  <Route exact path="/auth">
+                    <Suspense fallback={<LoadingPage/>}>
+                      
+                      <LoginPage/>
+                    </Suspense>
+                  </Route>
+                  <PrivateRoute exact  path="/subject">
+                    <Suspense fallback={<LoadingPage/>}>
+                      <SubjectPage/>
+                    </Suspense>
+                  </PrivateRoute>
+                  <PrivateRoute exact  path="/semester">
+                    <Suspense fallback={<LoadingPage/>}>
+                      <SemesterPage/>
+                    </Suspense>
+                  </PrivateRoute>
+                  <PrivateRoute exact  path="/about">
+                    <Suspense fallback={<LoadingPage/>}>
+                      <AboutPage/>
+                    </Suspense>
+                  </PrivateRoute>
+                  <PrivateRoute exact  path="/subject/new">
+                    <Suspense fallback={<LoadingPage/>}>
+                      <AddSubjectPage/>
+                    </Suspense>
+                  </PrivateRoute>
+                  <PrivateRoute exact  path="/subject/:id">
+                    <Suspense fallback={<LoadingPage/>}>
+                      <EditSubjectPage/>
+                    </Suspense>
+                  </PrivateRoute>
+                  <PrivateRoute exact  path="/">
+                    <Suspense fallback={<LoadingPage/>}>
+                      <HomePage/>
+                    </Suspense>
+                  </PrivateRoute>
+                </Switch>
+              </AnimatePresence>
           </ThemeProvider>
         </div>
       </React.Fragment>
@@ -103,6 +104,6 @@ const mapStateToProps = (state) => {
 
 const styledApp = withStyles(styles)(App);
  
-export default connect(mapStateToProps, {
+export default withRouter(connect(mapStateToProps, {
   loadUser,getAllSemesters
-})(styledApp);
+})(styledApp));

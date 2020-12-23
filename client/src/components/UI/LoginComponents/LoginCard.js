@@ -8,11 +8,14 @@ import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { loggingUser } from '../../../actions/authActions';
 import { withRouter } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles(theme => ({
   ...theme.authForm,
   button: {
     ...theme.authForm.button,
+    display: "flex",
+    
     width: "130px",
   },
 }));
@@ -76,7 +79,7 @@ const LoginCard = (props) => {
           />
           {formik.errors.password ? <div>{formik.errors.password}</div> : null}
           <Button type="submit" className={classes.button} color="secondary" variant="contained">
-            Sign In
+          {props.auth.isLoading?<CircularProgress color="primary"/>:"Sign In"}
           </Button>
         </form>
     </React.Fragment>
@@ -84,7 +87,7 @@ const LoginCard = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  return {isAuthenticated:state.auth.isAuthenticated,error:state.error.msg };
+  return {auth:state.auth,error:state.error.msg };
 };
  
 export default withRouter(connect(mapStateToProps,
