@@ -4,9 +4,9 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import AppBar from '@material-ui/core/AppBar';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
-import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
-import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
+import SubjectIcon from '@material-ui/icons/Subject';
+import SchoolRoundedIcon from '@material-ui/icons/SchoolRounded';
+import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded';
 import { Link } from 'react-router-dom';
 
 
@@ -58,17 +58,17 @@ const MobileNavigation = () => {
             component={Link}
             to="/subject"
             value="Subject"
-            icon={<SearchRoundedIcon />} />
+            icon={<SubjectIcon />} />
           <BottomNavigationAction
             component={Link}
             to="/semester"
             value="Semester"
-            icon={<AddCircleOutlineRoundedIcon />} />
+            icon={<SchoolRoundedIcon />} />
           <BottomNavigationAction
             component={Link}
             to="/about"
             value="About"
-            icon={<GroupRoundedIcon />} />
+            icon={<MailOutlineRoundedIcon />} />
         </BottomNavigation>
       </AppBar>
     </React.Fragment>

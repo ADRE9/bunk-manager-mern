@@ -6,6 +6,7 @@ import {  updateSubject } from '../../actions/subjectActions';
 import { withRouter } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
 import UpdateForm from '../pagesComponents/UpdateForm';
+import { motion } from 'framer-motion';
 
 const useStyles = makeStyles(theme => ({
   ...theme.pages,
@@ -28,14 +29,36 @@ const EditSubjectPage = (props) => {
     console.log(id)
     props.updateSubject(data,id); 
   }
+
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+      x:100
+    },
+    visible: {
+      opacity: 1,
+      x:0,
+      transition: {
+        delay:0.5,
+        duration:0.5
+      }
+    },
+    exit: {
+      x: "-100vw",
+      transition:{ease:"easeInOut"}
+    }
+  }
   
   return (
-    <div className={classes.page}>{console.log(props)}
+    <motion.div variants={containerVariants}
+    initial="hidden"
+    animate="visible"
+    exit="exit" className={classes.page}>
       <Container className={classes.container}>
         <Typography variant="h3">EDIT SUBJECT</Typography>
         <UpdateForm subjectMethod={(data)=>editSubject(data)}/>
       </Container>
-    </div>
+    </motion.div>
   )
 };
  
