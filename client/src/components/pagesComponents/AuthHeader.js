@@ -4,16 +4,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import MobileNavigation from './MobileNavigation';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 
 //icons
-import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-import SubjectRoundedIcon from '@material-ui/icons/SubjectRounded';
-import SchoolRoundedIcon from '@material-ui/icons/SchoolRounded';
-import InfoRoundedIcon from '@material-ui/icons/InfoRounded';
-import { useTheme } from '@material-ui/styles';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { connect } from 'react-redux';
@@ -21,6 +15,7 @@ import { logoutUser } from '../../actions/authActions';
 import { Link,useLocation } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/styles';
 import { createActiveSubject } from '../../actions/subjectActions';
 
 const useStyles = makeStyles(theme => ({
@@ -96,33 +91,32 @@ const AuthHeader = (props) => {
   const [value, setValue] = useState(0);
   const theme = useTheme();
 
-  const matches=useMediaQuery(theme.breakpoints.down('sm'))
+  const matches = useMediaQuery(theme.breakpoints.down('sm'))
 
   const handleChange = (newValues) => {
     setValue(newValues);
   };
 
-  const location= useLocation();
-  useEffect(() => {
-    if (location.pathname === "/"&& value !== 0) {
+    useEffect(() => {
+    if (window.pathname === "/" && value !== 0) {
       setValue(0)
-    } else if (location.pathname === "/subject"&&value !== 1 ) {
+    } else if (window.pathname === "/subject" && value !== 1) {
       setValue(1)
-    }else if (location.pathname === "/semester" && value !== 2 ) {
+    } else if (window.pathname === "/semester" && value !== 2) {
       setValue(2)
-    }else if (location.pathname === "/about"&& value !== 3) {
+    } else if (window.pathname === "/about" && value !== 3) {
       setValue(3)
-    } 
-  }, [value,location]);
+    }
+  }, [value]);
 
   const renderAdminTab = () => {
     
-    if (!matches) {
+    if (!matches&&props.isAuthenticated) {
       return (
         <React.Fragment>
           <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-            <Tab component={Link} to="/" label="Attendance"/>
-            <Tab component={Link} to="/subject" label="Subjects"/>
+            <Tab component={Link} to="/" label="Attendance" />
+            <Tab component={Link} to="/subject" label="Subjects" />
             <Tab component={Link} to="/semester" label="Semester" />
             <Tab component={Link} to="/about" label="About" />
           </Tabs>
@@ -133,17 +127,10 @@ const AuthHeader = (props) => {
 
 
   const renderAdminBottomTab = () => {
-    if (matches) {
+    if (matches&&props.isAuthenticated) {
       return (
         <React.Fragment>
-          <AppBar position="fixed" className={classes.bottomAppBar}>
-            <BottomNavigation position="fixed" value={value} onChange={handleChange} >
-              <BottomNavigationAction value="0" component={Link} to="/" icon={<HomeRoundedIcon />} />
-              <BottomNavigationAction value="1" component={Link} to="/subject" icon={<SubjectRoundedIcon />} />
-              <BottomNavigationAction value="2" component={Link} to="/semester"  icon={<SchoolRoundedIcon />} />
-              <BottomNavigationAction value="3" component={Link} to="/about" icon={<InfoRoundedIcon />} />
-            </BottomNavigation>
-          </AppBar>
+          <MobileNavigation />
         </React.Fragment>
       )
     }
@@ -161,11 +148,11 @@ const AuthHeader = (props) => {
               </Typography>
             </Button>
             {renderAdminTab()}
-            <Button
-              onClick={() =>  props.logoutUser()}
+            {props.isAuthenticated&&<Button
+              onClick={() => props.logoutUser()}
               className={classes.logout} variant="contained" color="primary">
               LOGOUT
-            </Button>
+            </Button>}
           </Toolbar>
         </AppBar>
       </ElevationScroll>
@@ -173,8 +160,12 @@ const AuthHeader = (props) => {
       {renderAdminBottomTab()}
     </React.Fragment>
   )
+};
+
+const mapStateToProps = (state) => {
+  return {isAuthenticated:state.auth.isAuthenticated}
 }
 
-export default connect(null, {
+export default connect(mapStateToProps, {
   logoutUser,createActiveSubject
 })(AuthHeader);

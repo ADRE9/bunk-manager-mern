@@ -9,6 +9,7 @@ import LoadingPage from './pages/LoadingPage';
 import { connect } from 'react-redux';
 import { loadUser } from '../actions/authActions';
 import { getAllSemesters } from "../actions/subjectActions";
+import AuthHeader from '../components/pagesComponents/AuthHeader';
 import PrivateRoute from './PrivateRoute';
 import { AnimatePresence } from 'framer-motion';
 
@@ -46,16 +47,14 @@ class App extends React.Component {
   render() {
     
     const { classes } = this.props;
+    const{location}=this.props.history
     return ( 
-      <React.Fragment>
-        <div className={classes.App}>
-          <ThemeProvider theme={Theme}>
-              <AnimatePresence>
-                <Switch location={this.props.history.location} key={this.props.history.location.key}>
-                  
+      <div className={classes.App}>
+        <AuthHeader/>
+        <AnimatePresence>
+                <Switch location={location} key={location.key}>
                   <Route exact path="/auth">
                     <Suspense fallback={<LoadingPage/>}>
-                      
                       <LoginPage/>
                     </Suspense>
                   </Route>
@@ -91,9 +90,7 @@ class App extends React.Component {
                   </PrivateRoute>
                 </Switch>
               </AnimatePresence>
-          </ThemeProvider>
         </div>
-      </React.Fragment>
      );
   }
 };
