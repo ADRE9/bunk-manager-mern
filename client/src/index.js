@@ -15,6 +15,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
 
+//creating reset
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
