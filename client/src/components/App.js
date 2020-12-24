@@ -4,7 +4,6 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { withStyles } from "@material-ui/core/styles";
 import { createStyles } from '@material-ui/core/styles';
 import Theme from '../Themes/Theme';
-import Header from '../components/pagesComponents/Header';
 import LoadingPage from './pages/LoadingPage';
 import { connect } from 'react-redux';
 import { loadUser } from '../actions/authActions';
@@ -33,6 +32,8 @@ const styles = (theme) => createStyles({
     left: 0,
     width: "100%",
     minHeight: "100vh",
+    overflow: "hidden",
+    position:"relative"
   },
 });
 
@@ -53,7 +54,7 @@ class App extends React.Component {
       <div className={classes.App}>
         <AuthHeader/>
         <AnimatePresence>
-                <Switch location={location} key={location.key}>
+                <Switch location={location} key={location.pathname}>
                   <PrivateRoute exact  path="/subject">
                     <Suspense fallback={<LoadingPage/>}>
                       <SubjectPage/>

@@ -32,11 +32,10 @@ const LoginPage = (props) => {
   const containerVariants = {
     hidden: {
       opacity: 0,
-      x:100
     },
     visible: {
       opacity: 1,
-      x:0,
+      
       transition: {
         delay:0.5,
         duration:0.5
@@ -52,7 +51,9 @@ const LoginPage = (props) => {
         <motion.div variants={containerVariants}
         initial="hidden"
         animate="visible"
-        exit="exit">
+        exit="exit"
+        className={classes.container}
+      >
               <Grid container className={classes.containerGrid}>
                 <Grid item xs={12} sm={12} md={8}>
                   <img src={svgImg} alt="svgimage" className={classes.svgImg} />
