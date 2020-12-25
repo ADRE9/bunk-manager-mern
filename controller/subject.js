@@ -38,7 +38,8 @@ const editSubject = async (req, res) => {
     }
     updates.forEach(update => {
       subject[update] = req.body[update];
-    })
+    });
+    //subject.semester = req.user.currentSemester;
     await subject.save();
     res.status(200).send(subject);
   } catch (e) {

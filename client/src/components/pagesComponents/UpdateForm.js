@@ -58,14 +58,12 @@ const UpdateForm = (props) => {
       return {
         name: subjectState.subjects[id].name,
         days: subjectState.subjects[id].days,
-        semester: subjectState.subjects[id].semester,
         subjectType:subjectState.subjects[id].subjectType
       }
     } else {
       return {
         name: "",
         days: [],
-        semester: "",
         subjectType:"regular"
       }
     }
@@ -83,7 +81,6 @@ const UpdateForm = (props) => {
         validationSchema={Yup.object({
           name: Yup.string('Enter Subject Name').required('Name of Subject is required'),
           days: Yup.array().required('Atleast One day is required to be selected'),
-          semester: Yup.number().required('Semester is required'),
           subjectType:Yup.string('Enter Subject Type').required('Type of Subject is required')
         })}
 
@@ -129,18 +126,6 @@ const UpdateForm = (props) => {
                 Saturday
               </label>
             </div>
-            <TextField 
-              id="semester"
-              name="semester"
-              label="Semester"
-              type="text"
-              value={formik.values.semester}
-              onChange={formik.handleChange}
-              error={formik.touched.semester && Boolean(formik.errors.semester)}
-              helperText={formik.touched.semester && formik.errors.semester}
-              className={classes.field}
-              variant="outlined"
-            />
             <FormControl variant="outlined" className={classes.formControl}>
               <InputLabel id="demo-simple-select-outlined-label">Subject Type</InputLabel>
               <Select

@@ -43,7 +43,8 @@ const AddSubjectPage = (props) => {
   }
 
   const addSubject = (data) => {
-      props.createActiveSubject(data); 
+    data.semester = props.currentSem;
+    props.createActiveSubject(data); 
   }
   
   return (
@@ -58,7 +59,10 @@ const AddSubjectPage = (props) => {
     </motion.div>
   )
 };
+const mapStateToProps = (state) => {
+  return {currentSem:state.auth.user.currentSemester}
+}
 
-export default connect(null, {
+export default connect(mapStateToProps, {
   createActiveSubject
 })(AddSubjectPage);
