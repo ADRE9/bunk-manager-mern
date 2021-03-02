@@ -9,4 +9,4 @@
 <p>2."npm run server" (to run the server.Exclude the quotes)</p><br>
 <p>3."npm run client" (to run the client.Exclude the quotes)</p><br>
 <p>4."npm run dev" (to run the both server and client.Exclude the quotes)</p><br>
-<p>Live version also available at <a href="https://salty-brook-29410.herokuapp.com/">HERE</a></p>
+<p>Live version also available <a href="https://salty-brook-29410.herokuapp.com/">HERE</a></p>
