@@ -1,4 +1,4 @@
-<h1>A React App to maintain attendance in an University.</h1>
+<h1>BUNK MANAGER</h1>
  
  ![Screenshot (138)](https://user-images.githubusercontent.com/49809895/100523828-770df600-31d9-11eb-9319-b5ac958f5d9b.png)
 
