@@ -9,9 +9,9 @@
 <p>4."npm run server" (to run the server.Exclude the quotes)</p><br>
 <p>5."npm run client" (to run the client.Exclude the quotes)</p><br>
 <p>6."npm run dev" (to run the both server and client.Exclude the quotes)</p><br>
-<p>Live version also available <a href="https://salty-brook-29410.herokuapp.com/">HERE</a></p>
 
-To start contributing, follow the below guidelines: 
+
+# To start contributing, follow the below guidelines: 
 
 **1.**  Fork [this](https://github.com/ADRE9/bunk-manager-mern.git) repository.
 
@@ -78,3 +78,5 @@ git push -u origin <your_branch_name>
 
 
 **14.** Click on `Create Pull Request`.
+
+<p>Live version also available <a href="https://salty-brook-29410.herokuapp.com/">HERE</a></p>
