@@ -5,12 +5,14 @@ import { withStyles } from "@material-ui/core/styles";
 import { createStyles } from '@material-ui/core/styles';
 import Theme from '../Themes/Theme';
 import LoadingPage from './pages/LoadingPage';
+
 import { connect } from 'react-redux';
 import { loadUser } from '../actions/authActions';
 import { getAllSemesters } from "../actions/subjectActions";
 import AuthHeader from '../components/pagesComponents/AuthHeader';
 import PrivateRoute from './PrivateRoute';
 import { AnimatePresence } from 'framer-motion';
+import Footer from './pagesComponents/Footer';
 
 //Lazy Loading
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -97,6 +99,7 @@ class App extends React.Component {
                   </Route>
                 </Switch>
               </AnimatePresence>
+              <Footer />
         </div>
      );
   }
