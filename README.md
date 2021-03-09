@@ -79,4 +79,12 @@ git push -u origin <your_branch_name>
 
 **14.** Click on `Create Pull Request`.
 
+
+## Open Source Program this project have been associated with: 
+
+<p align="center">
+<a href="https://gssoc.girlscript.tech/"><img src="./readme_assets/gssoc.png" width= "25%"/></a>
+</p>
+
+
 <p>Live version also available <a href="https://salty-brook-29410.herokuapp.com/">HERE</a></p>
