@@ -20,6 +20,18 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.down("sm")]: {
             height: "3rem",
     }},
+    
+    test: {
+      
+      
+      position:"sticky",
+  left:0,
+  bottom:0,
+  right:0,
+  marginTop:'auto'
+   
+    },
+    
     logo: {
       fontWeight: 400,
       fontSize:"1.5rem",
@@ -42,7 +54,8 @@ export default function Footer() {
 
     return (
         <React.Fragment>
-          <AppBar color="secondary" className={classes.AppBar}>
+          
+          <AppBar color="secondary" className={classes.test}>
             <Toolbar >
               <Typography className={classes.logo}>
                 BUNK MANAGER  
