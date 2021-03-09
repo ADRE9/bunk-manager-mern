@@ -14,11 +14,17 @@ npm i
  npm i
  ```
 ***4.*** To run the server-
-```npm run server```
+```
+npm run server
+```
 ***5.*** To run the client-
-```npm run server```
+```
+npm run server
+```
 ***6.*** To run both server and client-
-```npm run dev```
+```
+npm run dev
+```
 
 
 # To start contributing, follow the below guidelines: 
