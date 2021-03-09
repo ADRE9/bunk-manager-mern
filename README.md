@@ -3,12 +3,22 @@
  ![Screenshot (138)](https://user-images.githubusercontent.com/49809895/100523828-770df600-31d9-11eb-9319-b5ac958f5d9b.png)
 
 # How To Run the Project
-<p>1.Open Project Folder</p><br>
-<p>2.Open Command Prompt and run "npm i" to install all dependencies.</p><br>
-<p>3.Open client folder and again run "npm i" to install all client dependencies.</p><br>
-<p>4."npm run server" (to run the server.Exclude the quotes)</p><br>
-<p>5."npm run client" (to run the client.Exclude the quotes)</p><br>
-<p>6."npm run dev" (to run the both server and client.Exclude the quotes)</p><br>
+
+***1.*** Open Project Folder
+***2.*** To install all dependencies open Command Prompt and run
+```
+npm i
+```
+***3.*** To install all client dependencies open client folder and again run 
+ ```
+ npm i
+ ```
+***4.*** To run the server-
+```npm run server```
+***5.*** To run the client-
+```npm run server```
+***6.*** To run both server and client-
+```npm run dev```
 
 
 # To start contributing, follow the below guidelines: 
@@ -80,11 +90,11 @@ git push -u origin <your_branch_name>
 **14.** Click on `Create Pull Request`.
 
 
-## Open Source Program this project have been associated with: 
+<!--## Open Source Program this project have been associated with: 
 
-<p align="center">
+<!--<p align="center">
 <a href="https://gssoc.girlscript.tech/"><img src="https://scholarsxp.com/wp-content/uploads/2021/02/gssoc-thumbnai-min.png" width= "25%"/></a>
-</p>
+</p>-->
 
 
 <p>Live version also available <a href="https://salty-brook-29410.herokuapp.com/">HERE</a></p>
