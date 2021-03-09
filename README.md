@@ -4,7 +4,7 @@
 
 # How To Run the Project
 
-***1.*** Open Project Folder
+***1.*** Open Project Folder</br>
 ***2.*** To install all dependencies open Command Prompt and run
 ```
 npm i
