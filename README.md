@@ -20,9 +20,9 @@ npm run server
 ```
 ***5.*** To run the client-
 ```
-npm run server
+npm run client
 ```
-***6.*** To run both server and client-
+***6.*** To run both server and client- Recommended 
 ```
 npm run dev
 ```
