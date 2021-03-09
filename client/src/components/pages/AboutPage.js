@@ -1,12 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+
 const AboutPage = (props) => {
 
   const containerVariants = {
     hidden: {
       opacity: 0,
-      x:100
+      x:100,
+      
     },
     visible: {
       opacity: 1,
@@ -19,7 +21,8 @@ const AboutPage = (props) => {
     exit: {
       x: "-100vw",
       transition:{ease:"easeInOut"}
-    }
+    },
+    
   }
     
   return (
