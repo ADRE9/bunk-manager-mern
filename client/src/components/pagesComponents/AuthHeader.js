@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
   },
   logo: {
     fontWeight: 400,
-    fontSize:"2.5rem",
+    fontSize:"2.5em",
     fontFamily: "Lobster, cursive",
     color: "white",
     [theme.breakpoints.down("sm")]: {
