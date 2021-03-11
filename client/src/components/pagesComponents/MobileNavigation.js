@@ -48,27 +48,36 @@ const MobileNavigation = () => {
         className={classes.appBar}>
         <BottomNavigation
           value={value}
-          onChange={handleChange} className={classes.bottomNav}>
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+          showLabels
+          className={classes.root}
+        >
           <BottomNavigationAction
             component={Link}
             to="/"
             value="Home"
-            icon={<HomeRoundedIcon />} />
+            icon={<HomeRoundedIcon />}
+            label="Home"/>
           <BottomNavigationAction
             component={Link}
             to="/subject"
             value="Subject"
-            icon={<SubjectIcon />} />
+            icon={<SubjectIcon />}
+            label="Subject"/>
           <BottomNavigationAction
             component={Link}
             to="/semester"
             value="Semester"
-            icon={<SchoolRoundedIcon />} />
+            icon={<SchoolRoundedIcon />} 
+            label="Semester"/>
           <BottomNavigationAction
             component={Link}
             to="/about"
             value="About"
-            icon={<MailOutlineRoundedIcon />} />
+            icon={<MailOutlineRoundedIcon />} 
+            label="About"/>
         </BottomNavigation>
       </AppBar>
     </React.Fragment>
