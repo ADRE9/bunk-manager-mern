@@ -11,6 +11,7 @@ import { getAllSemesters } from "../actions/subjectActions";
 import AuthHeader from '../components/pagesComponents/AuthHeader';
 import PrivateRoute from './PrivateRoute';
 import { AnimatePresence } from 'framer-motion';
+import Footer from "./pages/Footer";
 
 //Lazy Loading
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -97,6 +98,7 @@ class App extends React.Component {
                   </Route>
                 </Switch>
               </AnimatePresence>
+              <Footer />
         </div>
      );
   }

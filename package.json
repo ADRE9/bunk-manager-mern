@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "client-install":"npm install --prefix client",
+    "client-install": "npm install --prefix client",
     "start": "node index.js",
     "server": "env-cmd -f ./configs/dev.env nodemon index.js",
     "client": "npm rum start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
@@ -23,10 +23,12 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "mdbreact": "^5.0.1",
     "mongodb": "^3.6.2",
     "mongoose": "^5.10.11",
     "node-cron": "^2.0.3",
     "sharp": "^0.26.3",
+    "simple-react-footer": "^1.0.2",
     "validator": "^13.1.17"
   }
 }
