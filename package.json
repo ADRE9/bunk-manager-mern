@@ -26,6 +26,7 @@
     "mongodb": "^3.6.2",
     "mongoose": "^5.10.11",
     "node-cron": "^2.0.3",
+    "nodemailer": "^6.5.0",
     "sharp": "^0.26.3",
     "validator": "^13.1.17"
   }
