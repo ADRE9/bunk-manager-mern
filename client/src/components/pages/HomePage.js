@@ -49,11 +49,12 @@ const HomePage = (props) => {
       className={classes.page}
     >
       <Container className={classes.container}>
-        {classCard(props)?<Typography variant="h2">CLASSES</Typography>:null}
+       
+      {classCard(props)?<Typography variant="h2" >CLASSES</Typography>:null}
         <CardGrid className={classes.pageGrid} >
           {classCard(props)}
         </CardGrid>
-        {labCard(props)?<Typography variant="h2">LABS</Typography>:null}
+        {labCard(props)?<Typography variant="h2" >LABS</Typography>:null}
         <CardGrid>
           {labCard(props)}
         </CardGrid>
