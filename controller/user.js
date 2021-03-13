@@ -2,6 +2,8 @@ const express = require('express');
 
 const User = require('../models/user');
 
+const email = require('../utils/email');
+
 
 const createUser = async (req, res) => {
   //waits creation of index before entering new user to prevent duplication of users
@@ -10,6 +12,8 @@ const createUser = async (req, res) => {
   const user = new User({...req.body});
   try {
     await user.save();
+    await email(user.name, user.email, user.department, user.roles, user.regdId);
+
     const token=await user.generateAuthToken();
     res.status(201).send({user,token});
   } catch (e) {
