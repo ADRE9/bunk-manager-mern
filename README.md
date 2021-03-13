@@ -102,6 +102,16 @@ git push -u origin <your_branch_name>
 <!--<p align="center">
 <a href="https://gssoc.girlscript.tech/"><img src="https://scholarsxp.com/wp-content/uploads/2021/02/gssoc-thumbnai-min.png" width= "25%"/></a>
 </p>-->
-
+## Contributor:
+### Credits goes to these  people: ✨
+<table>
+	<tr>
+		<td>
+			<a href="https://github.com/ADRE9/bunk-manager-mern/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ADRE9/bunk-manager-mern" />
+</a>
+		</td>
+	</tr>
+</table>
 
 <p>Live version also available <a href="https://salty-brook-29410.herokuapp.com/">HERE</a></p>
