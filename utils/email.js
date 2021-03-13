@@ -13,7 +13,7 @@ const email = (name, mail, department, roles, regdid) => {
     const send = async subject => {
         // 1) define the email options
         const mailOptions = {
-            from: 'Bunk Manager Team',
+            from: 'adrenine13@gmail.com',
             to: mail,
             subject,
             text: `Hello ${this.name}.\nWe welcome you to the Bunk Manager Family.\n\nBunk Manager is an Attendace Management App which will help students and class representatives balance their attendance and manage it efficiently.\n\nYour account details are:\n
