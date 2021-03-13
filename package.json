@@ -22,11 +22,15 @@
     "concurrently": "^5.3.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.0.2",
+    "express-rate-limit": "^5.2.6",
+    "helmet": "^4.4.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.2",
     "mongoose": "^5.10.11",
     "node-cron": "^2.0.3",
     "sharp": "^0.26.3",
-    "validator": "^13.1.17"
+    "validator": "^13.1.17",
+    "xss-clean": "^0.1.1"
   }
 }
