@@ -5,9 +5,8 @@ import { Typography } from '@material-ui/core';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import InstagramIcon from '@material-ui/icons/Instagram';
 import Divider from '@material-ui/core/Divider';
-
+import google from '../../../assets/svg/google.svg'
 
 const useStyles = makeStyles(theme => ({
   signUpHeader: {
@@ -69,7 +68,7 @@ const SignUpCard = (props) => {
           <FacebookIcon className={classes.fb}/>
         </Button>
         <Button>
-          <InstagramIcon className={classes.insta}/>
+          <img src={google} alt="Google" width="30" height="30"/>
         </Button>
       </div>
       <Typography color="primary" className={classes.p} variant="h6">
