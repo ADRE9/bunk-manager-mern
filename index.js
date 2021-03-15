@@ -20,6 +20,9 @@ const app = express();
 //set security HTTP headers
 app.use(helmet());
 
+//conect db
+connectDB();
+
 //limit requests from same IP
 const limiter = rateLimit({
   max: 100,
@@ -43,7 +46,7 @@ app.use(cors());
 const emitter = new EventEmitter();
 emitter.setMaxListeners(20);
 
-connectDB();
+
 
 //Routers
 app.use(userRoutes);
@@ -53,15 +56,9 @@ app.use(attendanceRoutes);
 //Serve static assets if in Production
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
-
-  app.get("/", (req, res) => {
-    res
-        .set("Content-Security-Policy", "default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'")
-        .send("<html><head></head><body></body></html>");
-  })
   
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    res.set("Content-Security-Policy", "default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'").sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   })
 }
 
