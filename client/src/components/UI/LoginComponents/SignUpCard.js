@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import Divider from '@material-ui/core/Divider';
+import { ThemeContext } from '../../../providers/ChangeThemeProvider';
 
 
 const useStyles = makeStyles(theme => ({
@@ -53,8 +54,21 @@ const useStyles = makeStyles(theme => ({
 
 const SignUpCard = (props) => {
 
-
+  const { newTheme } = useContext(ThemeContext);
   const classes = useStyles(props);
+
+  let buttonStyle = {
+    backgroundImage: 'linear-gradient(147deg, #FD0054 0%, #FD0054 74%)',
+    color : '#fff'
+
+  }
+
+  if (newTheme === 'light') {
+    buttonStyle = {
+      backgroundImage: 'linear-gradient(147deg, #12CBC4 0%, #12CBC4 74%)',
+      color : '#000'
+    }
+  }
 
   return ( 
     <React.Fragment>
@@ -75,7 +89,7 @@ const SignUpCard = (props) => {
       <Typography color="primary" className={classes.p} variant="h6">
       <Divider/>OR
       </Typography>
-        <Button className={classes.button} component={Link} to="/user/signup">
+        <Button className={classes.button} component={Link} to="/user/signup" style={ buttonStyle }>
           Sign Up
         </Button>
     </React.Fragment>

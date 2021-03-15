@@ -9,7 +9,9 @@ import { Router } from 'react-router-dom';
 import {history} from './helpers/history';
 
 import App from './components/App';
-import reducers from './reducers'; 
+import reducers from './reducers';
+import ChangeThemeProvider from './providers/ChangeThemeProvider';
+ 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -20,7 +22,9 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <ThemeProvider theme={Theme}>
-        <App />
+        <ChangeThemeProvider>
+         <App />
+        </ChangeThemeProvider>
       </ThemeProvider>
     </Router>
   </Provider>, document.querySelector("#root"));

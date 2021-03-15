@@ -23,6 +23,7 @@
     "react-scripts": "4.0.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "styled-components": "^5.2.1",
     "web-vitals": "^0.2.4",
     "yup": "^0.29.3"
   },

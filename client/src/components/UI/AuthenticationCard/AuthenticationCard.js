@@ -1,12 +1,14 @@
-import React,{useState} from 'react';
+import React,{useContext, useState} from 'react';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { motion } from 'framer-motion';
 
-import LoginCard from './LoginComponents/LoginCard';
-import SignUpCard from './LoginComponents/SignUpCard';
+import LoginCard from '../LoginComponents/LoginCard';
+import SignUpCard from '../LoginComponents/SignUpCard';
+import { ThemeContext } from '../../../providers/ChangeThemeProvider';
+import { Wrapper } from './style';
 
 
 //styles
@@ -111,6 +113,8 @@ const AuthenticationCard = (props) => {
 
   //material ui classes
   const classes = useStyles(props);
+  // Context Theme
+  const { newTheme } = useContext(ThemeContext);
 
   //animation objects
   const [signInAnimation, setSignInAnimation] = useState({});
@@ -255,8 +259,19 @@ const AuthenticationCard = (props) => {
     });
   };
 
+  let divContainerStyle = {
+    backgroundImage: 'linear-gradient(147deg, #FD0054 0%, #A80038 74%)'
+    
+  }
+
+  if (newTheme === 'light') {
+    divContainerStyle = {
+      backgroundImage: 'linear-gradient(147deg, #12CBC4 0%, #0D9C97 74%)'
+    }
+  }
 
   return (
+    <Wrapper newTheme={newTheme}>
     <Card className={classes.card}>
       <motion.div
         variants={signInAnimation}
@@ -274,13 +289,15 @@ const AuthenticationCard = (props) => {
         className={classes.signUp}>
         <SignUpCard/>
       </motion.div>
-      <div className={classes.overlay}>
+      <div className={`${classes.overlay} divContainer`}
+      style={divContainerStyle}
+      >
         <motion.div
           variants={overlayTopAnimation}
           initial={overlayTopAnimation.initial}
           animate={overlayTopAnimation.final}
           transition={overlayTopAnimation.transition}
-          className={classes.overlayTop}>
+          className= {`${classes.overlayTop} TopSignIn`}>
           <Typography className={classes.overlayHeader} variant="h5">
             Welcome back buddy!
           </Typography>
@@ -297,7 +314,7 @@ const AuthenticationCard = (props) => {
           initial={overlayBottomAnimation.initial}
           animate={overlayBottomAnimation.final}
           transition={overlayBottomAnimation.transition}
-          className={classes.overlayBottom}>
+          className={`${classes.overlayBottom} BottomSignUp`}>
           <Typography className={classes.overlayHeader} variant="h5">
             Want us to manage your attendance?
             </Typography>
@@ -312,6 +329,7 @@ const AuthenticationCard = (props) => {
         </motion.div>
       </div>
     </Card>
+    </Wrapper>
   );
 };
 
