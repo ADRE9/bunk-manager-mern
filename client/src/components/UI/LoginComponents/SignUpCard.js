@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
-import FacebookIcon from '@material-ui/icons/Facebook';
+//import FacebookIcon from '@material-ui/icons/Facebook';
 import Divider from '@material-ui/core/Divider';
 import google from '../../../assets/svg/google.svg'
 
@@ -64,9 +64,9 @@ const SignUpCard = (props) => {
         using
       </p>
       <div className={classes.oAuthDiv}>
-        <Button>
+        {/* <Button>
           <FacebookIcon className={classes.fb}/>
-        </Button>
+        </Button> */}
         <Button>
           <img src={google} alt="Google" width="30" height="30"/>
         </Button>
