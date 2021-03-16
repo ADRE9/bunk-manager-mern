@@ -20,7 +20,7 @@ const app = express();
 //set security HTTP headers
 app.use(helmet({
   contentSecurityPolicy: {
-    scriptSrc:["'self'", "example.com"],
+    scriptSrc:["'self'", "https://salty-brook-29410.herokuapp.com/"],
   }
 }));
 
