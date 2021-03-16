@@ -18,7 +18,7 @@ const { builtinModules } = require('module');
 const app = express();
 
 //set security HTTP headers
-//app.use(helmet());
+app.use(helmet());
 
 //conect db
 connectDB();
