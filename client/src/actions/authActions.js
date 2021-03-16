@@ -43,7 +43,7 @@ export const loadUser = (from) => async (dispatch, getState) => {
     history.replace(from);
     await dispatch(getCurrentSemesterSubjects());
   } catch (error) {
-    await dispatch(returnErrors(error.response.data, error.response.status));
+    await dispatch(returnErrors(error.response, error.response));
     dispatch({ type: AUTH_ERROR });
   }
 

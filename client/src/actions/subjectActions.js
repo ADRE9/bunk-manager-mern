@@ -27,7 +27,7 @@ export const getCurrentSemesterSubjects = () => async (dispatch, getState) => {
     dispatch(clearErrors());
     await dispatch({ type: SUBJECT_LOADED, payload: response.data })
   } catch (error) {
-    await dispatch(returnErrors(error.response.data, error.response.status));
+    await dispatch(returnErrors(error.response, error.response));
   }
 };
 
@@ -38,7 +38,7 @@ export const deleteSubject = (id) => async (dispatch, getState) => {
     dispatch(clearErrors());
     dispatch({ type: SUBJECT_DELETED, payload: response.data });
   } catch (error) {
-    await dispatch(returnErrors(error.response.data, error.response.status));
+    await dispatch(returnErrors(error.response, error.response));
   }
 };
 
@@ -98,7 +98,7 @@ export const getAllSemesters = () =>async(dispatch,getState)=> {
     const response = await subjectApi.getAllSemesters(tokenConfig(getState));
     dispatch({type:SEMESTER_LOADED,payload:response.data})
   } catch(error) {
-    await dispatch(returnErrors(error.response.data, error.response.status));
+    await dispatch(returnErrors(error.response, error.response));
   }
 }
 
