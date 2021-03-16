@@ -18,11 +18,11 @@ const { builtinModules } = require('module');
 const app = express();
 
 //set security HTTP headers
-app.use(helmet({
+/*app.use(helmet({
   contentSecurityPolicy: {
     scriptSrc:["'self'", "https://salty-brook-29410.herokuapp.com/"],
   }
-}));
+}));*/
 
 //conect db
 connectDB();
