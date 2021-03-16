@@ -18,13 +18,17 @@ const { builtinModules } = require('module');
 const app = express();
 
 //set security HTTP headers
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: {
+    scriptSrc:["'self'", "example.com"],
+  }
+}));
 
 //conect db
 connectDB();
 
 //limit requests from same IP
-/*const limiter = rateLimit({
+const limiter = rateLimit({
   max: 100,
   windowMs: 60*60*1000,
   message: 'To many request from this IP, please try again after an hour!'
@@ -44,7 +48,7 @@ app.use(xss());
 
 //event emmiter increased
 const emitter = new EventEmitter();
-emitter.setMaxListeners(20);*/
+emitter.setMaxListeners(20);
 app.use(cors());
 
 
