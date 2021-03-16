@@ -2,6 +2,10 @@
  
  ![Screenshot (138)](https://user-images.githubusercontent.com/49809895/100523828-770df600-31d9-11eb-9319-b5ac958f5d9b.png)
 
+# Tech-Stack 
+<img alt="JavaScript" src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>	<img alt="HTML5" src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/>
+
+
 # How To Run the Project
 
 ***1.*** Open Project Folder</br>
