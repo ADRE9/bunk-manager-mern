@@ -4,7 +4,7 @@ const email = (name, mail, department, roles, regdid) => {
     const mailTransporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: process.env.EMAIL_USERNAME,
+            user: 'adrenine13@gmail.com',
             pass: process.env.EMAIL_PASSWORD
         }
         //activate in gmail "less secure app" option
@@ -29,6 +29,7 @@ const email = (name, mail, department, roles, regdid) => {
     
     //For sending welcome email anytime a new user sign up
     const sendWelcome = async () =>  {
+        // Relevant subject is added here
         await send('Welcome to Bunk Manager!');
     };
 
