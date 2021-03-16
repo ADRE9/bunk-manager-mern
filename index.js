@@ -18,13 +18,13 @@ const { builtinModules } = require('module');
 const app = express();
 
 //set security HTTP headers
-app.use(helmet());
+//app.use(helmet());
 
 //conect db
 connectDB();
 
 //limit requests from same IP
-const limiter = rateLimit({
+/*const limiter = rateLimit({
   max: 100,
   windowMs: 60*60*1000,
   message: 'To many request from this IP, please try again after an hour!'
@@ -40,12 +40,12 @@ app.use(mongoSanitize());
 //data sanitization against xss
 app.use(xss());
 
-app.use(cors());
+
 
 //event emmiter increased
 const emitter = new EventEmitter();
-emitter.setMaxListeners(20);
-
+emitter.setMaxListeners(20);*/
+app.use(cors());
 
 
 //Routers
@@ -58,7 +58,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
   
   app.get('*', (req, res) => {
-    res.set("Content-Security-Policy", "default-src *; style-src 'self' https://* 'unsafe-inline'; script-src 'self' https://* 'unsafe-inline' 'unsafe-eval'").sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   })
 }
 
