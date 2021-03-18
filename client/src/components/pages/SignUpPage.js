@@ -170,7 +170,7 @@ const SignUpPage = (props) => {
                 email: Yup.string('Enter Email').email('Invalid Email').required('Email is required'),
                 password: Yup.string('').min(7, "Too Short").max(20, "Too long").required("Password is required"),
                 confirmPassword: Yup.string('').required("Confirm Password is required").oneOf([Yup.ref('password'), null], 'Passwords must match'),
-                currentSemester: Yup.number().required("Semester is required")
+                currentSemester: Yup.number().min(1, "Invalid Semester").max(8, "Invalid Semester").required("Semester is required")
               })}
             onSubmit={async (values, { setSubmitting }) => {
               newUser(values);
