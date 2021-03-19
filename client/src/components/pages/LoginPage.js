@@ -59,7 +59,7 @@ const LoginPage = (props) => {
       >
               <Grid container className={classes.containerGrid}>
                 <Grid item xs={12} sm={12} md={8}>
-                {darkMode ? <img src={svgImgDark} alt="svgimage" className={classes.svgImgDark} /> : <img src={svgImg} alt="svgimage" className={classes.svgImg} />}
+                {darkMode ? <img src={svgImgDark} alt="svgimage" className={classes.svgImg} /> : <img src={svgImg} alt="svgimage" className={classes.svgImg} />}
                 </Grid>
                 <Grid className={classes.gridItem} item xs={12} sm={12} md={4}>
                   <AuthenticationCard/>
