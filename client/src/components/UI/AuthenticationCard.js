@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useContext, useState} from 'react';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 
 import LoginCard from './LoginComponents/LoginCard';
 import SignUpCard from './LoginComponents/SignUpCard';
+import { DarkThemeContext } from '../../providers/DarkThemeProvider';
 
 
 //styles
@@ -108,6 +109,7 @@ const useStyles = makeStyles(theme => ({
 
 const AuthenticationCard = (props) => {
 
+  const { darkMode, setDarkMode } = useContext(DarkThemeContext);
 
   //material ui classes
   const classes = useStyles(props);
@@ -254,7 +256,16 @@ const AuthenticationCard = (props) => {
       }
     });
   };
+  let divContainerStyle = {
+    backgroundImage: 'linear-gradient(147deg, #FD0054 0%, #A80038 74%)'
+    
+  }
 
+  if (darkMode === true) {
+    divContainerStyle = {
+      backgroundImage: 'linear-gradient(147deg, #12CBC4 0%, #0D9C97 74%)'
+    }
+  }
 
   return (
     <Card className={classes.card}>
@@ -274,7 +285,8 @@ const AuthenticationCard = (props) => {
         className={classes.signUp}>
         <SignUpCard/>
       </motion.div>
-      <div className={classes.overlay}>
+      <div className={`${classes.overlay} divContainer`}
+      style={divContainerStyle}>
         <motion.div
           variants={overlayTopAnimation}
           initial={overlayTopAnimation.initial}
