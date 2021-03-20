@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { Twitter, Facebook, GitHub, Linkedin } from 'react-feather';
-import { Box, FormControl, TextField, Button } from '@material-ui/core';
-import { fade, ThemeProvider, withStyles, makeStyles, createMuiTheme } from '@material-ui/core/styles';
+import {  FormControl, TextField, Button } from '@material-ui/core';
+import {  withStyles, makeStyles } from '@material-ui/core/styles';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
