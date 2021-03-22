@@ -6,7 +6,7 @@ const rateLimit = require('express-rate-limit');
 //const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
-const connectDB = require('./db/mongoose');
+const connectDB = require('./db/mongoose'); 
 //require('./controller/scheduledTask');
 
 //routes constants
@@ -26,7 +26,6 @@ const app = express();
 
 //conect db
 connectDB();
-
 //limit requests from same IP
 const limiter = rateLimit({
   max: 100,
