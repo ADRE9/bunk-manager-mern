@@ -94,7 +94,7 @@ const AuthHeader = (props) => {
   const [value, setValue] = useState(0);
   const theme = useTheme();
 
-  const matches = useMediaQuery(theme.breakpoints.down('sm'));
+  const matches = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleChange = (newValues) => {
     setValue(newValues);
