@@ -90,12 +90,11 @@ function ElevationScroll(props) {
 const AuthHeader = (props) => {
   const classes = useStyles(props);
   const { darkMode, setDarkMode } = useContext(DarkThemeContext);
-  console.log(`darkMode`, darkMode);
 
   const [value, setValue] = useState(0);
   const theme = useTheme();
 
-  const matches = useMediaQuery(theme.breakpoints.down('sm'))
+  const matches = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleChange = (newValues) => {
     setValue(newValues);
