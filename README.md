@@ -119,6 +119,10 @@ git push -u origin <your_branch_name>
 
 **14.** Click on `Create Pull Request`.
 
+### Landing Page prototype
+
+https://www.figma.com/file/dQbGpSkclUec07vztFkUEV/Material-Design-UI-kit-Components-library-Community?node-id=120%3A1658
+
 
 <!--## Open Source Program this project have been associated with: 
 
