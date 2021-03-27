@@ -5,7 +5,11 @@ const connectDB = async () => {
   var dbURI = process.env.URI; 
   
   // Create the database connection 
-  mongoose.connect(dbURI, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, autoIndex: true, useFindAndModify:false}); 
+  try{
+    await mongoose.connect(dbURI, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, autoIndex: true, useFindAndModify:false}); 
+  }catch(err){
+    console.log('DB initial connection error: ' + err);
+  }
 
   // CONNECTION EVENT LISTENERS
   
