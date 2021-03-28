@@ -51,7 +51,7 @@ npm run dev
 Note: If you are using docker-desktop on Windows Or WSL2 i.e Windows Subsystem For Linux, you can use the GUI Options to run the containers 
 
 
-# To start contributing, follow the below guidelines: 
+# To start contributing, follow the below guidelines and [Code of Conduct](CODE_OF_CONDUCT.md): 
 
 **1.**  Fork [this](https://github.com/ADRE9/bunk-manager-mern.git) repository.
 
