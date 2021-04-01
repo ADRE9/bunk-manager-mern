@@ -53,7 +53,6 @@ const AddSubjectPage = (props) => {
     animate="visible"
     exit="exit" className={classes.page}>
       <Container className={classes.container}>
-        <Typography variant="h3">ADD NEW SUBJECT</Typography>
         <UpdateForm subjectMethod={(data)=>addSubject(data)}/>
       </Container>
     </motion.div>

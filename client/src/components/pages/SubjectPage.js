@@ -9,6 +9,7 @@ import { labCard, classCard } from '../../utils/cardUtil';
 import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
 import { motion } from 'framer-motion';
+import { setOpen } from '../../actions/subjectActions'
 
 const useStyles = makeStyles(theme => ({
   ...theme.pages,
@@ -16,6 +17,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       paddingTop: "2rem",
       paddingBottom: "2rem",
+      height: '100px'
     }
   },
   fab: {
@@ -30,6 +32,7 @@ const useStyles = makeStyles(theme => ({
 
 const SubjectPage = (props) => {
   const classes = useStyles();
+
   const containerVariants = {
     hidden: {
       opacity: 0,
@@ -46,16 +49,16 @@ const SubjectPage = (props) => {
     exit: {
       x: "-100vw",
       transition:{ease:"easeInOut"}
-    }
+    },
   }
 
   return (
     <motion.div variants={containerVariants}
     initial="hidden"
     animate="visible"
-    exit="exit" className={classes.page}>
+    exit={props.clicked ? '' : 'exit'} className={classes.page}>
       <Container className={classes.container}>
-        <Fab component={Link} to="/subject/new" color="secondary" className={classes.fab}>
+        <Fab onClick={() => props.setOpen()} component={Link} to="/subject/new" color="secondary" className={classes.fab}>
           <AddIcon/>
         </Fab>
         {classCard(props) ? <Typography variant="h3" style={{color:"black", marginTop:'0.5vw', textShadow:'2px 2px 2.2px #ff3399'}}>CLASSES</Typography> : null}
@@ -67,12 +70,15 @@ const SubjectPage = (props) => {
           {labCard(props)}
         </CardGrid>
       </Container>
-    </motion.div>
+      </motion.div>
   )
 }
 
 const mapStateToProps = (state) => {
-  return {subjects:Object.values(state.subject.subjects)}
+  return {
+    subjects:Object.values(state.subject.subjects),
+    clicked: state.subject.clicked
+  }
 }
 
-export default connect(mapStateToProps)(SubjectPage);
+export default connect(mapStateToProps, { setOpen })(SubjectPage);
