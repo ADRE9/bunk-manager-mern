@@ -12,6 +12,11 @@ import Typography from '@material-ui/core/Typography';
 import { Redirect, Link, withRouter } from 'react-router-dom';
 import { clearEvents } from '../../actions/subjectActions';
 import { connect } from 'react-redux';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { setOpen } from '../../actions/subjectActions'
 
 const useStyles = makeStyles(theme => ({
   ...theme.authForm,
@@ -26,7 +31,8 @@ const useStyles = makeStyles(theme => ({
     padding:"3rem 0"
   },
   field: {
-    marginBottom:"2rem",
+    marginBottom:"1rem",
+    marginTop: '0.5rem',
     width:"80%"
   },
   formControl: {
@@ -42,15 +48,35 @@ const useStyles = makeStyles(theme => ({
     
   },
   buttonAdd: {
-    width: "30%",
-    marginRight:"3rem"
+    width: '20%',
+    borderRadius: '10px',
+    marginRight:"3rem",
+  },
+  buttonCancel: {
+    width: '20%',
+    borderRadius: '10px',
+    marginLeft: '-2.2rem'
+  },
+  dialog: {
+    width: '100vw',
+  },
+  title: {
+    font: 'normal normal normal 2.9vh/3.32vh arial',
+    marginTop: '1.07vh',
+    borderBottom: '1px solid #1A262F'
+  },
+  subNameHead: {
+    marginTop: '-2.5rem'
+  },
+  subTypeHead: {
+    marginBottom: '1rem'
   }
 }));
 
 const UpdateForm = (props) => {
 
   const classes = useStyles();
-
+ 
   const decideInitialValues = () => {
     if (props.match.params.id) {
       const id = props.match.params.id
@@ -73,9 +99,12 @@ const UpdateForm = (props) => {
     props.clearEvents();
     return <Redirect to="/subject"/>
   }
-
+  
   return (
     <div className={classes.formPage}>
+      <Dialog onClose={() => props.setOpen()} classes={{paper: classes.dialog}} open={props.clicked} aria-labelledby="form-dialog-title">
+      <DialogTitle disableTypography className={classes.title} id="form-dialog-title">Add New Subject</DialogTitle>
+      <DialogContent>
       <Formik
         initialValues={decideInitialValues()}
         validationSchema={Yup.object({
@@ -86,10 +115,12 @@ const UpdateForm = (props) => {
 
         onSubmit={(data) => {
           props.subjectMethod(data);
+          props.setOpen();
         }}
       >
         {formik => (
           <Form className={classes.formDiv}>
+            <Typography variant='h6' className={classes.subNameHead} color='inherit'>Subject Name</Typography>
             <TextField
               name="name"
               value={formik.values.name}
@@ -97,7 +128,7 @@ const UpdateForm = (props) => {
               error={formik.touched.name && Boolean(formik.errors.name)}
               helperText={formik.touched.name && formik.errors.name}
               className={classes.field}
-              id="name" label="Subject Name" variant="outlined"
+              id="name" placeholder='Enter Subject Name' variant="outlined"
             />
             <Typography variant="h6">Days</Typography>
             <div className={classes.checkBoxDiv}>
@@ -126,36 +157,40 @@ const UpdateForm = (props) => {
                 Saturday
               </label>
             </div>
+            <Typography variant='h6' className={classes.subTypeHead} color='inherit'>Subject Type</Typography>
             <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel id="demo-simple-select-outlined-label">Subject Type</InputLabel>
               <Select
                 id="subjectType" name="subjectType"
                 value={formik.values.subjectType}
                 onChange={formik.handleChange}
-                label="Subject Type"
               >
                 <MenuItem value="" default disabled>None</MenuItem>
                 <MenuItem value="regular">Regular</MenuItem>
                 <MenuItem value="lab">Lab</MenuItem>
               </Select>
             </FormControl>
-            <div >
+            <div>
               <Button className={classes.buttonAdd} variant="contained" color="primary" type="submit">
                 Confirm
               </Button>
-              <Button className={classes.buttonAdd} variant="contained" color="secondary" component={Link} to="/subject" >
+              <Button onClick={() => props.setOpen()} className={classes.buttonCancel} variant="contained" color="secondary" component={Link} to="/subject" >
                 Cancel
               </Button>
             </div>
           </Form>
         )}
       </Formik>
+      </DialogContent>
+      </Dialog>
     </div>
   )
 }
 
 const mapStateToProps = (state) => {
-  return {subjectState:state.subject}
+  return {
+    subjectState:state.subject,
+    clicked: state.subject.clicked
+  }
 }
 
-export default withRouter(connect(mapStateToProps,{clearEvents})(UpdateForm))
+export default withRouter(connect(mapStateToProps,{clearEvents, setOpen})(UpdateForm))

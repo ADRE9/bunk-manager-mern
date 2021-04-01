@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { SUBJECT_TEMPLATE_CREATED, SUBJECT_CREATED, SUBJECT_LOADING, SUBJECT_LOADED,CREATING_SUBJECT, CLEAR_SUBJECTS, SUBJECT_DELETED, SUBJECT_UPDATED,UPDATING_SUBJECT,CLEAR_EVENTS,LOADING_SEMESTER,SEMESTER_LOADED } from '../actions/actionTypes';
+import { SUBJECT_TEMPLATE_CREATED, SUBJECT_CREATED, SUBJECT_LOADING, SUBJECT_LOADED,CREATING_SUBJECT, CLEAR_SUBJECTS, SUBJECT_DELETED, SUBJECT_UPDATED,UPDATING_SUBJECT,CLEAR_EVENTS,LOADING_SEMESTER,SEMESTER_LOADED, CLICKED_ADD_SUBJECT } from '../actions/actionTypes';
 import _ from 'lodash';
 
 const initialState = {
@@ -9,7 +9,8 @@ const initialState = {
   hasBeenUpdated:false,
   isLoading: null,
   semester:{},
-  subjects:{}
+  subjects:{},
+  clicked: false
 };
 
 export default (state=initialState,action) => {
@@ -66,6 +67,10 @@ export default (state=initialState,action) => {
     
     case CLEAR_SUBJECTS:
       return {...state,subjects:{}};
+    
+    case CLICKED_ADD_SUBJECT: 
+      return {...state, clicked: !state.clicked};
+
     default: {
       return state;
     }

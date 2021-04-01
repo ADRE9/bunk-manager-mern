@@ -1,4 +1,4 @@
-import { SUBJECT_TEMPLATE_CREATED,CREATING_SUBJECT,SUBJECT_CREATED,SUBJECT_LOADING,SUBJECT_LOADED,SUBJECT_DELETED,UPDATING_SUBJECT, SUBJECT_UPDATED,CLEAR_EVENTS,LOADING_SEMESTER,SEMESTER_LOADED } from './actionTypes';
+import { SUBJECT_TEMPLATE_CREATED,CREATING_SUBJECT,SUBJECT_CREATED,SUBJECT_LOADING,SUBJECT_LOADED,SUBJECT_DELETED,UPDATING_SUBJECT, SUBJECT_UPDATED,CLEAR_EVENTS,LOADING_SEMESTER,SEMESTER_LOADED,CLICKED_ADD_SUBJECT } from './actionTypes';
 import * as subjectApi from '../apis/subjectApi';
 import { returnErrors, clearErrors } from './errorActions';
 import {history} from '../helpers/history';
@@ -104,4 +104,8 @@ export const getAllSemesters = () =>async(dispatch,getState)=> {
 
 export const clearEvents = () => {
   return {type:CLEAR_EVENTS}
+}
+
+export const setOpen = () => {
+  return {type:CLICKED_ADD_SUBJECT}
 }
