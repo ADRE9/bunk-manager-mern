@@ -99,7 +99,7 @@ const UpdateForm = (props) => {
     props.clearEvents();
     return <Redirect to="/subject"/>
   }
-  console.log(props.clicked)
+  
   return (
     <div className={classes.formPage}>
       <Dialog onClose={() => props.setOpen()} classes={{paper: classes.dialog}} open={props.clicked} aria-labelledby="form-dialog-title">
