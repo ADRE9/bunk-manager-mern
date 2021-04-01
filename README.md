@@ -3,10 +3,17 @@
  ![Screenshot (138)](https://user-images.githubusercontent.com/49809895/100523828-770df600-31d9-11eb-9319-b5ac958f5d9b.png)
 
 # Tech-Stack 
-<img alt="JavaScript" src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>	<img alt="HTML5" src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/>
+<img alt="React" src="https://img.shields.io/badge/react%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB"/>  <img alt="MongoDB" src ="https://img.shields.io/badge/MongoDB-%234ea94b.svg?&style=for-the-badge&logo=mongodb&logoColor=white"/> <img alt="Express.js" src="https://img.shields.io/badge/express.js%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/> <img alt="Nodejs" src="https://img.shields.io/badge/Node.js-%234ea94b.svg?&style=for-the-badge&logo=node.js&logoColor=white"/>
 
+### Other Libraries
+<img alt="JsonWebTokens" src="https://img.shields.io/badge/jsonwebtokens-%5E8.5.1-yellow"/> <img alt="Bcryptjs" src="https://img.shields.io/badge/bcryptjs-%5E2.4.3-orange"/> <img alt="nodemon" src="https://img.shields.io/badge/nodemon-%5E2.0.6-blue"/> <img alt="concurrently" src="https://img.shields.io/badge/concurrently-%5E5.3.0-blueviolet"/>
 
 # How To Run the Project
+
+## There are two ways to install the project:
+
+### 1. Conventional Way
+
 
 ***1.*** Open Project Folder</br>
 
@@ -31,8 +38,20 @@ npm run client
 npm run dev
 ```
 
+### 2. Using Docker
 
-# To start contributing, follow the below guidelines: 
+* Install [Docker](https://docs.docker.com/engine/install/), from the given link.
+
+* Once Docker is installed, use the following two commands to run the app in the root dicrectory:
+  * `docker-compose build` , This command will build the project
+  * `COMPOSE_HTTP_TIMEOUT=200 docker-compose up`, This command will run the container.
+  
+* You can open the project on `localhost:3000` on the machine.
+
+Note: If you are using docker-desktop on Windows Or WSL2 i.e Windows Subsystem For Linux, you can use the GUI Options to run the containers 
+
+
+# To start contributing, follow the below guidelines and [Code of Conduct](CODE_OF_CONDUCT.md): 
 
 **1.**  Fork [this](https://github.com/ADRE9/bunk-manager-mern.git) repository.
 
@@ -99,6 +118,10 @@ git push -u origin <your_branch_name>
 
 
 **14.** Click on `Create Pull Request`.
+
+### Landing Page prototype
+
+https://www.figma.com/file/dQbGpSkclUec07vztFkUEV/Material-Design-UI-kit-Components-library-Community?node-id=120%3A1658
 
 
 <!--## Open Source Program this project have been associated with: 

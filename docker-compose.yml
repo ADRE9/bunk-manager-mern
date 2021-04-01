@@ -1,0 +1,42 @@
+version: "3"
+services:
+  client:
+    container_name: client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+      - "35729:35729"
+    volumes:
+      - ./client:/client
+      - /client/node_modules
+    depends_on:
+      - server
+  server:
+    container_name: server
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: npm run server
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./:/server
+      - /server/node_modules
+    depends_on:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    expose:
+      - "27017"
+    restart: always
+    volumes:
+      - mongodata:/data/db
+    ports:
+      - "27017:27017"
+volumes:
+  mongodata:

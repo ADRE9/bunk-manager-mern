@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Grid from '@material-ui/core/Grid';
 import svgImg from '../../assets/svg/undraw_book_lover_mkck.svg';
+import svgImgDark from '../../assets/svg/book_lover_dark.svg';
 import { makeStyles } from '@material-ui/core/styles';
 import AuthenticationCard from '../UI/AuthenticationCard';
 import { connect } from 'react-redux';
 import { motion } from 'framer-motion';
+import { DarkThemeContext } from '../../providers/DarkThemeProvider';
 
 
 const useStyles = makeStyles(theme => ({
@@ -29,6 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 const LoginPage = (props) => {
   const classes = useStyles(props);
+  const { darkMode } = useContext(DarkThemeContext);
   const containerVariants = {
     hidden: {
       opacity: 0,
@@ -56,7 +59,7 @@ const LoginPage = (props) => {
       >
               <Grid container className={classes.containerGrid}>
                 <Grid item xs={12} sm={12} md={8}>
-                  <img src={svgImg} alt="svgimage" className={classes.svgImg} />
+                {darkMode ? <img src={svgImgDark} alt="svgimage" className={classes.svgImg} /> : <img src={svgImg} alt="svgimage" className={classes.svgImg} />}
                 </Grid>
                 <Grid className={classes.gridItem} item xs={12} sm={12} md={4}>
                   <AuthenticationCard/>
