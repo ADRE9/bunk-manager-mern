@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as Yup from 'yup';
 import Button from '@material-ui/core/Button';
 import {makeStyles} from '@material-ui/core/styles'
@@ -9,7 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
-import { Redirect, Link, withRouter } from 'react-router-dom';
+import { Redirect, Link, withRouter, useHistory } from 'react-router-dom';
 import { clearEvents } from '../../actions/subjectActions';
 import { connect } from 'react-redux';
 import Dialog from '@material-ui/core/Dialog';
@@ -76,6 +76,7 @@ const useStyles = makeStyles(theme => ({
 const UpdateForm = (props) => {
 
   const classes = useStyles();
+  let history = useHistory();
  
   const decideInitialValues = () => {
     if (props.match.params.id) {
@@ -99,10 +100,15 @@ const UpdateForm = (props) => {
     props.clearEvents();
     return <Redirect to="/subject"/>
   }
+
+  const redirect = () => {
+    props.setOpen();
+    history.push('/subject');
+  }
   
   return (
     <div className={classes.formPage}>
-      <Dialog onClose={() => props.setOpen()} classes={{paper: classes.dialog}} open={props.clicked} aria-labelledby="form-dialog-title">
+      <Dialog onClose={redirect} classes={{paper: classes.dialog}} open={props.clicked} aria-labelledby="form-dialog-title">
       <DialogTitle disableTypography className={classes.title} id="form-dialog-title">Add New Subject</DialogTitle>
       <DialogContent>
       <Formik
