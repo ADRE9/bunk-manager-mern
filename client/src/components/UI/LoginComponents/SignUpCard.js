@@ -71,7 +71,9 @@ const SignUpCard = (props) => {
         OR
       </Typography>
       <Button className={classes.button} component={Link} to="/user/signup">
-        Sign Up
+
+        Register
+
       </Button>
     </React.Fragment>
   );
