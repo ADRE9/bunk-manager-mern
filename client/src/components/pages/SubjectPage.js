@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import CardGrid from '../UI/Cards/CardGrid';
-import { labCard, classCard } from '../../utils/cardUtil';
+import { labCard, classCard } from '../../utils/cardUtilSub';
 import Container from '@material-ui/core/Container';
 import { Typography } from '@material-ui/core';
 import { motion } from 'framer-motion';
