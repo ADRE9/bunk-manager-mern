@@ -5,8 +5,9 @@ const subjectRequest=require('../middlewares/subjectRequest')
 
 const { createSubject, editSubject, deleteSubject,createTemplates,getSubjectBySemester, getAllSemester,deactivateSubject,
   deactivateAllSubject } = require('../controller/subject');
+const {isRequestValidated,validateSubject} = require('../middlewares/validators')  
 
-router.post('/api/subject/new', auth, createSubject);
+router.post('/api/subject/new', auth, validateSubject, isRequestValidated, createSubject);
 router.post('/api/subject/createTemplate',auth,createTemplates)
 router.get('/api/subject/:semester', auth, getSubjectBySemester);
 //router.get('/api.getSubject', auth,getSubject);
