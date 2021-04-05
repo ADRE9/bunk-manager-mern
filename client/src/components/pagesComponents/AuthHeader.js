@@ -116,12 +116,8 @@ const AuthHeader = (props) => {
     if (!matches && props.isAuthenticated) {
       return (
         <React.Fragment>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            aria-label="simple tabs example"
-          >
-            <Tab value={0} component={Link} to="/" label="Attendance" />
+          <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+            <Tab value={0} component={Link} to="/" label="Today" />
             <Tab value={1} component={Link} to="/subject" label="Subjects" />
             <Tab value={2} component={Link} to="/semester" label="Semester" />
             <Tab value={3} component={Link} to="/about" label="About" />
