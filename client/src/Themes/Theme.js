@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from "@material-ui/core/styles";
 
 const BunkBlack = "#2B2024";
 const BunkSecondary = "#FD0054";
@@ -14,25 +14,25 @@ export const LigthTheme = createMuiTheme({
   palette: {
     common: {
       black: `${BunkBlack}`,
-      white: `${BunkLight}`
+      white: `${BunkLight}`,
     },
     primary: {
       main: `${BunkBlack}`,
     },
     secondary: {
       main: `${BunkSecondary}`,
-      dark: `${BunkSecondaryDark}`
+      dark: `${BunkSecondaryDark}`,
     },
   },
   typography: {
     CardSubject: {
       color: "white",
-      fontWeight: "500"
+      fontWeight: "500",
     },
     CardSemester: {
       color: "white",
-      fontWeight: "200"
-    }
+      fontWeight: "200",
+    },
   },
   authForm: {
     loginHeader: {
@@ -40,7 +40,7 @@ export const LigthTheme = createMuiTheme({
       fontWeight: 600,
       marginTop: "2rem",
       marginBottom: "0",
-      textTransform: "uppercase"
+      textTransform: "uppercase",
     },
     input: {
       margin: "10px 0px",
@@ -50,13 +50,13 @@ export const LigthTheme = createMuiTheme({
       border: "1px solid black",
       paddingLeft: "1rem",
       "&:focus": {
-        outline: "none"
+        outline: "none",
       },
       "&::placeholder": {
         fontFamily: "Montserrat, sans-serif",
         color: "black",
         fontWeight: 400,
-      }
+      },
     },
     form: {
       display: "flex",
@@ -74,7 +74,7 @@ export const LigthTheme = createMuiTheme({
       backgroundColor: "#FD0054",
       backgroundImage: "linear-gradient(147deg, #FD0054 0%, #FD0054 74%)",
       width: "130px",
-      color: "white"
+      color: "white",
     },
   },
   pages: {
@@ -84,13 +84,12 @@ export const LigthTheme = createMuiTheme({
       minHeight: "90vh",
       marginTop: "0rem",
       display: "flex",
-      flexDirection: "column"
+      flexDirection: "column",
     },
     container: {
       flexGrow: 1,
       paddingTop: "2rem",
-
-    }
+    },
   },
 });
 export const DarkTheme = createMuiTheme({
@@ -98,25 +97,25 @@ export const DarkTheme = createMuiTheme({
     type: "dark",
     common: {
       black: `${DarkBlack}`,
-      white: `${DarkLight}`
+      white: `${DarkLight}`,
     },
     primary: {
       main: `${DarkBlack}`,
     },
     secondary: {
       main: `${DarkSecondary}`,
-      dark: `${DarkSecondaryDark}`
+      dark: `${DarkSecondaryDark}`,
     },
   },
   typography: {
     CardSubject: {
       color: "white",
-      fontWeight: "500"
+      fontWeight: "500",
     },
     CardSemester: {
       color: "white",
-      fontWeight: "200"
-    }
+      fontWeight: "200",
+    },
   },
   authForm: {
     loginHeader: {
@@ -124,7 +123,7 @@ export const DarkTheme = createMuiTheme({
       fontWeight: 600,
       marginTop: "2rem",
       marginBottom: "0",
-      textTransform: "uppercase"
+      textTransform: "uppercase",
     },
     input: {
       margin: "10px 0px",
@@ -134,13 +133,13 @@ export const DarkTheme = createMuiTheme({
       border: "1px solid black",
       paddingLeft: "1rem",
       "&:focus": {
-        outline: "none"
+        outline: "none",
       },
       "&::placeholder": {
         fontFamily: "Montserrat, sans-serif",
         color: "black",
         fontWeight: 400,
-      }
+      },
     },
     form: {
       display: "flex",
@@ -158,7 +157,7 @@ export const DarkTheme = createMuiTheme({
       backgroundColor: "#12CBC4",
       backgroundImage: "linear-gradient(147deg, #12CBC4 0%, #12CBC4 74%)",
       width: "130px",
-      color: "white"
+      color: "white",
     },
   },
   pages: {
@@ -168,13 +167,11 @@ export const DarkTheme = createMuiTheme({
       minHeight: "90vh",
       marginTop: "0rem",
       display: "flex",
-      flexDirection: "column"
+      flexDirection: "column",
     },
     container: {
       flexGrow: 1,
       paddingTop: "2rem",
-
-    }
+    },
   },
 });
-

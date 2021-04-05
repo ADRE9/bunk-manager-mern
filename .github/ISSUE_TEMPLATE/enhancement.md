@@ -1,14 +1,14 @@
 ---
 name: Enhancement
 about: For enhancing existing elements and features
-title: ''
+title: ""
 labels: enhancement
-assignees: ''
-
+assignees: ""
 ---
 
 **Deliverables:**
 Add the deliverables with their description here.
+
 - [ ] Task 1
 - [ ] Task 2
 

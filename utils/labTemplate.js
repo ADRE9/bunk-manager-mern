@@ -1,4 +1,4 @@
-const labTemplate = (req,i) => {
+const labTemplate = (req, i) => {
   return {
     name: `LAB ${i}`,
     days: [],
@@ -6,8 +6,8 @@ const labTemplate = (req,i) => {
     classesBunked: 0,
     semester: req.body.semester,
     owner: req.user._id,
-    subjectType:'lab'
-  }
+    subjectType: "lab",
+  };
 };
 
 module.exports = labTemplate;
