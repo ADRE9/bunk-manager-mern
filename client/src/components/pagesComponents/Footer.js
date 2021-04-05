@@ -275,13 +275,13 @@ export default function Footer() {
            {width <= 720 && (
           <div style={{ margin: "1% 1% 0% 1%" }}>
             <a href="https://github.com/ASHISH-GITHUB2495/GRIP_BasicBankingSystem_2021" target="_blank">
-              < GitHubIcon className={classes.icon} color="primary" style={{ height: "8%", width: "8%", marginRight:"6px" }} /></a>
+              < GitHubIcon className={classes.icon2} style={{ height: "8%", width: "8%", marginRight:"7px", color:"white" }} /></a>
             <a href="https://ashish-github2495.github.io/MyPortfolio.github.io/" target="_blank">
-              < FacebookIcon className={classes.icon} color="primary" style={{ height: "8%", width: "8%", marginRight:"6px" }} /></a>
+              < FacebookIcon className={classes.icon2} style={{ height: "8%", width: "8%", marginRight:"6px", color:"white", transform: "scale(1.01)" }} /></a>
             <a href="https://www.stopstalk.com/user/profile/ZeroHu0" target="_blank">
-              < TwitterIcon className={classes.icon} color="primary" style={{ height: "8%", width: "8%", }} /> </a>
+              < TwitterIcon className={classes.icon2} style={{ height: "8%", width: "8%", color:"white", transform: "scale(1.01)" }} /> </a>
             <a href="https://www.linkedin.com/in/ashish2495/" target="_blank">
-              < LinkedInIcon className={classes.icon} color="primary" style={{ height: "8%", width: "8%", }} /> </a>
+              < LinkedInIcon className={classes.icon2} style={{ height: "8%", width: "8%", color:"white", transform: "scale(1.01)" }} /> </a>
           </div>
            )}
         </FormControl>
