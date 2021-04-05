@@ -275,13 +275,13 @@ export default function Footer() {
            {width <= 720 && (
           <div style={{ margin: "1% 1% 0% 1%" }}>
             <a href="https://github.com/ASHISH-GITHUB2495/GRIP_BasicBankingSystem_2021" target="_blank">
-              < GitHubIcon className={classes.icon} color="primary" style={{ height: "8%", width: "8%", }} /></a>
+              < GitHubIcon className={classes.icon} color="primary" style={{ height: "8%", width: "8%", marginRight:"6px" }} /></a>
             <a href="https://ashish-github2495.github.io/MyPortfolio.github.io/" target="_blank">
-              < FacebookIcon className={classes.icon} color="primary" style={{ height: "8%", width: "8%" }} /></a>
+              < FacebookIcon className={classes.icon} color="primary" style={{ height: "8%", width: "8%", marginRight:"6px" }} /></a>
             <a href="https://www.stopstalk.com/user/profile/ZeroHu0" target="_blank">
-              < TwitterIcon className={classes.icon} color="primary" style={{ height: "8%", width: "8%" }} /> </a>
+              < TwitterIcon className={classes.icon} color="primary" style={{ height: "8%", width: "8%", }} /> </a>
             <a href="https://www.linkedin.com/in/ashish2495/" target="_blank">
-              < LinkedInIcon className={classes.icon} color="primary" style={{ height: "8%", width: "8%", marginLeft:"-5px" }} /> </a>
+              < LinkedInIcon className={classes.icon} color="primary" style={{ height: "8%", width: "8%", }} /> </a>
           </div>
            )}
         </FormControl>
