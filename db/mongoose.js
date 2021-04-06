@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
 
-  var dbURI = process.env.URI; 
+  var dbURI = process.env.URI || "mongodb://localhost:27017/bunk"; 
   
   // Create the database connection 
   try{
