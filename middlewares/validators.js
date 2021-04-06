@@ -20,6 +20,13 @@ exports.validateSubject = [
     check('days').notEmpty().withMessage("Pick one day of week or more")
 ]
 
+exports.validateSubjectUpdation = [
+    check('name').notEmpty().withMessage("Name is required"),
+    check('days').notEmpty().optional({nullable: true, checkFalsy: true}),
+    check('semester').notEmpty().optional({nullable:true, checkFalsy: true}),
+    check('subjectType').notEmpty().optional({nullable:true, checkFalsy: true})
+]
+
 exports.validateUpdationUser = [ 
     check('name').notEmpty().optional({nullable: true, checkFalsy: true}),
     check('password')
@@ -30,6 +37,10 @@ exports.validateUpdationUser = [
     check('currentSemester').notEmpty().optional({nullable: true, checkFalsy: true})    
 ]
 
+exports.validateAttendence = [
+    check('classStatus').notEmpty().withMessage("Class Status should not be empty."),
+    check('attendanceOf').isNumeric().notEmpty().withMessage("AttendanceOf is required")
+]
 exports.isRequestValidated = (req, res, next) => {
     const errors = validationResult(req);
     if( errors.array().length > 0 ){
