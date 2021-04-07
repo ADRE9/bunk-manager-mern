@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import AppBar from '@material-ui/core/AppBar';
@@ -7,38 +8,37 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
-
 const MyTextField = withStyles({            //textField type 1    
   root: {
-    '& label.Mui-focused': {
-      color: 'white',
+    "& label.Mui-focused": {
+      color: "white",
     },
-    '& .MuiOutlinedInput-root': {
-      '& input:valid + fieldset': {
-        borderColor: 'white',
+    "& .MuiOutlinedInput-root": {
+      "& input:valid + fieldset": {
+        borderColor: "white",
         borderWidth: 3,
-        color: "white"
+        color: "white",
       },
     },
   },
 })(TextField);
 
-const MyTextField2 = withStyles({         //textField type2
+const MyTextField2 = withStyles({
+  //textField type2
   root: {
-    '& label.Mui-focused': {
-      color: 'white',
+    "& label.Mui-focused": {
+      color: "white",
     },
   },
 })(TextField);
 
-
-const useStyles = makeStyles(theme => ({   //classes of tages below used
+const useStyles = makeStyles((theme) => ({
+  //classes of tages below used
   AppBar: {
-
-    top: 'auto',
+    top: "auto",
     bottom: 0,
 
-    display: 'flex',
+    display: "flex",
     justifyContent: "center",
     padding: 0,
 
@@ -46,20 +46,17 @@ const useStyles = makeStyles(theme => ({   //classes of tages below used
 
     [theme.breakpoints.down("sm")]: {
       height: "3rem",
-    }
+    },
   },
 
   test: {
-
-    textAlign: 'center',
+    textAlign: "center",
     position: "sticky",
     left: 0,
     bottom: 0,
     right: 0,
-    marginTop: 'auto'
-
+    marginTop: "auto",
   },
-
 
   upperField: {
     display: "grid",
@@ -67,8 +64,7 @@ const useStyles = makeStyles(theme => ({   //classes of tages below used
     gridAutoFlow: "column",
     margin: "0% 5% 5% 5%",
     textAlign: "center",
-    marginBottom: "1%"
-
+    marginBottom: "1%",
   },
 
   upperField2: {
@@ -84,7 +80,6 @@ const useStyles = makeStyles(theme => ({   //classes of tages below used
   margin: {
     width: "100%",
     borderWidth: "2px",
-
   },
 
   margin2: {
@@ -94,7 +89,7 @@ const useStyles = makeStyles(theme => ({   //classes of tages below used
   },
 
   input: {
-    color: 'white',
+    color: "white",
     fontSize: "1rem",
   },
 
@@ -104,7 +99,7 @@ const useStyles = makeStyles(theme => ({   //classes of tages below used
   },
 
   inputLable: {
-    color: 'white',
+    color: "white",
   },
 
   inputLable2: {
@@ -112,19 +107,16 @@ const useStyles = makeStyles(theme => ({   //classes of tages below used
   },
 
   input2: {
-    color: 'white',
-    fontSize: '1.5rem'
-
+    color: "white",
+    fontSize: "1.5rem",
   },
 
   icon: {
     "&:hover ": {
-      color: 'white',
-      opacity: '0.5'
-    }
-  }
-
-
+      color: "white",
+      opacity: "0.5",
+    },
+  },
 }));
 export default function Footer() {
   const classes = useStyles();
@@ -140,29 +132,22 @@ export default function Footer() {
     setWidth(window.innerWidth);
   };
 
+
   useEffect(() => {
     window.addEventListener("resize", updateWidthAndHeight);
     return () => window.removeEventListener("resize", updateWidthAndHeight);
   });
 
-
   function handleSend(event) {
-
     //  Here sir you have all data which hasbeen updated in forms you can send it anywhere when send button clicked.
     // nameVal , emailVal , phoneVal, messageVal
 
     alert(nameVal + " " + emailVal + " " + phoneVal + " " + messageVal);
-
-
   }
-
-
-
-
   return (
     <React.Fragment>
-
       <AppBar color="secondary" className={classes.test}>
+
         {width > 720 && (
         <div>
         <h1 style={{fontFamily:"Arial, sans-serif",fontSize:"300%",marginBottom:"0%"}}>Get In Touch With Bunk Manager</h1>
@@ -199,17 +184,23 @@ export default function Footer() {
               id="custom-css-outlined-input"
             />
             </div>
-            <div> <MyTextField className={classes.margin}
-              InputProps={{ className: classes.input, }}
-              InputLabelProps={{ className: classes.inputLable }}
-              onChange={(event)=>{updatePhone(event.target.value)}}
-              label="Phone"
-              type="Number"
-              variant="outlined"
-              id="custom-css-outlined-input"
-            />
+            <div>
+              {" "}
+              <MyTextField
+                className={classes.margin}
+                InputProps={{ className: classes.input }}
+                InputLabelProps={{ className: classes.inputLable }}
+                onChange={(event) => {
+                  updatePhone(event.target.value);
+                }}
+                label="Phone"
+                type="Number"
+                variant="outlined"
+                id="custom-css-outlined-input"
+              />
             </div>
           </div>
+
          )}
           {width <= 720 && (
           <div className={classes.upperField2}>
@@ -257,8 +248,14 @@ export default function Footer() {
             variant="filled" />
       
           </div>
-          <Button variant="contained" color="primary" onClick={handleSend} style={{ width: "90%", left: "5%", right: "5%", marginTop: "1%" }}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleSend}
+            style={{ width: "90%", left: "5%", right: "5%", marginTop: "1%" }}
+          >
             Send
+
            </Button>
            {width > 720 && (
           <div style={{ margin: "1% 1% 0% 1%" }}>
@@ -285,15 +282,7 @@ export default function Footer() {
           </div>
            )}
         </FormControl>
-
-
-
-
-
-
       </AppBar>
-
     </React.Fragment>
-
-  )
+  );
 }
