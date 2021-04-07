@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import { Formik } from 'formik';
@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { createNewUser } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
+import { setTablePage } from '../../actions/authActions';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { departments } from '../../configs/departments';
 import { motion } from 'framer-motion';
@@ -138,7 +139,7 @@ const SignUpPage = (props) => {
     }
   }
   const location = useLocation();
-  const { from } = location.state || { from: { pathname: "/" } };
+  const { from } = location.state || { from: { pathname: "/timetable" } };
 
   return (
       <motion.div variants={containerVariants}
@@ -266,7 +267,7 @@ const SignUpPage = (props) => {
                 {formik.touched.currentSemester && formik.errors.currentSemester ? (
                   <div>{formik.errors.currentSemester}</div>
                 ) : null}
-                <Button variant="contained" className={classes.button} type="submit">
+                <Button onClick={() => props.setTablePage()} variant="contained" className={classes.button} type="submit">
                   {props.auth.isLoading ? <CircularProgress color="secondary" /> : "Submit"}
                 </Button>
               </form>
@@ -279,9 +280,10 @@ const SignUpPage = (props) => {
 
 const mapStateToProps = (state) => {
   return {auth: state.auth,
-    error: state.error}
+    error: state.error,
+    tablePage: state.table.isTableOpen}
 }
 
 export default connect(mapStateToProps, {
-  createNewUser, clearErrors
+  createNewUser, clearErrors, setTablePage
 })(SignUpPage)

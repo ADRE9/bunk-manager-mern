@@ -24,6 +24,7 @@ const AboutPage = lazy(() => import('./pages/AboutPage'));
 const AddSubjectPage = lazy(() => import('./pages/AddSubjectPage'));
 const EditSubjectPage = lazy(() => import('./pages/EditSubjectPage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage'));
+const TimetablePage = lazy(() => import('./pages/TimetablePage'));
 
 const styles = (theme) => createStyles({
   App: {
@@ -72,6 +73,11 @@ const App = (props) => {
                   <PrivateRoute exact  path="/about">
                     <Suspense fallback={<LoadingPage/>}>
                       <AboutPage/>
+                    </Suspense>
+                  </PrivateRoute>
+                  <PrivateRoute exact  path="/timetable">
+                    <Suspense fallback={<LoadingPage/>}>
+                      <TimetablePage/>
                     </Suspense>
                   </PrivateRoute>
                   <PrivateRoute exact  path="/subject/new">

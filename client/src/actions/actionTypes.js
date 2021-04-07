@@ -16,6 +16,7 @@ export const DELETING_USER = "DELETING_USER";
 export const USER_DELETED = "USER_DELETED";
 export const UPDATING_USER = "UPDATING_USER";
 export const USER_UPDATED = "USER_UPDATED";
+export const SET_TABLE_PAGE = "SET_TABLE_PAGE"
 
 
 //subject actions
