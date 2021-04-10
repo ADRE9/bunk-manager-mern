@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import { loggingUser } from "../../../actions/authActions";
 import { withRouter } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import GoogleLogin from "react-google-login";
 
 const useStyles = makeStyles((theme) => ({
   ...theme.authForm,
@@ -32,6 +33,18 @@ const loginSchema = yup.object({
 });
 
 const LoginCard = (props) => {
+  const responseGoogle = (response) => {
+    console.log(response)
+    formik.values.email = response.profileObj.email;
+    formik.values.password = response.profileObj.name;
+    formik.handleSubmit()
+    // setGoogleDetails({
+    //   name: response.profileObj.name,
+    //   email: response.profileObj.email,
+    //   img: response.profileObj.imageUrl,
+    //   googleId: response.profileObj.googleId,
+    // })   
+};
   const location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
   //styles
@@ -101,6 +114,14 @@ const LoginCard = (props) => {
           )}
         </Button>
       </form>
+      OR
+      <GoogleLogin
+                clientId="207958850344-63pkahrt4o4mf1soifq2i86f0lpik9tf.apps.googleusercontent.com"
+                buttonText={"Sign In"}
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={"single_host_origin"}
+              />
     </React.Fragment>
   );
 };
