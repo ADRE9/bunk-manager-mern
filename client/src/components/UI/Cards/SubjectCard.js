@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AttendanceBar from './AttendanceBar';
@@ -10,23 +11,21 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
-
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   card: {
     display: "flex",
-    flexDirection:"column",
-    position:"relative",
+    flexDirection: "column",
+    position: "relative",
     width: "100%",
-    height:"250px"
+    height: "250px",
   },
   imageDiv: {
     position: "absolute",
     top: 0,
     left: 0,
     width: "100%",
-    height:"100%",
+    height: "100%",
     zIndex: 1,
-    
   },
   CardContent: {
     position: "relative",
@@ -34,30 +33,29 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
   },
   upperCard: {
-    width:"100%",
+    width: "100%",
     position: "relative",
     //minHeight:"70%",
     flexGrow: 1,
-    display:"flex"
+    display: "flex",
   },
   lowerCard: {
-    
     display: "flex",
     flexDirection: "column",
-    justifyContent:"center",
+    justifyContent: "center",
     padding: "0 15px",
     //flexGrow: 1,
   },
   bgImage: {
     width: "100%",
-    height:"100%",
-    objectFit:"cover"
+    height: "100%",
+    objectFit: "cover",
   },
   CardSubject: {
-    ...theme.typography.CardSubject
+    ...theme.typography.CardSubject,
   },
   CardSemester: {
-    ...theme.typography.CardSemester
+    ...theme.typography.CardSemester,
   },
   MoreVertIcon: {
     color: '#FFF',
@@ -70,7 +68,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SubjectCard = (props) => {
-
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -82,24 +79,33 @@ const SubjectCard = (props) => {
     setAnchorEl(null);
   };
 
-
-  const { name,backgroundImage,semester,totalClasses,classesBunked,_id} = props.data;
+  const {
+    name,
+    backgroundImage,
+    semester,
+    totalClasses,
+    classesBunked,
+    _id,
+  } = props.data;
 
   const renderSvg = () => {
     function toBase64(arr) {
-      arr = new Uint8Array(arr)
+      arr = new Uint8Array(arr);
       return btoa(
-         arr.reduce((data, byte) => data + String.fromCharCode(byte), '')
+        arr.reduce((data, byte) => data + String.fromCharCode(byte), "")
       );
-   }
+    }
     if (props.data) {
       const image = toBase64(backgroundImage.data);
       return (
         <React.Fragment>
-          <img className={classes.bgImage} src={`data:image/svg+xml;base64,${image}`}
-          alt="images" />
+          <img
+            className={classes.bgImage}
+            src={`data:image/svg+xml;base64,${image}`}
+            alt="images"
+          />
         </React.Fragment>
-      )
+      );
     } else return null;
   };
 
@@ -107,15 +113,19 @@ const SubjectCard = (props) => {
     if (window.location.pathname === "/subject") {
       return (
         <React.Fragment>
-          <CardMenu data={{ id:_id }}/>
+          <CardMenu data={{ id: _id }} />
         </React.Fragment>
-      )
+      );
     } else {
-      return (<React.Fragment>
-        <AttendanceBar data={{ bunked: classesBunked, totalClass: totalClasses,id:_id }} />
-      </React.Fragment>)
+      return (
+        <React.Fragment>
+          <AttendanceBar
+            data={{ bunked: classesBunked, totalClass: totalClasses, id: _id }}
+          />
+        </React.Fragment>
+      );
     }
-  }
+  };
 
   return (
     <React.Fragment>
@@ -141,18 +151,13 @@ const SubjectCard = (props) => {
             </Typography>
             <IconButton className={classes.MoreVertIcon} onClick={handleClick}><MoreVertIcon /></IconButton>
           </CardContent>
-          <div className={classes.imageDiv}>
-            {renderSvg()}
-          </div>
-          
+          <div className={classes.imageDiv}>{renderSvg()}</div>
         </div>
-        <div className={classes.lowerCard}>
-          {renderEdit()}
-        </div>
+        <div className={classes.lowerCard}>{renderEdit()}</div>
       </Card>
     </React.Fragment>
-  )
-}
+  );
+};
 
 export default SubjectCard;
 //data:image/svg+xml;base64,

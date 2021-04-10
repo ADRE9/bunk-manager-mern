@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState } from "react";
 
 export const DarkThemeContext = createContext(false);
 
@@ -11,7 +11,7 @@ export default ({ children }) => {
         darkMode,
         setDarkMode,
       }}
-    > 
+    >
       {children}
     </DarkThemeContext.Provider>
   );

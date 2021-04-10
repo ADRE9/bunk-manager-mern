@@ -1,8 +1,11 @@
-const Subject = require('../models/subject');
+const Subject = require("../models/subject");
 
-const subjectRequest = async (req, res,next) => {
+const subjectRequest = async (req, res, next) => {
   try {
-    const subject = await Subject.findOne({ _id: req.params.id,owner:req.user._id });
+    const subject = await Subject.findOne({
+      _id: req.params.id,
+      owner: req.user._id,
+    });
     if (!subject) {
       return res.status(404).send("Subject Not Found");
     }
