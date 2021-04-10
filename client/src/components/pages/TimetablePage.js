@@ -4,7 +4,7 @@ import { Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setTablePage } from '../../actions/authActions';
+import { setTablePage } from '../../actions/timetableActions';
 
 const useStyles = makeStyles(theme => ({
     ...theme.pages,

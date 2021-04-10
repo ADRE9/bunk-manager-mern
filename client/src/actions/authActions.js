@@ -1,4 +1,4 @@
-import { USER_LOADED, USER_LOADING, LOGIN_SUCCESS, AUTH_ERROR, LOGIN_FAIL, REGISTER_SUCCESS, REGISTER_FAIL, LOGOUT_SUCCESS, CLEAR_SUBJECTS, DELETING_USER, USER_DELETED,UPDATING_USER,USER_UPDATED, SET_TABLE_PAGE } from '../actions/actionTypes';
+import { USER_LOADED, USER_LOADING, LOGIN_SUCCESS, AUTH_ERROR, LOGIN_FAIL, REGISTER_SUCCESS, REGISTER_FAIL, LOGOUT_SUCCESS, CLEAR_SUBJECTS, DELETING_USER, USER_DELETED,UPDATING_USER,USER_UPDATED } from '../actions/actionTypes';
 
 import {history} from '../helpers/history';
 
@@ -135,8 +135,4 @@ export const updateUserData = (updateData) => async (dispatch, getState) => {
   } catch (e) {
     await dispatch(returnErrors(e.response.data, e.response.status));
   }
-}
-
-export const setTablePage = () => {
-  return {type: SET_TABLE_PAGE}
 }

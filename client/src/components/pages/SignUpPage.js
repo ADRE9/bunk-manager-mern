@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { createNewUser } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
-import { setTablePage } from '../../actions/authActions';
+import { setTablePage } from '../../actions/timetableActions';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { departments } from '../../configs/departments';
 import { motion } from 'framer-motion';

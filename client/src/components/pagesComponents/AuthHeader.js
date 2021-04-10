@@ -152,7 +152,7 @@ const AuthHeader = (props) => {
                 BUNK MANAGER
               </Typography>
             </Button>
-            {props.tablePage?'': renderAdminTab()} 
+            {props.tablePage? null: renderAdminTab()} 
             {props.isAuthenticated && <Button
               onClick={() => props.logoutUser()}
               className={classes.logout} variant="contained" color="primary">
