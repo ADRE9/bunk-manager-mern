@@ -1,15 +1,14 @@
-
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AttendanceBar from './AttendanceBar';
-import CardMenu from './CardMenu';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import AttendanceBar from "./AttendanceBar";
+import CardMenu from "./CardMenu";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -58,13 +57,13 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.CardSemester,
   },
   MoreVertIcon: {
-    color: '#FFF',
-    transform: 'scale(1.3)',
-    marginLeft: '88%',
-    marginTop: '-7rem',
-    height: '35px',
-    width: '35px'
-  }
+    color: "#FFF",
+    transform: "scale(1.3)",
+    marginLeft: "88%",
+    marginTop: "-7rem",
+    height: "35px",
+    width: "35px",
+  },
 }));
 
 const SubjectCard = (props) => {
@@ -130,17 +129,17 @@ const SubjectCard = (props) => {
   return (
     <React.Fragment>
       <Card className={classes.card}>
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <MenuItem onClick={handleClose}>Change Pic</MenuItem>
-        <MenuItem onClick={handleClose}>Change Pic</MenuItem>
-        <MenuItem onClick={handleClose}>Change Pic</MenuItem>
-      </Menu>
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={handleClose}>Change Pic</MenuItem>
+          <MenuItem onClick={handleClose}>Change Pic</MenuItem>
+          <MenuItem onClick={handleClose}>Change Pic</MenuItem>
+        </Menu>
         <div className={classes.upperCard}>
           <CardContent className={classes.CardContent}>
             <Typography className={classes.CardSubject} variant="h5">
@@ -149,7 +148,9 @@ const SubjectCard = (props) => {
             <Typography className={classes.CardSemester} variant="subtitle1">
               Semester {semester}
             </Typography>
-            <IconButton className={classes.MoreVertIcon} onClick={handleClick}><MoreVertIcon /></IconButton>
+            <IconButton className={classes.MoreVertIcon} onClick={handleClick}>
+              <MoreVertIcon />
+            </IconButton>
           </CardContent>
           <div className={classes.imageDiv}>{renderSvg()}</div>
         </div>

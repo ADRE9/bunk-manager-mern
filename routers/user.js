@@ -20,6 +20,6 @@ router.post("/api/auth/login", loginUser);
 router.post("/api/auth/logout", auth, logout);
 router.post("/api/auth/logoutAll", auth, logoutAll);
 router.get("/api/auth/userData", auth, userData);
-router.get("/api/auth/all", getAllUser)
+router.get("/api/auth/all", getAllUser);
 
 module.exports = router;

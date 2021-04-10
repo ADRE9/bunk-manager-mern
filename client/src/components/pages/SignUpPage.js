@@ -13,7 +13,6 @@ import { motion } from "framer-motion";
 import Container from "@material-ui/core/Container";
 import { useLocation } from "react-router-dom";
 
-
 const useStyles = makeStyles((theme) => ({
   modal: {
     opacity: 1,
@@ -154,7 +153,7 @@ const SignUpPage = (props) => {
         {props.error.msg ? (
           <div className={classes.errorMsg}>{props.error.msg.msg}</div>
         ) : null}
-        
+
         <Formik
           initialValues={{
             department: "",
@@ -242,7 +241,13 @@ const SignUpPage = (props) => {
                 type="text"
                 id="name"
                 className={classes.input}
-                disabled={props.formData !== undefined ? props.formData.name !== "" ? true:  false : false}
+                disabled={
+                  props.formData !== undefined
+                    ? props.formData.name !== ""
+                      ? true
+                      : false
+                    : false
+                }
               />
               {formik.touched.name && formik.errors.name ? (
                 <div>{formik.errors.name}</div>
@@ -253,7 +258,6 @@ const SignUpPage = (props) => {
                 type="text"
                 id="regdId"
                 className={classes.input}
-                
               />
               {formik.touched.regdId && formik.errors.regdId ? (
                 <div>{formik.errors.regdId}</div>
@@ -264,7 +268,13 @@ const SignUpPage = (props) => {
                 type="email"
                 id="email"
                 className={classes.input}
-                disabled={props.formData !== undefined ? props.formData.email !== "" ? true:  false: ""}
+                disabled={
+                  props.formData !== undefined
+                    ? props.formData.email !== ""
+                      ? true
+                      : false
+                    : ""
+                }
               />
               {formik.touched.email && formik.errors.email ? (
                 <div>{formik.errors.email}</div>
@@ -275,8 +285,20 @@ const SignUpPage = (props) => {
                 type="password"
                 id="password"
                 className={classes.input}
-                hidden={props.formData !== undefined ? props.formData.password !== "" ? true:  false :""}
-                disabled={props.formData !== undefined ? props.formData.password !== "" ? true:  false : ""}
+                hidden={
+                  props.formData !== undefined
+                    ? props.formData.password !== ""
+                      ? true
+                      : false
+                    : ""
+                }
+                disabled={
+                  props.formData !== undefined
+                    ? props.formData.password !== ""
+                      ? true
+                      : false
+                    : ""
+                }
               />
               {formik.touched.password && formik.errors.password ? (
                 <div>{formik.errors.password}</div>
@@ -287,8 +309,20 @@ const SignUpPage = (props) => {
                 type="password"
                 id="confirmPassword"
                 className={classes.input}
-                hidden={props.formData !== undefined ? props.formData.password !== "" ? true:  false : ""}
-                disabled={props.formData !== undefined ? props.formData.password !== "" ? true:  false: ""}
+                hidden={
+                  props.formData !== undefined
+                    ? props.formData.password !== ""
+                      ? true
+                      : false
+                    : ""
+                }
+                disabled={
+                  props.formData !== undefined
+                    ? props.formData.password !== ""
+                      ? true
+                      : false
+                    : ""
+                }
               />
               {formik.touched.confirmPassword &&
               formik.errors.confirmPassword ? (

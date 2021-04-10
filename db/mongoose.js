@@ -1,14 +1,19 @@
 const mongoose = require("mongoose");
 
 const connectDB = async () => {
+  var dbURI = process.env.URI || "mongodb://localhost:27017/bunk";
 
-  var dbURI = process.env.URI || "mongodb://localhost:27017/bunk"; 
-  
-  // Create the database connection 
-  try{
-    await mongoose.connect(dbURI, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, autoIndex: true, useFindAndModify:false}); 
-  }catch(err){
-    console.log('DB initial connection error: ' + err);
+  // Create the database connection
+  try {
+    await mongoose.connect(dbURI, {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useUnifiedTopology: true,
+      autoIndex: true,
+      useFindAndModify: false,
+    });
+  } catch (err) {
+    console.log("DB initial connection error: " + err);
   }
 
   // CONNECTION EVENT LISTENERS

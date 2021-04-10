@@ -4,17 +4,19 @@ const User = require("../models/user");
 
 const email = require("../utils/email");
 
-const getAllUser =  async (req, res) => {
+const getAllUser = async (req, res) => {
   //get all the registered user in our database
   try {
     const users = await User.find({});
-    if(users.length ===0) return res.status(400).json({msg : "There is no user registered in the databse"});
+    if (users.length === 0)
+      return res
+        .status(400)
+        .json({ msg: "There is no user registered in the databse" });
     res.status(200).json(users);
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
   }
-  
-}
+};
 
 const createUser = async (req, res) => {
   //waits creation of index before entering new user to prevent duplication of users
@@ -120,5 +122,5 @@ module.exports = {
   logout,
   logoutAll,
   userData,
-  getAllUser
+  getAllUser,
 };
