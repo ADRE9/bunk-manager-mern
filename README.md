@@ -129,6 +129,10 @@ git push -u origin <your_branch_name>
 
 https://www.figma.com/file/dQbGpSkclUec07vztFkUEV/Material-Design-UI-kit-Components-library-Community?node-id=120%3A1658
 
+### Today Page prototype
+
+https://www.figma.com/file/dQbGpSkclUec07vztFkUEV/Material-Design-UI-kit-Components-library-Community?node-id=241%3A0
+
 <!--## Open Source Program this project have been associated with:
 
 <!--<p align="center">
