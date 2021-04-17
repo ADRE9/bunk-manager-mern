@@ -96,6 +96,12 @@ const UpdateForm = (props) => {
     }
   }
 
+  const checkDay = (days, day) => { // function to check if a day in present in days array
+    if(days.includes(day))
+      return true;
+    return null;
+  }
+
   if (props.subjectState.hasBeenUpdated||props.subjectState.hasBeenCreated) {
     props.clearEvents();
     return <Redirect to="/subject"/>
@@ -109,7 +115,7 @@ const UpdateForm = (props) => {
   return (
     <div className={classes.formPage}>
       <Dialog onClose={redirect} classes={{paper: classes.dialog}} open={props.clicked} aria-labelledby="form-dialog-title">
-      <DialogTitle disableTypography className={classes.title} id="form-dialog-title">Add New Subject</DialogTitle>
+      <DialogTitle disableTypography className={classes.title} id="form-dialog-title">{props.name}</DialogTitle>
       <DialogContent>
       <Formik
         initialValues={decideInitialValues()}
@@ -139,27 +145,27 @@ const UpdateForm = (props) => {
             <Typography variant="h6">Days</Typography>
             <div className={classes.checkBoxDiv}>
               <label>
-                <Field type="checkbox" name="days" value="Monday" />
+                <Field checked={checkDay(formik.values.days, 'monday')} type="checkbox" name="days" value="Monday" />
                 Monday
               </label>
               <label>
-                <Field type="checkbox" name="days" value="Tuesday" />
+                <Field checked={checkDay(formik.values.days, 'tuesday')} type="checkbox" name="days" value="Tuesday" />
                 Tuesday
               </label>
               <label>
-                <Field type="checkbox" name="days" value="Wednesday" />
+                <Field checked={checkDay(formik.values.days, 'wednesday')} type="checkbox" name="days" value="Wednesday" />
                 Wednesday
               </label>
               <label>
-                <Field type="checkbox" name="days" value="Thursday" />
+                <Field checked={checkDay(formik.values.days, 'thursday')} type="checkbox" name="days" value="Thursday" />
                 Thursday
               </label>
               <label>
-                <Field type="checkbox" name="days" value="Friday" />
+                <Field checked={checkDay(formik.values.days, 'friday')} type="checkbox" name="days" value="Friday" />
                 Friday
               </label>
               <label>
-                <Field  color="secondary" type="checkbox" name="days" value="Saturday" />
+                <Field  checked={checkDay(formik.values.days, 'saturday')} color="secondary" type="checkbox" name="days" value="Saturday" />
                 Saturday
               </label>
             </div>

@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { deleteSubject } from '../../../actions/subjectActions';
+import { setOpen } from '../../../actions/subjectActions'
 
 const CardMenu = (props) => {
 
@@ -20,7 +21,7 @@ const CardMenu = (props) => {
   return (
     <React.Fragment>
         <Box justifyContent="space-evenly" display="flex" alignItems="center" width="100%">
-            <Button component={Link} to={`/subject/${props.data.id}`}>
+            <Button onClick={() => props.setOpen()} component={Link} to={`/subject/${props.data.id}`}>
               <EditRoundedIcon/>
             </Button>
             <Button onClick={()=>setConfirmOpen(true)}>
@@ -43,5 +44,5 @@ const CardMenu = (props) => {
 }
 
 export default connect(null, {
-  deleteSubject
+  deleteSubject, setOpen 
 })(CardMenu);
