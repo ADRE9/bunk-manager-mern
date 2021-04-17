@@ -3,7 +3,7 @@
   "name": "Attendance tracker web app",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "64x64_bunk_manager.svg",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },

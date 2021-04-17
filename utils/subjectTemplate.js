@@ -1,4 +1,4 @@
-const subjectTemplate = (req,i) => {
+const subjectTemplate = (req, i) => {
   return {
     name: `SUBJECT ${i}`,
     days: [],
@@ -6,8 +6,8 @@ const subjectTemplate = (req,i) => {
     classesBunked: 0,
     semester: req.body.semester,
     owner: req.user._id,
-    subjectType:'regular'
-  }
+    subjectType: "regular",
+  };
 };
 
 module.exports = subjectTemplate;

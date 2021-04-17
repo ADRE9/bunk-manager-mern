@@ -43,5 +43,5 @@ export const departments = [
   },
   {
     name: "Production Engineering",
-  }
-]
+  },
+];

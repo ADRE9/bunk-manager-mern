@@ -1,17 +1,17 @@
-import React,{useState} from 'react';
-import EditRoundedIcon from '@material-ui/icons/EditRounded';
-import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
-import Box from '@material-ui/core/Box';
-import InfoRoundedIcon from '@material-ui/icons/InfoRounded';
-import ConfirmDialog from '../ConfirmDialog';
+import React, { useState } from "react";
+import EditRoundedIcon from "@material-ui/icons/EditRounded";
+import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
+import Box from "@material-ui/core/Box";
+import InfoRoundedIcon from "@material-ui/icons/InfoRounded";
+import ConfirmDialog from "../ConfirmDialog";
 import { Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { deleteSubject } from '../../../actions/subjectActions';
 import { setOpen } from '../../../actions/subjectActions'
 
-const CardMenu = (props) => {
 
+const CardMenu = (props) => {
   const deletePost = () => {
     props.deleteSubject(props.data.id);
   };
@@ -40,8 +40,8 @@ const CardMenu = (props) => {
             </ConfirmDialog>
           </Box>
     </React.Fragment>
-  )
-}
+  );
+};
 
 export default connect(null, {
   deleteSubject, setOpen 
