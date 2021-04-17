@@ -57,8 +57,7 @@ const EditSubjectPage = (props) => {
       className={classes.page}
     >
       <Container className={classes.container}>
-        <Typography variant="h3">EDIT SUBJECT</Typography>
-        <UpdateForm subjectMethod={(data) => editSubject(data)} />
+        <UpdateForm name="Edit Subject" subjectMethod={(data)=>editSubject(data)}/>
       </Container>
     </motion.div>
   );

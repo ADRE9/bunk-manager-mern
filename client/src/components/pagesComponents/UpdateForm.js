@@ -92,142 +92,98 @@ const UpdateForm = (props) => {
     }
   };
 
-  if (props.subjectState.hasBeenUpdated || props.subjectState.hasBeenCreated) {
+  const checkDay = (days, day) => { // function to check if a day in present in days array
+    if(days.includes(day))
+      return true;
+    return null;
+  }
+
+  if (props.subjectState.hasBeenUpdated||props.subjectState.hasBeenCreated) {
     props.clearEvents();
     return <Redirect to="/subject" />;
   }
 
   return (
     <div className={classes.formPage}>
-      <Dialog
-        onClose={() => props.setOpen()}
-        classes={{ paper: classes.dialog }}
-        open={props.clicked}
-        aria-labelledby="form-dialog-title"
+      <Dialog onClose={redirect} classes={{paper: classes.dialog}} open={props.clicked} aria-labelledby="form-dialog-title">
+      <DialogTitle disableTypography className={classes.title} id="form-dialog-title">{props.name}</DialogTitle>
+      <DialogContent>
+      <Formik
+        initialValues={decideInitialValues()}
+        validationSchema={Yup.object({
+          name: Yup.string('Enter Subject Name').required('Name of Subject is required'),
+          days: Yup.array().required('Atleast One day is required to be selected'),
+          subjectType:Yup.string('Enter Subject Type').required('Type of Subject is required')
+        })}
+
+        onSubmit={(data) => {
+          props.subjectMethod(data);
+          props.setOpen();
+        }}
       >
-        <DialogTitle
-          disableTypography
-          className={classes.title}
-          id="form-dialog-title"
-        >
-          Add New Subject
-        </DialogTitle>
-        <DialogContent>
-          <Formik
-            initialValues={decideInitialValues()}
-            validationSchema={Yup.object({
-              name: Yup.string("Enter Subject Name").required(
-                "Name of Subject is required"
-              ),
-              days: Yup.array().required(
-                "Atleast One day is required to be selected"
-              ),
-              subjectType: Yup.string("Enter Subject Type").required(
-                "Type of Subject is required"
-              ),
-            })}
-            onSubmit={(data) => {
-              props.subjectMethod(data);
-              props.setOpen();
-            }}
-          >
-            {(formik) => (
-              <Form className={classes.formDiv}>
-                <Typography
-                  variant="h6"
-                  className={classes.subNameHead}
-                  color="inherit"
-                >
-                  Subject Name
-                </Typography>
-                <TextField
-                  name="name"
-                  value={formik.values.name}
-                  onChange={formik.handleChange}
-                  error={formik.touched.name && Boolean(formik.errors.name)}
-                  helperText={formik.touched.name && formik.errors.name}
-                  className={classes.field}
-                  id="name"
-                  placeholder="Enter Subject Name"
-                  variant="outlined"
-                />
-                <Typography variant="h6">Days</Typography>
-                <div className={classes.checkBoxDiv}>
-                  <label>
-                    <Field type="checkbox" name="days" value="Monday" />
-                    Monday
-                  </label>
-                  <label>
-                    <Field type="checkbox" name="days" value="Tuesday" />
-                    Tuesday
-                  </label>
-                  <label>
-                    <Field type="checkbox" name="days" value="Wednesday" />
-                    Wednesday
-                  </label>
-                  <label>
-                    <Field type="checkbox" name="days" value="Thursday" />
-                    Thursday
-                  </label>
-                  <label>
-                    <Field type="checkbox" name="days" value="Friday" />
-                    Friday
-                  </label>
-                  <label>
-                    <Field
-                      color="secondary"
-                      type="checkbox"
-                      name="days"
-                      value="Saturday"
-                    />
-                    Saturday
-                  </label>
-                </div>
-                <Typography
-                  variant="h6"
-                  className={classes.subTypeHead}
-                  color="inherit"
-                >
-                  Subject Type
-                </Typography>
-                <FormControl variant="outlined" className={classes.formControl}>
-                  <Select
-                    id="subjectType"
-                    name="subjectType"
-                    value={formik.values.subjectType}
-                    onChange={formik.handleChange}
-                  >
-                    <MenuItem value="" default disabled>
-                      None
-                    </MenuItem>
-                    <MenuItem value="regular">Regular</MenuItem>
-                    <MenuItem value="lab">Lab</MenuItem>
-                  </Select>
-                </FormControl>
-                <div>
-                  <Button
-                    className={classes.buttonAdd}
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                  >
-                    Confirm
-                  </Button>
-                  <Button
-                    onClick={() => props.setOpen()}
-                    className={classes.buttonCancel}
-                    variant="contained"
-                    color="secondary"
-                    component={Link}
-                    to="/subject"
-                  >
-                    Cancel
-                  </Button>
-                </div>
-              </Form>
-            )}
-          </Formik>
-        </DialogContent>
+        {formik => (
+          <Form className={classes.formDiv}>
+            <Typography variant='h6' className={classes.subNameHead} color='inherit'>Subject Name</Typography>
+            <TextField
+              name="name"
+              value={formik.values.name}
+              onChange={formik.handleChange}
+              error={formik.touched.name && Boolean(formik.errors.name)}
+              helperText={formik.touched.name && formik.errors.name}
+              className={classes.field}
+              id="name" placeholder='Enter Subject Name' variant="outlined"
+            />
+            <Typography variant="h6">Days</Typography>
+            <div className={classes.checkBoxDiv}>
+              <label>
+                <Field checked={checkDay(formik.values.days, 'monday')} type="checkbox" name="days" value="Monday" />
+                Monday
+              </label>
+              <label>
+                <Field checked={checkDay(formik.values.days, 'tuesday')} type="checkbox" name="days" value="Tuesday" />
+                Tuesday
+              </label>
+              <label>
+                <Field checked={checkDay(formik.values.days, 'wednesday')} type="checkbox" name="days" value="Wednesday" />
+                Wednesday
+              </label>
+              <label>
+                <Field checked={checkDay(formik.values.days, 'thursday')} type="checkbox" name="days" value="Thursday" />
+                Thursday
+              </label>
+              <label>
+                <Field checked={checkDay(formik.values.days, 'friday')} type="checkbox" name="days" value="Friday" />
+                Friday
+              </label>
+              <label>
+                <Field  checked={checkDay(formik.values.days, 'saturday')} color="secondary" type="checkbox" name="days" value="Saturday" />
+                Saturday
+              </label>
+            </div>
+            <Typography variant='h6' className={classes.subTypeHead} color='inherit'>Subject Type</Typography>
+            <FormControl variant="outlined" className={classes.formControl}>
+              <Select
+                id="subjectType" name="subjectType"
+                value={formik.values.subjectType}
+                onChange={formik.handleChange}
+              >
+                <MenuItem value="" default disabled>None</MenuItem>
+                <MenuItem value="regular">Regular</MenuItem>
+                <MenuItem value="lab">Lab</MenuItem>
+              </Select>
+            </FormControl>
+            <div>
+              <Button className={classes.buttonAdd} variant="contained" color="primary" type="submit">
+                Confirm
+              </Button>
+              <Button onClick={() => props.setOpen()} className={classes.buttonCancel} variant="contained" color="secondary" component={Link} to="/subject" >
+                Cancel
+              </Button>
+            </div>
+          </Form>
+        )}
+      </Formik>
+      </DialogContent>
       </Dialog>
     </div>
   );
