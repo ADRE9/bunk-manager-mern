@@ -213,16 +213,9 @@ const SignUpPage = (props) => {
                   {selections}
                 </optgroup>
               </select>
-              {formik.touched.department && formik.errors.department ? (
+                {formik.touched.department && formik.errors.department ? (
                 <div>{formik.errors.department}</div>
-              ) : null}
-
-              <select
-                required
-                {...formik.getFieldProps("roles")}
-                className={classes.input}
-                id="roles"
-              >
+                ) : null}
                 <select required
                   {...formik.getFieldProps('department')}
                   className={classes.input}
