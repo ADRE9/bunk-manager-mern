@@ -16,14 +16,17 @@ import Footer from "./pagesComponents/Footer";
 import { DarkThemeContext } from "../providers/DarkThemeProvider";
 
 //Lazy Loading
-const LoginPage = lazy(() => import("./pages/LoginPage"));
-const HomePage = lazy(() => import("./pages/HomePage"));
-const SubjectPage = lazy(() => import("./pages/SubjectPage"));
-const SemesterPage = lazy(() => import("./pages/SemesterPage"));
-const AboutPage = lazy(() => import("./pages/AboutPage"));
-const AddSubjectPage = lazy(() => import("./pages/AddSubjectPage"));
-const EditSubjectPage = lazy(() => import("./pages/EditSubjectPage"));
-const SignUpPage = lazy(() => import("./pages/SignUpPage"));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const HomePage = lazy(() => import('./pages/HomePage'));
+const SubjectPage = lazy(() => import('./pages/SubjectPage'));
+const SemesterPage = lazy(() => import('./pages/SemesterPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const AddSubjectPage = lazy(() => import('./pages/AddSubjectPage'));
+const EditSubjectPage = lazy(() => import('./pages/EditSubjectPage'));
+const SignUpPage = lazy(() => import('./pages/SignUpPage'));
+const TimetablePage = lazy(() => import('./pages/TimetablePage'));
+
+
 
 const styles = (theme) =>
   createStyles({
@@ -58,51 +61,56 @@ const App = (props) => {
       <div className={classes.App}>
         <AuthHeader />
         <AnimatePresence>
-          <Switch location={location} key={location.pathname}>
-            <PrivateRoute exact path="/subject">
-              <Suspense fallback={<LoadingPage />}>
-                <SubjectPage />
-              </Suspense>
-            </PrivateRoute>
-            <PrivateRoute exact path="/semester">
-              <Suspense fallback={<LoadingPage />}>
-                <SemesterPage />
-              </Suspense>
-            </PrivateRoute>
-            <PrivateRoute exact path="/about">
-              <Suspense fallback={<LoadingPage />}>
-                <AboutPage />
-              </Suspense>
-            </PrivateRoute>
-            <PrivateRoute exact path="/subject/new">
-              <Suspense fallback={<LoadingPage />}>
-                <AddSubjectPage />
-              </Suspense>
-            </PrivateRoute>
-            <PrivateRoute exact path="/subject/:id">
-              <Suspense fallback={<LoadingPage />}>
-                <EditSubjectPage />
-              </Suspense>
-            </PrivateRoute>
-            <PrivateRoute exact path="/">
-              <Suspense fallback={<LoadingPage />}>
-                <HomePage />
-              </Suspense>
-            </PrivateRoute>
-            <Route exact path="/user/signup">
-              <Suspense fallback={<LoadingPage />}>
-                <SignUpPage />
-              </Suspense>
-            </Route>
-            <Route exact path="/auth">
-              <Suspense fallback={<LoadingPage />}>
-                <LoginPage />
-              </Suspense>
-            </Route>
-          </Switch>
-        </AnimatePresence>
-        <Footer />
-      </div>
+                <Switch location={location} key={location.pathname}>
+                  <PrivateRoute exact  path="/subject">
+                    <Suspense fallback={<LoadingPage/>}>
+                      <SubjectPage/>
+                    </Suspense>
+                  </PrivateRoute>
+                  <PrivateRoute exact  path="/semester">
+                    <Suspense fallback={<LoadingPage/>}>
+                      <SemesterPage/>
+                    </Suspense>
+                  </PrivateRoute>
+                  <PrivateRoute exact  path="/about">
+                    <Suspense fallback={<LoadingPage/>}>
+                      <AboutPage/>
+                    </Suspense>
+                  </PrivateRoute>
+                  <PrivateRoute exact  path="/timetable">
+                    <Suspense fallback={<LoadingPage/>}>
+                      <TimetablePage/>
+                    </Suspense>
+                  </PrivateRoute>
+                  <PrivateRoute exact  path="/subject/new">
+                    <Suspense fallback={<LoadingPage/>}>
+                      <AddSubjectPage/>
+                    </Suspense>
+                  </PrivateRoute>
+                  <PrivateRoute exact  path="/subject/:id">
+                    <Suspense fallback={<LoadingPage/>}>
+                      <EditSubjectPage/>
+                    </Suspense>
+                  </PrivateRoute>
+                  <PrivateRoute exact  path="/">
+                    <Suspense fallback={<LoadingPage/>}>
+                      <HomePage/>
+                    </Suspense>
+                  </PrivateRoute>
+                  <Route exact path="/user/signup">
+                    <Suspense fallback={<LoadingPage/>}>
+                      <SignUpPage/>
+                    </Suspense>
+                  </Route>
+                  <Route exact path="/auth">
+                    <Suspense fallback={<LoadingPage/>}>
+                      <LoginPage/>
+                    </Suspense>
+                  </Route>
+                </Switch>
+              </AnimatePresence>
+              <Footer />
+        </div>
     </ThemeProvider>
   );
 };

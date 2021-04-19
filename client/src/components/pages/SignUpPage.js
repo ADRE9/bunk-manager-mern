@@ -1,17 +1,18 @@
-import React, { useState } from "react";
-import { Typography } from "@material-ui/core";
+import React from 'react';
+import { Typography } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
-import { Formik } from "formik";
-import * as Yup from "yup";
-import Button from "@material-ui/core/Button";
-import { connect } from "react-redux";
-import { createNewUser } from "../../actions/authActions";
-import { clearErrors } from "../../actions/errorActions";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import { departments } from "../../configs/departments";
-import { motion } from "framer-motion";
-import Container from "@material-ui/core/Container";
-import { useLocation } from "react-router-dom";
+import { Formik } from 'formik';
+ import * as Yup from 'yup';
+import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
+import { createNewUser } from '../../actions/authActions';
+import { clearErrors } from '../../actions/errorActions';
+import { setTablePage } from '../../actions/timetableActions';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { departments } from '../../configs/departments';
+import { motion } from 'framer-motion';
+import Container from '@material-ui/core/Container';
+import { useLocation } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -134,7 +135,7 @@ const SignUpPage = (props) => {
     },
   };
   const location = useLocation();
-  const { from } = location.state || { from: { pathname: "/" } };
+  const { from } = location.state || { from: { pathname: "/timetable" } };
 
   return (
     <motion.div
@@ -212,114 +213,109 @@ const SignUpPage = (props) => {
                   {selections}
                 </optgroup>
               </select>
-              {formik.touched.department && formik.errors.department ? (
+                {formik.touched.department && formik.errors.department ? (
                 <div>{formik.errors.department}</div>
-              ) : null}
-
-              <select
-                required
-                {...formik.getFieldProps("roles")}
-                className={classes.input}
-                id="roles"
-              >
-                <optgroup label="Select Your Role">
-                  <option value="" disabled hidden>
-                    Select Your Role
-                  </option>
-                  <option value="admin">Admin</option>
-                  <option value="cr">CR</option>
-                  <option value="student">Student</option>
-                </optgroup>
-              </select>
-              {formik.touched.roles && formik.errors.roles ? (
-                <div>{formik.errors.roles}</div>
-              ) : null}
-              <input
-                {...formik.getFieldProps("name")}
-                placeholder="Name"
-                type="text"
-                id="name"
-                className={classes.input}
-              />
-              {formik.touched.name && formik.errors.name ? (
-                <div>{formik.errors.name}</div>
-              ) : null}
-              <input
-                {...formik.getFieldProps("regdId")}
-                placeholder="Registration ID"
-                type="text"
-                id="regdId"
-                className={classes.input}
-              />
-              {formik.touched.regdId && formik.errors.regdId ? (
-                <div>{formik.errors.regdId}</div>
-              ) : null}
-              <input
-                {...formik.getFieldProps("email")}
-                placeholder="Email"
-                type="email"
-                id="email"
-                className={classes.input}
-              />
-              {formik.touched.email && formik.errors.email ? (
-                <div>{formik.errors.email}</div>
-              ) : null}
-              <input
-                {...formik.getFieldProps("password")}
-                placeholder="Password"
-                type="password"
-                id="password"
-                className={classes.input}
-              />
-              {formik.touched.password && formik.errors.password ? (
-                <div>{formik.errors.password}</div>
-              ) : null}
-              <input
-                {...formik.getFieldProps("confirmPassword")}
-                placeholder="Confirm Password"
-                type="password"
-                id="confirmPassword"
-                className={classes.input}
-              />
-              {formik.touched.confirmPassword &&
-              formik.errors.confirmPassword ? (
-                <div>{formik.errors.confirmPassword}</div>
-              ) : null}
-              <input
-                {...formik.getFieldProps("currentSemester")}
-                placeholder="Current Semester"
-                type="text"
-                id="currentSemester"
-                className={classes.input}
-              />
-              {formik.touched.currentSemester &&
-              formik.errors.currentSemester ? (
-                <div>{formik.errors.currentSemester}</div>
-              ) : null}
-              <Button
-                variant="contained"
-                className={classes.button}
-                type="submit"
-              >
-                {props.auth.isLoading ? (
-                  <CircularProgress color="secondary" />
-                ) : (
-                  "Submit"
-                )}
-              </Button>
-            </form>
-          )}
-        </Formik>
-      </Container>
+                ) : null}
+                <select required
+                  {...formik.getFieldProps('department')}
+                  className={classes.input}
+                  id="department"
+                >
+                  <optgroup label="Select Your Department">
+                    <option value="" disabled hidden>Select Your Department</option>
+                    {selections}
+                  </optgroup>
+                </select>
+                {formik.touched.department && formik.errors.department ? (
+                  <div>{formik.errors.department}</div>
+                ) : null}
+                        
+                <select required
+                  {...formik.getFieldProps('roles')}
+                  className={classes.input}
+                  id="roles"
+                >
+                  <optgroup label="Select Your Role">
+                    <option value="" disabled hidden>Select Your Role</option>
+                    <option value="admin">Admin</option>
+                    <option value="cr">CR</option>
+                    <option value="student">Student</option>
+                  </optgroup>
+                </select>
+                {formik.touched.roles && formik.errors.roles ? (
+                  <div>{formik.errors.roles}</div>
+                ) : null}
+                <input
+                  {...formik.getFieldProps('name')}
+                  placeholder="Name"
+                  type="text" id="name"
+                  className={classes.input}
+                />
+                {formik.touched.name && formik.errors.name ? (
+                  <div>{formik.errors.name}</div>
+                ) : null}
+                <input
+                  {...formik.getFieldProps('regdId')}
+                  placeholder="Registration ID"
+                  type="text" id="regdId"
+                  className={classes.input}
+                />
+                {formik.touched.regdId && formik.errors.regdId ? (
+                  <div>{formik.errors.regdId}</div>
+                ) : null}
+                <input
+                  {...formik.getFieldProps('email')}
+                  placeholder="Email"
+                  type="email" id="email"
+                  className={classes.input}
+                />
+                {formik.touched.email && formik.errors.email ? (
+                  <div>{formik.errors.email}</div>
+                ) : null}
+                <input
+                  {...formik.getFieldProps('password')}
+                  placeholder="Password"
+                  type="password" id="password"
+                  className={classes.input}
+                />
+                {formik.touched.password && formik.errors.password ? (
+                  <div>{formik.errors.password}</div>
+                ) : null}
+                <input
+                  {...formik.getFieldProps('confirmPassword')}
+                  placeholder="Confirm Password"
+                  type="password" id="confirmPassword"
+                  className={classes.input}
+                />
+                {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+                  <div>{formik.errors.confirmPassword}</div>
+                ) : null}
+                <input
+                  {...formik.getFieldProps('currentSemester')}
+                  placeholder="Current Semester"
+                  type="text" id="currentSemester"
+                  className={classes.input}
+                />
+                {formik.touched.currentSemester && formik.errors.currentSemester ? (
+                  <div>{formik.errors.currentSemester}</div>
+                ) : null}
+                <Button onClick={() => props.setTablePage()} variant="contained" className={classes.button} type="submit">
+                  {props.auth.isLoading ? <CircularProgress color="secondary" /> : "Submit"}
+                </Button>
+              </form>
+            )}
+          </Formik>
+        </Container>
     </motion.div>
   );
 };
 
 const mapStateToProps = (state) => {
-  return { auth: state.auth, error: state.error };
-};
+  return {auth: state.auth,
+    error: state.error,
+    tablePage: state.table.isTableOpen}
+}
 
 export default connect(mapStateToProps, {
-  createNewUser,
-  clearErrors,
-})(SignUpPage);
+  createNewUser, clearErrors, setTablePage
+})(SignUpPage)

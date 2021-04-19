@@ -155,17 +155,12 @@ const AuthHeader = (props) => {
                 BUNK MANAGER
               </Typography>
             </Button>
-            {renderAdminTab()}
-            {props.isAuthenticated && (
-              <Button
-                onClick={() => props.logoutUser()}
-                className={classes.logout}
-                variant="contained"
-                color="primary"
-              >
-                LOGOUT
-              </Button>
-            )}
+            {props.tablePage? null: renderAdminTab()} 
+            {props.isAuthenticated && <Button
+              onClick={() => props.logoutUser()}
+              className={classes.logout} variant="contained" color="primary">
+              LOGOUT
+            </Button>}
             {/* Switch to change the theme */}
             <Switch
               color="primary"
@@ -182,8 +177,8 @@ const AuthHeader = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return { isAuthenticated: state.auth.isAuthenticated };
-};
+  return { isAuthenticated: state.auth.isAuthenticated, tablePage: state.table.isTableOpen }
+}
 
 export default connect(mapStateToProps, {
   logoutUser,

@@ -17,6 +17,10 @@ export const USER_DELETED = "USER_DELETED";
 export const UPDATING_USER = "UPDATING_USER";
 export const USER_UPDATED = "USER_UPDATED";
 
+
+//timetable actions
+export const SET_TABLE_PAGE = "SET_TABLE_PAGE"
+
 //subject actions
 export const SUBJECT_TEMPLATE_CREATED = "SUBJECT_TEMPLATE_CREATED";
 export const CREATING_SUBJECT = "CREATING_SUBJECT";
