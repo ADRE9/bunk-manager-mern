@@ -105,7 +105,7 @@ const UpdateForm = (props) => {
 
   return (
     <div className={classes.formPage}>
-      <Dialog onClose={redirect} classes={{paper: classes.dialog}} open={props.clicked} aria-labelledby="form-dialog-title">
+      <Dialog onClose={Redirect} classes={{paper: classes.dialog}} open={props.clicked} aria-labelledby="form-dialog-title">
       <DialogTitle disableTypography className={classes.title} id="form-dialog-title">{props.name}</DialogTitle>
       <DialogContent>
       <Formik
