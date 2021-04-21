@@ -126,8 +126,11 @@ git push -u origin <your_branch_name>
 **14.** Click on `Create Pull Request`.
 
 ### Landing Page prototype
+Website:
+https://www.figma.com/file/yv7szBhuylAeMShJoNY7oF/BUNK-MANAGER?node-id=0%3A1
 
-https://www.figma.com/file/dQbGpSkclUec07vztFkUEV/Material-Design-UI-kit-Components-library-Community?node-id=120%3A1658
+App:
+https://www.figma.com/file/sd8f5twPt3iCrMGPX2izFa/BunkManagerApp?node-id=0%3A1
 
 ### Today Page prototype
 
@@ -135,7 +138,7 @@ https://www.figma.com/file/dQbGpSkclUec07vztFkUEV/Material-Design-UI-kit-Compone
 
 <!--## Open Source Program this project have been associated with:
 
-<!--<p align="center">
+<p align="center">
 <a href="https://gssoc.girlscript.tech/"><img src="https://scholarsxp.com/wp-content/uploads/2021/02/gssoc-thumbnai-min.png" width= "25%"/></a>
 </p>-->
 
