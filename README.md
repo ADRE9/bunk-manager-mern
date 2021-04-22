@@ -135,6 +135,9 @@ https://www.figma.com/file/sd8f5twPt3iCrMGPX2izFa/BunkManagerApp?node-id=0%3A1
 ### Login Page prototype
 https://www.figma.com/file/BBOPzTwcLPLc8B3HckxQqH/Login?node-id=0%3A1
 
+### Sign Up Page prototype
+https://www.figma.com/file/Bag7fzf5w2NlrROsILCi91/SignUp?node-id=0%3A1
+
 ### Today Page prototype
 
 https://www.figma.com/file/dQbGpSkclUec07vztFkUEV/Material-Design-UI-kit-Components-library-Community?node-id=241%3A0
