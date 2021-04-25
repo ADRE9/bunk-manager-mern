@@ -125,6 +125,7 @@ git push -u origin <your_branch_name>
 
 **14.** Click on `Create Pull Request`.
 
+
 ### Landing Page prototype
 Website:
 https://www.figma.com/file/yv7szBhuylAeMShJoNY7oF/BUNK-MANAGER?node-id=0%3A1
@@ -141,6 +142,11 @@ https://www.figma.com/file/Bag7fzf5w2NlrROsILCi91/SignUp?node-id=0%3A1
 ### Today Page prototype
 
 https://www.figma.com/file/ztcjLs33fX0k7dAY3SkCW0/Today?node-id=0%3A1
+
+
+### Subject Details Page Prototype
+
+https://www.figma.com/file/8JiFfRS746ot9w7Uh7yq3O/Untitled?node-id=0%3A1
 
 <!--## Open Source Program this project have been associated with:
 
