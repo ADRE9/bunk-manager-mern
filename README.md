@@ -140,7 +140,7 @@ https://www.figma.com/file/Bag7fzf5w2NlrROsILCi91/SignUp?node-id=0%3A1
 
 ### Today Page prototype
 
-https://www.figma.com/file/dQbGpSkclUec07vztFkUEV/Material-Design-UI-kit-Components-library-Community?node-id=241%3A0
+https://www.figma.com/file/ztcjLs33fX0k7dAY3SkCW0/Today?node-id=0%3A1
 
 <!--## Open Source Program this project have been associated with:
 
