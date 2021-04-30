@@ -1,11 +1,11 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
-const BunkBlack = "#2B2024";
+const BunkBlack = "#2A2438";
 const BunkSecondary = "#FD0054";
 const BunkSecondaryDark = "#A80038";
 const BunkLight = "#FBF9FA";
 
-const DarkBlack = "#2B2024";
+const DarkBlack = "#2A2438";
 const DarkSecondary = "#12CBC4";
 const DarkSecondaryDark = "#0D9C97";
 const DarkLight = "#FBF9FA";
@@ -32,6 +32,13 @@ export const LigthTheme = createMuiTheme({
     CardSemester: {
       color: "white",
       fontWeight: "200",
+    },
+    h2: {
+      color: BunkBlack,
+    },
+    h6: {
+      color: "#5C5470",
+      fontWeight: 400,
     },
   },
   authForm: {
@@ -100,6 +107,7 @@ export const DarkTheme = createMuiTheme({
       white: `${DarkLight}`,
     },
     primary: {
+      dark: DarkBlack,
       main: `${DarkBlack}`,
     },
     secondary: {
@@ -115,6 +123,13 @@ export const DarkTheme = createMuiTheme({
     CardSemester: {
       color: "white",
       fontWeight: "200",
+    },
+    h2: {
+      color: BunkLight,
+    },
+    h6: {
+      color: BunkLight,
+      fontWeight: 400,
     },
   },
   authForm: {
