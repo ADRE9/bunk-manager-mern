@@ -139,6 +139,9 @@ https://www.figma.com/file/BBOPzTwcLPLc8B3HckxQqH/Login?node-id=0%3A1
 ### Sign Up Page prototype
 https://www.figma.com/file/Bag7fzf5w2NlrROsILCi91/SignUp?node-id=0%3A1
 
+### About Us Page Prototype
+https://www.figma.com/file/az4dLzkdf2ODaDaFK7vdb9/AboutUsWeb?node-id=0%3A1
+
 ### Today Page prototype
 
 https://www.figma.com/file/ztcjLs33fX0k7dAY3SkCW0/Today?node-id=0%3A1
