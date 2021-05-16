@@ -19,6 +19,7 @@ import { DarkThemeContext } from "../providers/DarkThemeProvider";
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const HomePage = lazy(() => import('./pages/HomePage'));
 const SubjectPage = lazy(() => import('./pages/SubjectPage'));
+const TodayPage = lazy(() => import('./pages/TodayPage'));
 const SemesterPage = lazy(() => import('./pages/SemesterPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const AddSubjectPage = lazy(() => import('./pages/AddSubjectPage'));
@@ -70,6 +71,11 @@ const App = (props) => {
                   <PrivateRoute exact  path="/semester">
                     <Suspense fallback={<LoadingPage/>}>
                       <SemesterPage/>
+                    </Suspense>
+                  </PrivateRoute>
+                  <PrivateRoute exact  path="/today">
+                    <Suspense fallback={<LoadingPage/>}>
+                      <TodayPage/>
                     </Suspense>
                   </PrivateRoute>
                   <PrivateRoute exact  path="/about">

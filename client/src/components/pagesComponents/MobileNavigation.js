@@ -43,7 +43,7 @@ const MobileNavigation = () => {
 
   return (
     <React.Fragment>
-      <AppBar position="fixed" color="primary" className={classes.appBar}>
+      <AppBar color="primary" className={classes.appBar}>
         <BottomNavigation
           value={value}
           onChange={(event, newValue) => {
