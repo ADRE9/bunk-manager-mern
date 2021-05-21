@@ -157,9 +157,20 @@ https://www.figma.com/file/8JiFfRS746ot9w7Uh7yq3O/Untitled?node-id=0%3A1
 <a href="https://gssoc.girlscript.tech/"><img src="https://scholarsxp.com/wp-content/uploads/2021/02/gssoc-thumbnai-min.png" width= "25%"/></a>
 </p>-->
 
+## Bunk Manager Mern is a part of these Open Source programs
+
+<p align="center">
+ <a>
+
+ [<img width=70% height=30% src="https://raw.githubusercontent.com/GirlScriptSummerOfCode/MentorshipProgram/master/GSsoc%20Type%20Logo%20Black.png">](https://gssoc.girlscript.tech/)
+ 
+</p>
+
+</br>
+
 ## Contributor:
 
-### Credits goes to these people: ✨
+### Credit goes to these people: ✨
 
 <table>
 	<tr>
