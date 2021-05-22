@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { createStyles } from "@material-ui/core/styles";
 import { DarkTheme, LigthTheme } from "../Themes/Theme";
 import LoadingPage from "./pages/LoadingPage";
+import NotFound from "./NotFound/NotFound"
 
 import { connect } from "react-redux";
 import { loadUser } from "../actions/authActions";
@@ -109,9 +110,11 @@ const App = (props) => {
                   </Route>
                 </Switch>
               </AnimatePresence>
+              <Route component={NotFound} />
               <Footer />
         </div>
     </ThemeProvider>
+    
   );
 };
 
