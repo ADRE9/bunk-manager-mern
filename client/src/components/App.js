@@ -3,7 +3,7 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { withStyles } from "@material-ui/core/styles";
 import { createStyles } from "@material-ui/core/styles";
-import { DarkTheme, LigthTheme } from "../Themes/Theme";
+import { DarkTheme, LightTheme } from "../Themes/Theme";
 import LoadingPage from "./pages/LoadingPage";
 import NotFound from "./NotFound/NotFound"
 
@@ -11,9 +11,10 @@ import { connect } from "react-redux";
 import { loadUser } from "../actions/authActions";
 import { getAllSemesters } from "../actions/subjectActions";
 import AuthHeader from "../components/pagesComponents/AuthHeader";
+import Navbar from"../components/pagesComponents/navbar";
 import PrivateRoute from "./PrivateRoute";
 import { AnimatePresence } from "framer-motion";
-import Footer from "./pagesComponents/Footer";
+import Home from "./pages/Home";
 import { DarkThemeContext } from "../providers/DarkThemeProvider";
 
 //Lazy Loading
@@ -26,7 +27,7 @@ const AddSubjectPage = lazy(() => import('./pages/AddSubjectPage'));
 const EditSubjectPage = lazy(() => import('./pages/EditSubjectPage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage'));
 const TimetablePage = lazy(() => import('./pages/TimetablePage'));
-
+//const Navbar=lazy(() => import('./pages/home/navbar/navbar.js'));
 
 
 const styles = (theme) =>
@@ -40,7 +41,7 @@ const styles = (theme) =>
       left: 0,
       width: "100%",
       minHeight: "100vh",
-      overflow: "hidden",
+      
       position: "relative",
     },
   });
@@ -58,12 +59,16 @@ const App = (props) => {
   const { location } = props.history;
 
   return (
-    <ThemeProvider theme={darkMode ? DarkTheme : LigthTheme}>
+    <ThemeProvider theme={darkMode ? DarkTheme : LightTheme}>
       <div className={classes.App}>
-        <AuthHeader />
+        <Home/>
+        
+
         <AnimatePresence>
+               
                 <Switch location={location} key={location.pathname}>
-                  <PrivateRoute exact  path="/subject">
+                  
+                  {/*<PrivateRoute exact  path="/subject">
                     <Suspense fallback={<LoadingPage/>}>
                       <SubjectPage/>
                     </Suspense>
@@ -108,10 +113,16 @@ const App = (props) => {
                       <LoginPage/>
                     </Suspense>
                   </Route>
+                  <PrivateRoute exact  path="/navbar">
+                    <Suspense fallback={<LoadingPage/>}>
+                      <Navbar/>
+                    </Suspense>
+  </PrivateRoute>*/}
                 </Switch>
               </AnimatePresence>
-              <Route component={NotFound} />
-              <Footer />
+              {/*<Route component={NotFound} />
+              <Footer />*/}
+              
         </div>
     </ThemeProvider>
     
