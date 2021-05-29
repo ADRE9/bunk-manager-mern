@@ -19,7 +19,9 @@ const useStyles = makeStyles((theme) => ({
 
 const HomePage = (props) => {
   const classes = useStyles(props);
-  
+  const hasClasses = classCard(props)[0]
+  const hasLabs = labCard(props)[0]
+
   const containerVariants = {
     hidden: {
       opacity: 0,
@@ -49,11 +51,11 @@ const HomePage = (props) => {
       className={classes.page}
     >
       <Container className={classes.container}>
-      {classCard(props)?<Typography variant="h3" style={{color:"black", marginTop:'0.5vw', textShadow:'2px 2px 2.2px #ff3399'}} >Today's Classes</Typography>:null}
+      {<Typography variant="h3" style={{color:"black", marginTop:'0.5vw', textShadow:'2px 2px 2.2px #ff3399'}} >{hasClasses?"Today's Classes":"No classes today"}</Typography>}
         <CardGrid className={classes.pageGrid} >
           {classCard(props)}
         </CardGrid>
-        {labCard(props)?<Typography variant="h3" style={{color:"black", marginTop:'0.5vw', textShadow:'2px 2px 2.2px #ff3399'}} >Today's Labs</Typography>:null}
+        {<Typography variant="h3" style={{color:"black", marginTop:'0.5vw', textShadow:'2px 2px 2.2px #ff3399'}} >{hasLabs?"Today's Labs":"No labs today"}</Typography>}
         <CardGrid>
           {labCard(props)}
         </CardGrid>
