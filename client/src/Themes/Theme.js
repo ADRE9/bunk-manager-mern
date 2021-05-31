@@ -1,16 +1,17 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
-const BunkBlack = "#2B2024";
+const BunkBlack = "#424874";//light text
 const BunkSecondary = "#FD0054";
-const BunkSecondaryDark = "#A80038";
-const BunkLight = "#FBF9FA";
+const BunkSecondaryDark = "#A6B1E1"//light svg
 
-const DarkBlack = "#2B2024";
-const DarkSecondary = "#12CBC4";
-const DarkSecondaryDark = "#0D9C97";
-const DarkLight = "#FBF9FA";
+const BunkLight = "#FBF9FA";//light bg
 
-export const LigthTheme = createMuiTheme({
+const DarkBlack = "#2A2438"//dark bg
+const DarkSecondary = "#5C5470";
+const DarkSecondaryDark = "#DBD8E3";//dark bottom svg
+const DarkLight = "#DBD8E3";//dark text
+
+export const LightTheme = createMuiTheme({
   palette: {
     common: {
       black: `${BunkBlack}`,
@@ -46,15 +47,15 @@ export const LigthTheme = createMuiTheme({
       margin: "10px 0px",
       width: "50%",
       height: "30px",
-      borderRadius: "15px",
-      border: "1px solid black",
+      borderRadius: "4px",
+      border: "1.2px solid  #B4BEC8",
       paddingLeft: "1rem",
       "&:focus": {
         outline: "none",
       },
       "&::placeholder": {
         fontFamily: "Montserrat, sans-serif",
-        color: "black",
+        color: "#B4BEC8",
         fontWeight: 400,
       },
     },
@@ -75,21 +76,29 @@ export const LigthTheme = createMuiTheme({
       backgroundImage: "linear-gradient(147deg, #FD0054 0%, #FD0054 74%)",
       width: "130px",
       color: "white",
+      background: "#F4EEFF",
+boxShadow: "2px 10px 28px rgba(75, 0, 129, 0.12)",
+borderRadius: "10px"
     },
   },
   pages: {
     page: {
-      //backgroundColor:"black",
+      backgroundColor:{BunkLight},
       flexGrow: 1,
       minHeight: "90vh",
       marginTop: "0rem",
       display: "flex",
       flexDirection: "column",
-    },
-    container: {
+      fontFamily:"Google Sans",
+      position: "relative",
+      width: "1440px",
+      height: "1024px",
+      color:{BunkBlack}
+    }
+    /*container: {
       flexGrow: 1,
       paddingTop: "2rem",
-    },
+    },*/
   },
 });
 export const DarkTheme = createMuiTheme({
@@ -162,16 +171,16 @@ export const DarkTheme = createMuiTheme({
   },
   pages: {
     page: {
-      //backgroundColor:"black",
+      backgroundColor:{DarkBlack},
       flexGrow: 1,
       minHeight: "90vh",
       marginTop: "0rem",
       display: "flex",
       flexDirection: "column",
     },
-    container: {
+    /*container: {
       flexGrow: 1,
       paddingTop: "2rem",
-    },
+    },*/
   },
 });
