@@ -162,11 +162,11 @@ const AuthHeader = (props) => {
               LOGOUT
             </Button>}
             {/* Switch to change the theme */}
-            <Switch
+            {/* <Switch
               color="primary"
               checked={darkMode}
               onChange={() => setDarkMode(!darkMode)}
-            />
+            /> */}
           </Toolbar>
         </AppBar>
       </ElevationScroll>

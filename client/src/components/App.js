@@ -59,7 +59,7 @@ const App = (props) => {
   const { location } = props.history;
 
   return (
-    <ThemeProvider theme={darkMode ? DarkTheme : LightTheme}>
+    <ThemeProvider theme={darkMode ? LightTheme : LightTheme}>
       {/* <div className={classes.App}>
         <Home/>
          */}
@@ -116,7 +116,7 @@ const App = (props) => {
                     <Suspense fallback={<LoadingPage/>}>
                       <Navbar/>
                     </Suspense>
-  </PrivateRoute>
+                  </PrivateRoute>
                 </Switch>
               </AnimatePresence>
             

@@ -7,7 +7,7 @@ const BunkSecondaryDark = "#A6B1E1"//light svg
 const BunkLight = "#FBF9FA";//light bg
 
 const DarkBlack = "#2A2438"//dark bg
-const DarkSecondary = "#5C5470";
+const DarkSecondary = "#12CBC4";
 const DarkSecondaryDark = "#DBD8E3";//dark bottom svg
 const DarkLight = "#DBD8E3";//dark text
 
