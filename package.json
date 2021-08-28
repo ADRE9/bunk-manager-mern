@@ -7,7 +7,7 @@
     "client-install": "npm install --prefix client",
     "start": "node index.js",
     "server": "env-cmd -f ./configs/dev.env nodemon index.js",
-    "client": "npm rum start --prefix client",
+    "client": "npm run start --prefix client",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "dev": "concurrently -n 'server,client' -c 'red,green' \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"

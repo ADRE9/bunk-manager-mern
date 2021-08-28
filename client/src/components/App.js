@@ -5,7 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { createStyles } from "@material-ui/core/styles";
 import { DarkTheme, LightTheme } from "../Themes/Theme";
 import LoadingPage from "./pages/LoadingPage";
-import NotFound from "./NotFound/NotFound"
+// import NotFound from "./NotFound/NotFound"
 
 import { connect } from "react-redux";
 import { loadUser } from "../actions/authActions";
@@ -14,7 +14,7 @@ import AuthHeader from "../components/pagesComponents/AuthHeader";
 import Navbar from"../components/pagesComponents/navbar";
 import PrivateRoute from "./PrivateRoute";
 import { AnimatePresence } from "framer-motion";
-import Home from "./pages/Home";
+// import Home from "./pages/Home";
 import { DarkThemeContext } from "../providers/DarkThemeProvider";
 
 //Lazy Loading
@@ -60,15 +60,14 @@ const App = (props) => {
 
   return (
     <ThemeProvider theme={darkMode ? DarkTheme : LightTheme}>
-      <div className={classes.App}>
+      {/* <div className={classes.App}>
         <Home/>
-        
+         */}
 
         <AnimatePresence>
-               
-                <Switch location={location} key={location.pathname}>
-                  
-                  {/*<PrivateRoute exact  path="/subject">
+               <AuthHeader/>
+                <Switch location={location} key={location.pathname}>   
+                  <PrivateRoute exact  path="/subject">
                     <Suspense fallback={<LoadingPage/>}>
                       <SubjectPage/>
                     </Suspense>
@@ -117,13 +116,12 @@ const App = (props) => {
                     <Suspense fallback={<LoadingPage/>}>
                       <Navbar/>
                     </Suspense>
-  </PrivateRoute>*/}
+  </PrivateRoute>
                 </Switch>
               </AnimatePresence>
-              {/*<Route component={NotFound} />
-              <Footer />*/}
-              
-        </div>
+            
+{/*      
+        </div> */}
     </ThemeProvider>
     
   );

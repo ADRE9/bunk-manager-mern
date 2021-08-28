@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "chokidar": "^3.5.1",
+    "firebase": "^9.0.0",
     "formik": "^2.2.3",
     "framer-motion": "^2.9.4",
     "http-proxy-middleware": "^1.0.6",
