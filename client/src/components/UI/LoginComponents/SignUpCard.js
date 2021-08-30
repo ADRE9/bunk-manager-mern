@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useContext} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { Typography } from "@material-ui/core";
@@ -7,6 +7,8 @@ import Button from "@material-ui/core/Button";
 //import FacebookIcon from '@material-ui/icons/Facebook';
 import Divider from "@material-ui/core/Divider";
 import google from "../../../assets/svg/google.svg";
+import {AuthContext} from '../../../context/AuthProvider';
+
 
 const useStyles = makeStyles((theme) => ({
   signUpHeader: {
@@ -51,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SignUpCard = (props) => {
   const classes = useStyles(props);
-
+  const {googleLogin} = useContext(AuthContext);
   return (
     <React.Fragment>
       <Typography color="primary" className={classes.signUpHeader} variant="h5">
@@ -62,7 +64,7 @@ const SignUpCard = (props) => {
         {/* <Button>
           <FacebookIcon className={classes.fb}/>
         </Button> */}
-        <Button>
+        <Button onClick={()=>googleLogin()}>
           <img src={google} alt="Google" width="30" height="30" />
         </Button>
       </div>

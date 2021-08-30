@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { createStyles } from "@material-ui/core/styles";
 import { DarkTheme, LightTheme } from "../Themes/Theme";
 import LoadingPage from "./pages/LoadingPage";
+import { AuthProvider } from "../context/AuthProvider";
 // import NotFound from "./NotFound/NotFound"
 
 import { connect } from "react-redux";
@@ -59,7 +60,8 @@ const App = (props) => {
   const { location } = props.history;
 
   return (
-    <ThemeProvider theme={darkMode ? LightTheme : LightTheme}>
+    <AuthProvider>
+        <ThemeProvider theme={darkMode ? LightTheme : LightTheme}>
       {/* <div className={classes.App}>
         <Home/>
          */}
@@ -123,7 +125,7 @@ const App = (props) => {
 {/*      
         </div> */}
     </ThemeProvider>
-    
+    </AuthProvider>
   );
 };
 
